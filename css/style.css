@@ -66,17 +66,15 @@ article {
 }
 
 footer {
+    float: left;
+    width: 100%;
     background-color: #111;
     text-align: center;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    right: 0;
     font-size: 12px;
 }
 
 main{
-    padding-bottom: 150px;
+    padding-bottom: 50px;
 }
 
 .headeur > img{
