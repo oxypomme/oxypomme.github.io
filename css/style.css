@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Abel|Raleway&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1E1E1E;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.downloads,
+button,
+nav {
+    font-family: 'Abel', sans-serif;
+}
+
+.underline {
+    font-style: italic;
+}
+
+.note,
+.note a {
+    color: gray;
+}
+
+a {
+    color: #007ACC;
+}
+
+.important {
+    color: red;
+}
+
+footer {
+    background-color: rgba(17, 17, 17, 0.5);
+    text-align: center;
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 12px;
+    border: 0px solid black;
+    border-radius: 10px 10px 0px 0px;
+}
+
+footer h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/*Large screen*/
+@media screen and (min-width:1316px) {
+    .downloads {
+        float: left;
+        position: absolute;
+        text-align: center;
+        margin: -130px 0px 0px 24.25%;
+        padding: 10px;
+        width: 150px;
+    }
+    
+    article {
+        text-align: center;
+        margin-left: 25%;
+        margin-right: 25%;
+        width:50%;
+        /*border: 2px solid black; DEBUG ONLY*/
+    }
+
+    figure {
+        font-style: italic;
+        font-size: 12px;
+        background-color: #111;
+        border: 0px solid black;
+        border-radius: 0px 0px 10px 10px;
+        float:left;
+    }
+
+    .header-img{
+        margin-top: 60px;
+    }
+
+    .al-img{
+        float: right;
+        margin-top: 25px;
+    }
+
+    .install-img {
+        border-radius: 10px 10px 10px 10px;
+        margin-top: 10px;
+    }
+
+    .install-txt {
+        display: none;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+}
+
+/*Mid screens*/
+@media screen and (max-width:1315px) and (min-width:986px){
+    .downloads {
+        float: left;
+        position: absolute;
+        text-align: center;
+        margin: -100px 0px 0px 5%;
+        padding: 10px;
+        width: 150px;
+    }
+    .aside-img {
+        display: inline;
+    }
+
+    article{
+        padding-bottom: 30px;
+    }
+
+    figure {
+        font-style: italic;
+        font-size: 12px;
+        background-color: #111;
+        float: left;
+        margin-left: 7%;
+        margin-right: 97%;
+        border: 0px solid black;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    .aside-img {
+        margin-left: 37%;
+        margin-right: 63%;
+    }
+
+    .al {
+        float: right;
+        margin-top: -10%;
+        margin-right: 1%;
+    }
+}
+
+/*Computers*/
+@media screen and (min-width:986px) {
+    .downloads p {
+        margin: 0px 0px 5px 0px;
+        font-style: normal;
+    }
+
+    button {
+        background-color: #007ACC;
+        border: 5px solid #007ACC;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgb(0, 60, 100);
+        font-size: 18px;
+    }
+
+    #btn2 {
+        background-color: #323131;
+        border: 5px solid #323131;
+        box-shadow: 2px 2px 5px #0f0f0f;
+        margin-top: 8px;
+    }
+
+    button:hover {
+        background-color: rgb(0, 100, 165);
+        border: 5px solid rgb(0, 100, 165);
+        cursor: pointer;
+    }
+
+    #btn2:hover {
+        background-color: #202020;
+        border: 5px solid #202020;
+        cursor: pointer;
+    }
+
+    button a {
+        text-decoration: none;
+        color: black;
+    }
+
+    section {
+        margin-top: 25px;
+    }
+
+    header p {
+        font-style: italic;
+        text-align: center;
+    }
+
+    header img {
+        margin-top: -90px;
+        float: right;
+        margin-right: 25%;
+    }
+
+    .headeur {
+        margin-top: 70px;
+        padding-bottom: 10px;
+    }
+
+    .separator1 {
+        border-bottom: 1px solid #111;
+        width: 25%;
+        margin-left: 37%;
+    }
+
+    .install-img {
+        display: block;
+        border-radius: 10px 10px 0px 0px;
+    }
+    
+    .install-txt {
+        display: none;
+    }
+    
+    /*NAVBAR*/
+    nav {
+        margin-left: 24%;
+        width: 52%;
+        position: fixed;
+        float: left;
+        top: 0;
+        z-index: 2;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 2;
+        overflow: hidden;
+        background-color: #333;
+        border: 0px solid black;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    nav li {
+        float: left;
+    }
+
+    nav li a,
+    .dropbtn {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    nav li a:hover,
+    .dropdown:hover .dropbtn {
+        background-color: #111;
+    }
+
+    li.dropdown {
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #111;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .active {
+        background-color: #68217a;
+    }
+}
+
+/*Mobile*/
+@media screen and (max-width:985px) {
+
+    .downloads{
+        display: none;
+    }
+
+    .headeur img {
+        float: left;
+        margin-top: -105px;
+        margin-left: 25px;
+        position: absolute;
+    }
+
+    figure {
+        float: left;
+        font-style: italic;
+        font-size: 12px;
+        background-color: #111;
+        margin-left: 10%;
+        margin-right: 95%;
+        margin-bottom: 25px;
+        border: 0px solid black;
+        border-radius: 0px 0px 10px 10px;
+        text-align: center;
+    }
+
+    .install-img {
+        display: none;
+    }
+
+    .install-txt {
+        display: block;
+    }
+
+    /*NAVBAR*/
+
+    nav {
+        font-family: 'Abel', sans-serif;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav a {
+        text-decoration: none;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li a {
+        display: block;
+        padding: 5px 0px 5px 00px;
+        background-color: #333;
+        color: white;
+    }
+
+    .active {
+        background-color: #68217a80;
+    }
+
+    .active-mobile {
+        background-color: #68217a;
+    }
+}
