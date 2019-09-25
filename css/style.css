@@ -93,7 +93,8 @@ nav img{
 /*Large screen*/
 @media screen and (min-width:1025px) {
     .header-img,
-    .al-img{
+    .al-img,
+    .retro-img{
         display: block;
         width:100%;
         max-width: 316px;
@@ -104,6 +105,10 @@ nav img{
 
     .al-img{
         margin-top: 1.5em;
+    }
+
+    .retro-img{
+        margin-top: 2.5em;
     }
 
     .install-txt {
@@ -132,7 +137,8 @@ nav img{
 /*Mid screens*/
 @media screen and (max-width:1024px) and (min-width:781px) {
     .al-img,
-    .header-img{
+    .header-img,
+    .retro-img{
         width:316px;
         display: block;
         margin-left: auto;
@@ -232,16 +238,14 @@ nav img{
         border-radius: 10px 10px 10px 10px;
     }
 
-    .install-img img {
-        width: 100%;
-    }
-
     ul {
         list-style-type: none;
     }
 
     .header-img img,
-    .al-img img {
+    .al-img img,
+    .retro-img img,
+    .install-img img  {
         width: 100%;
     }
 
