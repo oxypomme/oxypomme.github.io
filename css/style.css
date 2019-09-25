@@ -92,19 +92,13 @@ nav img{
 
 /*Large screen*/
 @media screen and (min-width:1025px) {
-    .header-img,
-    .al-img,
-    .retro-img{
+    .side-img{
         display: block;
         width:100%;
         max-width: 316px;
         margin-right: auto;
         margin-top: 5em;
         margin-left: auto;
-    }
-
-    .al-img{
-        margin-top: 1.5em;
     }
 
     .retro-img{
@@ -136,9 +130,7 @@ nav img{
 
 /*Mid screens*/
 @media screen and (max-width:1024px) and (min-width:781px) {
-    .al-img,
-    .header-img,
-    .retro-img{
+    .side-img{
         width:316px;
         display: block;
         margin-left: auto;
@@ -242,10 +234,8 @@ nav img{
         list-style-type: none;
     }
 
-    .header-img img,
-    .al-img img,
-    .retro-img img,
-    .install-img img  {
+    .side-img img,
+    .install-img img {
         width: 100%;
     }
 
