@@ -7,6 +7,7 @@
     <link rel="icon" href="https://github.com/fluidicon.png" title="GitHub">
     <link rel="stylesheet" href="css/style.css" />
     <meta name="viewport" content="width=max-device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
@@ -16,19 +17,18 @@
             <p>
                 ou "oxypomme" sur GitHub
             </p>
-            <img src="https://avatars1.githubusercontent.com/u/34627360?s=460&v=4" alt="logo"/>
-            <nav>
-                <ul>
-                    <li><a href="index" class="active active-mobile">Home</a></li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Projets</a>
-                        <div class="dropdown-content">
-                            <a href="DofLog">DofLog <img src="res/doflog/icon.ico" alt="logo"/></a>
-                            <a href="ILA">ILA <img src="res/ila/icon.ico" alt="logo"/></a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <img src="https://avatars1.githubusercontent.com/u/34627360?s=460&v=4" alt="logo" />
+            <!--Navigation bar-->
+            <div id="nav-placeholder">
+
+            </div>
+
+            <script>
+                $(function () {
+                    $("#nav-placeholder").load("nav.html");
+                });
+            </script>
+            <!--end of Navigation bar-->
         </div>
         <div class="separator1"></div>
     </header>
@@ -65,8 +65,7 @@
     <footer>
         <p>
             <h3>Crédits : </h3>
-            <a href="https://github.com/oxypomme">OxyTom</a> - <a
-                href="https://twitter.com/OxyT0m8">@OxyTom</a><br />
+            <a href="https://github.com/oxypomme">OxyTom</a> - <a href="https://twitter.com/OxyT0m8">@OxyTom</a><br />
             <a href="https://github.com/oxypomme/oxypomme.github.io/contributors">Liste des
                 contributeurs</a><br />
         </p>

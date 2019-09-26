@@ -23,19 +23,17 @@
                         target="_blank"><button>Télécharger</button></a>
                         <a href="https://github.com/oxypomme/DofLog" target="_blank"><button id="btn2">GitHub</button></a>
             </aside>
-            <nav>
-                <ul>
-                    <li><a href="index">Home</a></li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn active">Projets</a>
-                        <div class="dropdown-content">
-                            <a href="DofLog" class="active-mobile">DofLog <img src="res/doflog/icon.ico"
-                                    alt="logo" /></a>
-                            <a href="ILA">ILA <img src="res/ila/icon.ico" alt="logo" /></a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <!--Navigation bar-->
+            <div id="nav-placeholder">
+
+            </div>
+
+            <script>
+                $(function () {
+                    $("#nav-placeholder").load("nav.html");
+                });
+            </script>
+            <!--end of Navigation bar-->
         </div>
         <div class="separator1"></div>
     </header>
