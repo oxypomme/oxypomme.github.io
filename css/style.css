@@ -73,6 +73,11 @@ footer {
     font-size: 12px;
 }
 
+footer img{
+    vertical-align: middle;
+    margin-top: 5px;
+}
+
 main{
     padding-bottom: 50px;
 }
