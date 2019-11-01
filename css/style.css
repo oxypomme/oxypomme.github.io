@@ -110,8 +110,8 @@ nav img{
         margin-top: 2.5em;
     }
 
-    .install-txt {
-        display: none;
+    .install-txt ol {
+        list-style-type: none;
     }
 
     .collumn {
