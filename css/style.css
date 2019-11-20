@@ -375,10 +375,13 @@ nav img {
         padding: 0;
     }
 
+    nav li {
+        background-color: #333;
+    }
+
     li a {
         display: block;
         padding: 5px 0px 5px 00px;
-        background-color: #333;
         color: white;
     }
 
