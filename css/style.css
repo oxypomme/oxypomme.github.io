@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Abel|Raleway&display=swap');
 
+:root{
+    /*Main colors*/
+    --background-light: #333;
+    --background: #1E1E1E;
+    --background-dark: #111;
+
+    --accent1: #007ACC;
+    --accent1-dark: rgb(0, 100, 165);
+    --accent1-darker: rgb(0, 60, 100);
+
+    --accent2:#323131;
+    --accent2-dark:#202020;
+    --accent2-darker:#0f0f0f;
+
+    /*Nav*/
+    --main-active: #68217a;
+    --accent-active: #68217a;
+
+    /*Various Text*/
+    --text: white;
+    --link: var(--accent1);
+    --note: gray;
+    --important: red;
+    --button-text: black;
+}
+
+
 * {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -7,10 +34,10 @@
 
 body {
     position: relative;
-    background-color: #1E1E1E;
+    background-color: var(--background);
     background-image: url('../res/background.svg');
     background-size: 10em;
-    color: white;
+    color: var(--text);
     font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 0;
@@ -35,15 +62,15 @@ nav {
 
 .note,
 .note a {
-    color: gray;
+    color: var(--note);
 }
 
 a {
-    color: #007ACC;
+    color: var(--link);
 }
 
 .important {
-    color: red;
+    color: var(--important);
 }
 
 footer h3 {
@@ -56,7 +83,7 @@ article {
 }
 
 .separator1 {
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--background-light);
     width: 45%;
     margin: 15px auto 15px auto;
 }
@@ -68,7 +95,7 @@ article {
 footer {
     float: left;
     width: 100%;
-    background-color: #111;
+    background-color: var(--background-dark);
     text-align: center;
     font-size: 12px;
 }
@@ -171,35 +198,35 @@ nav img {
     }
 
     button {
-        background-color: #007ACC;
-        border: 5px solid #007ACC;
+        background-color: var(--accent1);
+        border: 5px solid var(--accent1);
         border-radius: 5px;
-        box-shadow: 2px 2px 5px rgb(0, 60, 100);
+        box-shadow: 2px 2px 5px var(--accent1-darker);
         font-size: 18px;
     }
 
     #btn2 {
-        background-color: #323131;
-        border: 5px solid #323131;
-        box-shadow: 2px 2px 5px #0f0f0f;
+        background-color: var(--accent2);
+        border: 5px solid var(--accent2);
+        box-shadow: 2px 2px 5px var(--accent2-darker);
         margin-top: 8px;
     }
 
     button:hover {
-        background-color: rgb(0, 100, 165);
-        border: 5px solid rgb(0, 100, 165);
+        background-color: var(--accent1-dark);
+        border: 5px solid var(--accent1-dark);
         cursor: pointer;
     }
 
     #btn2:hover {
-        background-color: #202020;
-        border: 5px solid #202020;
+        background-color: var(--accent2-dark);
+        border: 5px solid var(--accent2-dark);
         cursor: pointer;
     }
 
     button a {
         text-decoration: none;
-        color: black;
+        color: var(--button-text);
     }
 
     header p {
@@ -226,8 +253,8 @@ nav img {
     figure {
         font-style: italic;
         font-size: 12px;
-        background-color: #111;
-        border: 0px solid black;
+        background-color: var(--background-dark);
+        border: 0px solid rgba(0,0,0,0);
         border-radius: 0px 0px 10px 10px;
     }
 
@@ -270,8 +297,8 @@ nav img {
         margin: 0;
         padding: 2;
         overflow: hidden;
-        background-color: #111;
-        border: 0px solid black;
+        background-color: var(--background-dark);
+        border: 0px solid rgba(0,0,0,0);
         border-radius: 0px 0px 10px 10px;
     }
 
@@ -282,7 +309,7 @@ nav img {
     nav li a,
     .dropbtn {
         display: inline-block;
-        color: white;
+        color: var(--text);
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
@@ -290,7 +317,7 @@ nav img {
 
     nav li a:hover,
     .dropdown:hover .dropbtn {
-        background-color: #333;
+        background-color: var(--background-light);
     }
 
     li.dropdown {
@@ -300,7 +327,7 @@ nav img {
     .dropdown-content {
         display: none;
         position: absolute;
-        background-color: #111;
+        background-color: var(--background-dark);
         min-width: 100px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
@@ -314,7 +341,7 @@ nav img {
     }
 
     .dropdown-content a:hover {
-        background-color: #333;
+        background-color: var(--background-light);
     }
 
     .dropdown:hover .dropdown-content {
@@ -348,7 +375,7 @@ nav img {
         margin-right: auto;
         font-style: italic;
         font-size: 12px;
-        border: 0px solid black;
+        border: 0px solid rgba(0,0,0,0);
         border-radius: 0px 0px 10px 10px;
         text-align: center;
     }
@@ -376,31 +403,16 @@ nav img {
     }
 
     nav li {
-        background-color: #333;
+        background-color: var(--background-light);
     }
 
     li a {
         display: block;
         padding: 5px 0px 5px 00px;
-        color: white;
+        color: var(--text);
     }
 
     .dropbtn {
         display: none;
     }
 }
-
-/*
-.active {
-    background-color: #68217a;
-}
-
-.active-mobile {
-    background-color: #68217a;
-}
-
-MOBILE :
-.active-mobile {
-    background-color: #68217a;
-}
-*/
