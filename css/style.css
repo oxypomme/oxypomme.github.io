@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Abel|Raleway&display=swap');
 
-:root{
+:root {
     /*Main colors*/
     --background-light: #333;
     --background: #1E1E1E;
@@ -10,9 +10,9 @@
     --accent1-dark: rgb(0, 100, 165);
     --accent1-darker: rgb(0, 60, 100);
 
-    --accent2:#323131;
-    --accent2-dark:#202020;
-    --accent2-darker:#0f0f0f;
+    --accent2: #323131;
+    --accent2-dark: #202020;
+    --accent2-darker: #0f0f0f;
 
     /*Nav*/
     --main-active: #68217a;
@@ -100,12 +100,12 @@ footer {
     font-size: 12px;
 }
 
-footer img{
+footer img {
     vertical-align: middle;
     margin-top: 5px;
 }
 
-main{
+main {
     padding-bottom: 50px;
 }
 
@@ -254,7 +254,7 @@ nav img {
         font-style: italic;
         font-size: 12px;
         background-color: var(--background-dark);
-        border: 0px solid rgba(0,0,0,0);
+        border: 0px solid rgba(0, 0, 0, 0);
         border-radius: 0px 0px 10px 10px;
     }
 
@@ -283,6 +283,54 @@ nav img {
         width: 50%;
     }
 
+    /* Tooltip container */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+        /* If you want dots under the hoverable text */
+    }
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        /* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+
+        /* Fade in tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    /* Tooltip arrow */
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
     /*NAVBAR*/
     nav {
         width: 50%;
@@ -298,7 +346,7 @@ nav img {
         padding: 2;
         overflow: hidden;
         background-color: var(--background-dark);
-        border: 0px solid rgba(0,0,0,0);
+        border: 0px solid rgba(0, 0, 0, 0);
         border-radius: 0px 0px 10px 10px;
     }
 
@@ -375,7 +423,7 @@ nav img {
         margin-right: auto;
         font-style: italic;
         font-size: 12px;
-        border: 0px solid rgba(0,0,0,0);
+        border: 0px solid rgba(0, 0, 0, 0);
         border-radius: 0px 0px 10px 10px;
         text-align: center;
     }
