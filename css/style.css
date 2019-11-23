@@ -122,6 +122,11 @@ nav img {
     margin-left: 5px;
 }
 
+nav #pulse img{
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
 /*Large screen*/
 @media screen and (min-width:1025px) {
     .side-img {
