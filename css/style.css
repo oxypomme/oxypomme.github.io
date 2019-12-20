@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Abel|Raleway&display=swap');
 
+@font-face{
+    font-family: FiraCode;
+    font-weight: 100;
+    src: url(../res/fonts/FiraCode-Light.ttf);
+}
+
 :root {
     /*Main colors*/
     --background-light: #333;
@@ -125,6 +131,22 @@ nav img {
 nav #pulse img{
     -webkit-filter: invert(100%);
     filter: invert(100%);
+}
+
+pre{
+    background-color: var(--accent2-dark);
+    border: 1px solid var(--accent2-darker);
+    border-radius: 5px;
+    text-align: left;
+    padding-left: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+code{
+    font-size: smaller;
+    font-family: FiraCode;
 }
 
 /*Large screen*/
