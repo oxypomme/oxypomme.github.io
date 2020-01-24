@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <link rel="icon" href="SMHWMM/logo.ico">
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=max-device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="headeur">
+            <h1>ILA</h1>
+            <p>
+                Interpréteur de Langage Algorithmique
+            </p>
+            <img src="SMHWMM/logo.ico" alt="logo"/>
+            <aside>
+                <p>Dernière version stable :</p>
+                <a href="https://github.com/oxypomme/SimpleMhwModManager/releases/latest/download/SMHWMM-setup.exe"
+                    target="_blank"><button>Télécharger</button></a>
+                <a href="https://github.com/oxypomme/SimpleMhwModManager" target="_blank"><button id="btn2">GitHub</button></a>
+            </aside>
+            <!--Navigation bar-->
+            <div id="nav-placeholder">
+
+            </div>
+
+            <script>
+                $(function () {
+                    $("#nav-placeholder").load("nav.html");
+                });
+            </script>
+            <style>
+                #projects{background-color: var(--accent-active)}
+                #ila{background-color: var(--main-active)}
+            </style>
+            <!--end of Navigation bar-->
+        </div>
+        <div class="separator1"></div>
+    </header>
+
+    <main>
+        <section>
+            <article>
+                <h2>First Title</h2>
+                <p>
+                    First paragraph
+                </p>
+            </article>
+            <article>
+                <h2>Second Title</h2>
+                <p>
+                    Second paragraph
+                </p>
+            </article>
+            <article>
+                <h2>Third Title</h2>
+                <p>
+                    Third paragraph
+                </p>
+            </article>
+            <article>
+                <h2>Fourth Title</h2>
+                <p>
+                    Fourth paragraph
+                </p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <h3>Crédits : </h3>
+            <a href="https://github.com/oxypomme" target="_blank">OxyTom</a> - <a
+                href="https://twitter.com/OxyT0m8" target="_blank">@OxyTom</a><br />
+            <a href="https://github.com/oxypomme/SimpleMhwModManager/contributors" target="_blank">Liste des
+                contributeurs</a><br />
+        </p>
+        <div class="separator1"></div>
+        <p>
+            <h3>Licence :</h3>
+            <a href="https://github.com/oxypomme/SimpleMhwModManager/blob/master/LICENSE" target="_blank">MIT
+                Licence</a>
+
+        </p>
+    </footer>
+</body>
+
+</html>
