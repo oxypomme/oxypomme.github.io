@@ -149,6 +149,10 @@ code{
     font-family: FiraCode;
 }
 
+iframe{
+    border: none;
+}
+
 /*Large screen*/
 @media screen and (min-width:1025px) {
     .side-img {
