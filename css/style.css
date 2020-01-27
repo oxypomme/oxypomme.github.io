@@ -94,6 +94,14 @@ article {
     margin: 15px auto 15px auto;
 }
 
+.separator2 {
+    border-top: 2px solid var(--background-light);
+    height: 15px;
+    border-bottom: 2px solid var(--background-light);
+    width: 90%;
+    margin: 15px auto 15px auto;
+}
+
 :not(nav)>ul>li {
     margin-top: 10px;
 }
@@ -260,7 +268,7 @@ iframe{
         color: var(--button-text);
     }
 
-    header p {
+    .headeur p {
         font-style: italic;
         text-align: center;
     }
@@ -457,6 +465,7 @@ iframe{
         border: 0px solid rgba(0, 0, 0, 0);
         border-radius: 0px 0px 10px 10px;
         text-align: center;
+        width: 40%;
     }
 
     .install-img {
