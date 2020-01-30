@@ -20,9 +20,11 @@
     --accent2-dark: #202020;
     --accent2-darker: #0f0f0f;
 
+    --accent3: #68217a;
+
     /*Nav*/
-    --main-active: #68217a;
-    --accent-active: #68217a;
+    --main-active: var(--accent1-dark);
+    --accent-active: var(--accent1-dark);
 
     /*Various Text*/
     --text: white;
