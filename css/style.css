@@ -501,8 +501,4 @@ iframe{
         padding: 5px 0px 5px 00px;
         color: var(--text);
     }
-
-    .dropbtn {
-        display: none;
-    }
 }
