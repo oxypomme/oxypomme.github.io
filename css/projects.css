@@ -135,6 +135,7 @@ footer {
     background-color: var(--background-dark);
     text-align: center;
     font-size: 12px;
+    padding-bottom: 10px;
 }
 
 footer img {
