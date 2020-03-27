@@ -81,25 +81,6 @@ h2, section{
     text-align:center;
 }
 
-.collumns{
-    display: flex;
-    flex-wrap: wrap;
-    word-wrap: break-word;
-    align-items: stretch;
-}
-
-.collumns.double > section{
-    width: 50%;
-}
-
-.collumns.triple > section{
-    width: 33%;
-}
-
-.collumns.quadra > section{
-    width: 25%;
-}
-
 .projects {
     display: flex;
     flex-wrap: wrap;
@@ -177,12 +158,35 @@ nav img {
 iframe{
     border: none;
 }
+#discord iframe{
+    width: 350px;
+    height: 500px;
+}
 
 @media screen and (min-width:781px) {
     main {
         margin-left: 25%;
         margin-right: 25%;
         width: 50%;
+    }
+
+    .collumns{
+        display: flex;
+        flex-wrap: wrap;
+        word-wrap: break-word;
+        align-items: stretch;
+    }
+    
+    .collumns.double > section{
+        width: 50%;
+    }
+    
+    .collumns.triple > section{
+        width: 33%;
+    }
+    
+    .collumns.quadra > section{
+        width: 25%;
     }
 
     /*NAVBAR*/
