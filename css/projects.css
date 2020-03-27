@@ -77,8 +77,27 @@ header>img {
     margin: 15px auto 15px auto;
 }
 
-h2 {
-    text-align: center;
+h2, section{
+    text-align:center;
+}
+
+.collumns{
+    display: flex;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    align-items: stretch;
+}
+
+.collumns.double > section{
+    width: 50%;
+}
+
+.collumns.triple > section{
+    width: 33%;
+}
+
+.collumns.quadra > section{
+    width: 25%;
 }
 
 .projects {
@@ -153,6 +172,10 @@ nav img {
 #pulse img {
     -webkit-filter: invert(100%);
     filter: invert(100%);
+}
+
+iframe{
+    border: none;
 }
 
 @media screen and (min-width:781px) {
