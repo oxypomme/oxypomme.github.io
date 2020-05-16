@@ -127,6 +127,12 @@ a {
     color: var(--link);
 }
 
+.school {
+    color: orange;
+    font-style: italic;
+    font-size: 12px;
+}
+
 footer {
     position: absolute;
     left: 0;
