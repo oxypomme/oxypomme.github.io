@@ -77,8 +77,9 @@ header>img {
     margin: 15px auto 15px auto;
 }
 
-h2, section{
-    text-align:center;
+h2,
+section {
+    text-align: center;
 }
 
 .projects {
@@ -118,9 +119,23 @@ h2, section{
     padding-top: 64px;
 }
 
-.projects a> :nth-last-child(1) {
+.projects a>h3 {
+    height: 44px;
+}
+
+.projects a> :nth-child(3) {
+    height: 60px;
+}
+
+.projects a> :last-child {
+    background-color: var(--accent2-dark-transparent);
     font-style: italic;
     color: var(--accent1);
+    height: 19px;
+}
+
+.projects a>p:not(.school)+p:last-child {
+    margin-top: 42px;
 }
 
 a {
@@ -131,6 +146,7 @@ a {
     color: orange;
     font-style: italic;
     font-size: 12px;
+    height: 14px;
 }
 
 footer {
@@ -161,10 +177,11 @@ nav img {
     filter: invert(100%);
 }
 
-iframe{
+iframe {
     border: none;
 }
-#discord iframe{
+
+#discord iframe {
     width: 350px;
     height: 500px;
 }
@@ -176,22 +193,22 @@ iframe{
         width: 50%;
     }
 
-    .collumns{
+    .collumns {
         display: flex;
         flex-wrap: wrap;
         word-wrap: break-word;
         align-items: stretch;
     }
-    
-    .collumns.double > section{
+
+    .collumns.double>section {
         width: 50%;
     }
-    
-    .collumns.triple > section{
+
+    .collumns.triple>section {
         width: 33%;
     }
-    
-    .collumns.quadra > section{
+
+    .collumns.quadra>section {
         width: 25%;
     }
 
@@ -267,6 +284,7 @@ iframe{
 
 /*Mobile*/
 @media screen and (max-width:780px) {
+
     /*NAVBAR*/
     nav {
         font-family: 'Abel', sans-serif;
