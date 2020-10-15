@@ -113,10 +113,11 @@ section {
 
 .projects img {
     width: 64px;
+    height: 64px;
 }
 
 .projects .spacer {
-    padding-top: 64px;
+    height: 64px;
 }
 
 .projects a>h3 {
@@ -135,7 +136,7 @@ section {
 }
 
 .projects a>p:not(.school)+p:last-child {
-    margin-top: 42px;
+    margin-top: 45px;
 }
 
 a {
