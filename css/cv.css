@@ -120,6 +120,62 @@ a {
     vertical-align: middle;
 }
 
+.projects .languages {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: inline;
+}
+
+.projects .languages li {
+    margin: 0;
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
+    transition: opacity .25s;
+}
+
+.projects .languages li:hover {
+    opacity: 0.75;
+}
+
+.languages .html {
+    background-color: orange;
+}
+
+.languages .css {
+    background-color: #264DE4;
+}
+
+.languages .js {
+    background-color: yellow;
+}
+
+.languages .php {
+    background-color: #8993C1;
+}
+
+.languages .csharp {
+    background-color: blueviolet;
+}
+
+.languages .java {
+    background-color: red;
+}
+
+.languages .mysql {
+    background-color: #00618A;
+}
+
+.languages .git {
+    background-color: orangered;
+}
+
+.languages .c {
+    background-color: #004283;
+}
+
 footer {
     position: absolute;
     left: 0;
