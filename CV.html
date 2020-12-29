@@ -14,8 +14,8 @@
     <header>
         <h1>Portfolio</h1>
         <ul>
-            <li><a href="">Mes informations</a></li>
-            <li><a href="#projects">Mes réalisations</a></li>
+            <li><a href="#formationsAnchor">Mes informations</a></li>
+            <li><a href="#projectsAnchor">Mes réalisations</a></li>
         </ul>
         
         <!--Navigation bar-->
@@ -32,7 +32,9 @@
     </header>
 
     <main>
-        <section id="me">
+        <div class="separator2"></div>
+        <div class="anchor" id="formationsAnchor"></div>
+        <section>
             <h2>TITRE</h2>
             <article class="card">
                 <h3>Infos</h3>
@@ -72,12 +74,13 @@
             </article>
         </section>
         <div class="separator1"></div>
-        <section id="projects">
+        <div class="anchor" id="projectsAnchor"></div>
+        <section>
             <h2>Réalisations</h2>
             <p>
                 Rangé par ordre chronologique, les projets les plus récents apparaitrons en premier.
             </p>
-            <div class="flex">
+            <div class="flex" id="projects">
                 <article class="card perso">
                     <h3>Audio Recorder</h3>
                     <p>

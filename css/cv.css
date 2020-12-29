@@ -39,6 +39,7 @@
 * {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -89,6 +90,12 @@ section {
 
 a {
     color: var(--link);
+}
+
+.anchor {
+    display: block;
+    position: relative;
+    visibility: hidden;
 }
 
 .flex {
@@ -218,6 +225,9 @@ nav img {
 }
 
 @media screen and (min-width:781px) {
+    .anchor {
+        top: -49px;
+    }
 
     /*NAVBAR*/
     nav {
