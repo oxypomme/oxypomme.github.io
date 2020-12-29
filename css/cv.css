@@ -59,6 +59,11 @@ header {
     padding-top: 2%;
 }
 
+header>ul {
+    list-style-type: none;
+    display: inline;
+}
+
 header>img {
     width: 64px;
 }
@@ -86,7 +91,7 @@ a {
     color: var(--link);
 }
 
-.projects {
+.flex {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -94,7 +99,15 @@ a {
     align-items: flex-start;
 }
 
-.projects .card {
+#formations {
+    flex-direction: column;
+}
+
+#formations div {
+    margin: 10px;
+}
+
+.card {
     text-align: left;
     width: 700px;
     margin: 20px;
@@ -104,30 +117,30 @@ a {
     transition: background-color .25s;
 }
 
-.projects .card:hover {
+.card:hover {
     background-color: var(--accent2-dark-transparent);
 }
 
-.projects .card.perso>p:first-of-type {
+#projects .card.perso>p:first-of-type {
     color: orange;
 }
 
-.projects .card:not(.perso)>div:first-of-type>h4 {
+#projects .card:not(.perso)>div:first-of-type>h4 {
     display: inline;
 }
 
-.projects .card>p img {
+#projects .card>p img {
     vertical-align: middle;
 }
 
-.projects .languages {
+#projects .languages {
     margin: 0;
     padding: 0;
     list-style-type: none;
     display: inline;
 }
 
-.projects .languages li {
+#projects .languages li {
     margin: 0;
     margin-right: 5px;
     padding: 5px;
@@ -136,7 +149,7 @@ a {
     transition: opacity .25s;
 }
 
-.projects .languages li:hover {
+#projects .languages li:hover {
     opacity: 0.75;
 }
 

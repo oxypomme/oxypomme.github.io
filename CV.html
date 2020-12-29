@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Portfolio - oxypomme</title>
-    <link rel="icon" href="res/favicon.ico" />
+    <link rel="icon" href="res/icon.ico" />
     <link rel="stylesheet" href="css/cv.css" />
     <meta name="viewport" content="initial-scale=1" />
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -13,9 +13,10 @@
 <body>
     <header>
         <h1>Portfolio</h1>
-        <p>
-            Le vrai, pas l'autre à moitié fini
-        </p>
+        <ul>
+            <li><a href="">Mes informations</a></li>
+            <li><a href="#projects">Mes réalisations</a></li>
+        </ul>
         
         <!--Navigation bar-->
         <div id="nav-placeholder">
@@ -31,15 +32,52 @@
     </header>
 
     <main>
-        <section>
-            <h2>Moi</h2>
+        <section id="me">
+            <h2>TITRE</h2>
+            <article class="card">
+                <h3>Infos</h3>
+                <p>
+                    SUBLET Tom
+                </p>
+                <p>
+                    Né le 28/08
+                </p>
+            </article>
+            <article>
+                <h3>Diplômes et formations</h3>
+                <div class="flex" id="formations">
+                    <div class="card">
+                        <p>
+                            Diplôme Universitaire de Technologie en Informatique
+                        </p>
+                        <p>
+                            Université de Lorraine, Metz, France
+                        </p>
+                        <p>
+                            De 2019 à 2021
+                        </p>
+                    </div>
+                    <div class="card">
+                        <p>
+                            Baccalauréat Scientifique (spécialité Sciences de l’Ingénieur)
+                        </p>
+                        <p>
+                            Lycée Monge, Chambéry, France
+                        </p>
+                        <p>
+                            De 2016 à 2019
+                        </p>
+                    </div>
+                </div>
+            </article>
         </section>
-        <section>
+        <div class="separator1"></div>
+        <section id="projects">
             <h2>Réalisations</h2>
             <p>
                 Rangé par ordre chronologique, les projets les plus récents apparaitrons en premier.
             </p>
-            <div class="projects">
+            <div class="flex">
                 <article class="card perso">
                     <h3>Audio Recorder</h3>
                     <p>
