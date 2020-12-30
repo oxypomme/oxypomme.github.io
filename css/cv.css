@@ -127,6 +127,10 @@ a:hover {
     margin: 10px;
 }
 
+#formations .card>p:last-of-type {
+    font-style: italic;
+}
+
 .card {
     text-align: left;
     width: 700px;
