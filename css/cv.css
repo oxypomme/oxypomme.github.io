@@ -135,10 +135,15 @@ a:hover {
     text-align: left;
     width: 700px;
     margin: 20px;
-    padding: 0 20px;
+    padding: 10px 20px;
     background-color: var(--accent2-transparent);
     border-radius: 5px;
     transition: background-color .25s;
+}
+
+.card h3,
+.card h4 {
+    margin-top: 10px;
 }
 
 .card:hover {
