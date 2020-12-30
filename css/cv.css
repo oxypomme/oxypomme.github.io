@@ -44,7 +44,6 @@
 
 body {
     background-color: var(--background);
-    background-image: url('../res/background.svg');
     background-size: 10em;
     color: var(--text);
     font-family: 'Raleway', sans-serif;
@@ -60,7 +59,8 @@ header {
     padding-top: 2%;
 }
 
-header>ul {
+header>ul,
+.card>ul {
     list-style-type: none;
     display: inline;
 }
@@ -106,8 +106,12 @@ a {
     align-items: flex-start;
 }
 
-#formations {
+.flex.column {
     flex-direction: column;
+}
+
+#formations h3 {
+    text-align: center;
 }
 
 #formations div {
@@ -128,6 +132,10 @@ a {
     background-color: var(--accent2-dark-transparent);
 }
 
+#projects .card {
+    height: 550px;
+}
+
 #projects .card.perso>p:first-of-type {
     color: orange;
 }
@@ -140,23 +148,41 @@ a {
     vertical-align: middle;
 }
 
-#projects .languages {
+div:not(#projects) h4 {
+    margin-bottom: 0;
+}
+
+main div:not(#projects) ul li {
+    margin-bottom: 5px;
+}
+
+ul li img {
+    width: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.languages {
     margin: 0;
     padding: 0;
     list-style-type: none;
-    display: inline;
 }
 
-#projects .languages li {
+.languages li {
     margin: 0;
     margin-right: 5px;
     padding: 5px;
     border-radius: 5px;
-    display: inline;
     transition: opacity .25s;
 }
 
-#projects .languages li:hover {
+#projects .languages li {
+    display: inline;
+}
+
+#infos .languages li {}
+
+.languages li:hover {
     opacity: 0.75;
 }
 
@@ -170,6 +196,7 @@ a {
 
 .languages .js {
     background-color: yellow;
+    color: black;
 }
 
 .languages .php {
@@ -194,6 +221,10 @@ a {
 
 .languages .c {
     background-color: #004283;
+}
+
+.languages .api {
+    background-color: forestgreen;
 }
 
 footer {

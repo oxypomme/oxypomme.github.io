@@ -35,19 +35,46 @@
         <div class="separator2"></div>
         <div class="anchor" id="formationsAnchor"></div>
         <section>
-            <h2>TITRE</h2>
-            <article class="card">
-                <h3>Infos</h3>
-                <p>
-                    SUBLET Tom
-                </p>
-                <p>
-                    Né le 28/08
-                </p>
-            </article>
-            <article>
-                <h3>Diplômes et formations</h3>
-                <div class="flex" id="formations">
+            <h2>A propos de moi</h2>
+            <div class="flex" id="infos">
+                <article class="card">
+                    <h3>Informations civiles</h3>
+                    <ul>
+                        <li>SUBLET Tom</li>
+                        <li>Né le 28/08</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Compétences</h3>
+                    <p>
+                        <h4>Langages pratiqués</h4>
+                        <ul>
+                            <li class="csharp"><img src="res/langs/csharp.png"/>C#</li>
+                            <li class="js"><img src="res/langs/ts.png"/>TypeScript</li>
+                            <li class="html"><img src="res/langs/html.png"/>HTML</li>
+                            <li class="css"><img src="res/langs/css.png"/>CSS</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Outils maitrisés</h4>
+                        <ul>
+                            <li><img src="res/langs/vsc.png"/>Visual Studio Code/Community</li>
+                            <li class="git"><img src="res/langs/git.png"/>Git</li>
+                            <li><img src="res/langs/office.png"/>Suite Office</li>
+                            <li><img src="res/langs/adobe.png"/>Suite Adobe</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Autre</h4>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </p>
+                </article>
+            </div>
+            <div class="flex" id="formations">
+                <article class="flex column">
+                    <h3>Diplômes et formations</h3>
                     <div class="card">
                         <p>
                             Diplôme Universitaire de Technologie en Informatique
@@ -70,8 +97,13 @@
                             De 2016 à 2019
                         </p>
                     </div>
+                </article>
+                <article class="flex column">
+                    <h3>Experiences</h3>
+                    <div class="card">
+                    </div>
                 </div>
-            </article>
+            </div>
         </section>
         <div class="separator1"></div>
         <div class="anchor" id="projectsAnchor"></div>
@@ -81,6 +113,40 @@
                 Rangé par ordre chronologique, les projets les plus récents apparaitrons en premier.
             </p>
             <div class="flex" id="projects">
+                <article class="card">
+                    <h3>Matchable - IQUSDGUIGDSQ</h3>
+                    <div>
+                        <h4>Semestre concerné :</h4> Semestre 3<br/>
+                        <h4>Durée :</h4> X semaines<br/>
+                        <h4>Nombre de personnes dans le groupe :</h4> 4
+                    </div>
+                    <p>
+                        <h4>Objectif :</h4>
+                        TODO
+                    </p>
+                    <p>
+                        <h4>Compétences :</h4>
+                        TODO
+                    </p>
+                    <p>
+                        <h4>Langage utilisés :</h4>
+                        <ul class="languages">
+                            <li class="js">TypeScript</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologies utilisées :</h4>
+                        <ul class="languages">
+                            <li class="git">Git</li>
+                            <li><img src="res/langs/react.png" />React</li>
+                            <li><img src="res/langs/redux.png" />Redux (Sagas)</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <img src="res/github.png" />
+                        <a href="https://github.com/oxypomme/IUT-PrjTutS3">oxypomme/IUT-PrjTutS3</a>
+                    </p>
+                </article>
                 <article class="card perso">
                     <h3>Audio Recorder</h3>
                     <p>
@@ -96,9 +162,16 @@
                         Travailler avec des flux audios.
                     </p>
                     <p>
-                        <h4>Langages utilisés :</h4>
+                        <h4>Langage utilisés :</h4>
                         <ul class="languages">
-                            <li class="csharp">C# (WPF)</li>
+                            <li class="csharp">C#</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologies utilisées :</h4>
+                        <ul class="languages">
+                            <li class="csharp">WPF</li>
+                            <li class="git">Git</li>
                         </ul>
                     </p>
                     <p>
@@ -116,9 +189,16 @@
                         Créer un executable permettant de détecter et exécuter d'autres programmes.
                     </p>
                     <p>
-                        <h4>Langages utilisés :</h4>
+                        <h4>Langage utilisés :</h4>
                         <ul class="languages">
-                            <li class="csharp">C# (WPF)</li>
+                            <li class="csharp">C#</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologies utilisées :</h4>
+                        <ul class="languages">
+                            <li class="csharp">WPF</li>
+                            <li class="git">Git</li>
                         </ul>
                     </p>
                     <p>
@@ -142,16 +222,59 @@
                         Programmation événementielle, JDBC, Design Pattern DAO, Architecture MVC, tests unitaires
                     </p>
                     <p>
-                        <h4>Langage utilisé :</h4>
+                        <h4>Langages utilisé :</h4>
                         <ul class="languages">
-                            <li class="git">Git</li>
                             <li class="mysql">MySQL</li>
-                            <li class="java">Java (JavaFX + JUnit)</li>
+                            <li class="java">Java</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologies utilisées :</h4>
+                        <ul class="languages">
+                            <li class="java">JavaFX</li>
+                            <li class="java">JUnit</li>
+                            <li class="git">Git</li>
                         </ul>
                     </p>
                     <p>
                         <img src="res/github.png" />
                         <a href="https://github.com/AvaN0x/ricatte_sublet_cpoa">AvaN0x/ricatte_sublet_cpoa</a>
+                    </p>
+                </article>
+                <article class="card">
+                    <h3>InfoNews - Réalisation d'un site internet dynamique</h3>
+                    <div>
+                        <h4>Semestre concerné :</h4> Semestre 3<br/>
+                        <h4>Durée :</h4> X semaines<br/>
+                        <h4>Nombre de personnes dans le groupe :</h4> 2
+                    </div>
+                    <p>
+                        <h4>Objectif :</h4>
+                        TODO
+                    </p>
+                    <p>
+                        <h4>Compétences :</h4>
+                        TODO
+                    </p>
+                    <p>
+                        <h4>Langages utilisé :</h4>
+                        <ul class="languages">
+                            <li class="mysql">MySQL</li>
+                            <li class="js">JavaScript</li>
+                            <li class="php">PHP</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologies utilisées :</h4>
+                        <ul class="languages">
+                            <li class="js">AJAX</li>
+                            <li class="api">API (JSON)</li>
+                            <li class="git">Git</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <img src="res/github.png" />
+                        <a href="https://github.com/oxypomme/IUT-InfoNews">oxypomme/IUT-InfoNews</a>
                     </p>
                 </article>
                 <article class="card">
@@ -170,9 +293,17 @@
                         Programmation par objet, UML, Langage Java (classe, héritage, gestion d'une interface graphique complète et gestion des événements graphiques... etc)
                     </p>
                     <p>
-                        <h4>Langage utilisé :</h4>
+                        <h4>Langages utilisé :</h4>
                         <ul class="languages">
-                            <li class="java">Java (Swing)</li>
+                            <li class="java">Java</li>
+                            <li class="mysql">MySQL</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologies utilisées :</h4>
+                        <ul class="languages">
+                            <li class="java">Swing</li>
+                            <li class="git">Git</li>
                         </ul>
                     </p>
                     <p>
@@ -205,6 +336,12 @@
                         </ul>
                     </p>
                     <p>
+                        <h4>Technologie utilisées :</h4>
+                        <ul class="languages">
+                            <li class="git">Git</li>
+                        </ul>
+                    </p>
+                    <p>
                         <img src="res/github.png" />
                         <a href="https://github.com/oxypomme/AnciensEtudiantsIUTMetz">oxypomme/AnciensEtudiantsIUTMetz</a>
                     </p>
@@ -231,6 +368,12 @@
                         </ul>
                     </p>
                     <p>
+                        <h4>Technologie utilisées :</h4>
+                        <ul class="languages">
+                            <li class="git">Git</li>
+                        </ul>
+                    </p>
+                    <p>
                         <img src="res/github.png" />
                         <a href="https://github.com/WildGoat07/Nim-Mk2">WildGoat07/Nim-Mk2</a>
                     </p>
@@ -252,7 +395,14 @@
                     <p>
                         <h4>Langages utilisés :</h4>
                         <ul class="languages">
-                            <li class="csharp">C# (WPF)</li>
+                            <li class="csharp">C#</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologies utilisées :</h4>
+                        <ul class="languages">
+                            <li class="csharp">WPF</li>
+                            <li class="git">Git</li>
                         </ul>
                     </p>
                     <p>
@@ -278,6 +428,12 @@
                         <ul class="languages">
                             <li class="html">HTML5</li>
                             <li class="css">CSS3</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologie utilisées :</h4>
+                        <ul class="languages">
+                            <li class="git">Git</li>
                         </ul>
                     </p>
                     <p>
@@ -310,6 +466,12 @@
                         </ul>
                     </p>
                     <p>
+                        <h4>Technologie utilisées :</h4>
+                        <ul class="languages">
+                            <li class="git">Git</li>
+                        </ul>
+                    </p>
+                    <p>
                         <img src="res/github.png" />
                         <a href="https://github.com/oxypomme/Pulse/">oxypomme/Pulse</a>
                     </p>
@@ -329,9 +491,16 @@
                         TODO
                     </p>
                     <p>
-                        <h4>Langages utilisés :</h4>
+                        <h4>Langage utilisés :</h4>
                         <ul class="languages">
-                            <li class="csharp">C# (WPF)</li>
+                            <li class="csharp">C#</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <h4>Technologies utilisées :</h4>
+                        <ul class="languages">
+                            <li class="csharp">WPF</li>
+                            <li class="git">Git</li>
                         </ul>
                     </p>
                     <p>
