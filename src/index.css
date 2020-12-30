@@ -43,3 +43,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a {
+  color: var(--accent1);
+  transition: color 0.25s;
+}
+
+a:hover {
+  color: var(--accent1-dark);
+}
