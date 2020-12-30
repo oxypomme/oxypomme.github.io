@@ -1,0 +1,37 @@
+/*Mobile*/
+.flex.nmobile {
+    display: initial;
+}
+
+.flex.nmobile .card {
+    width: 91vw;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+/*NAVBAR*/
+nav {
+    font-family: 'Abel', sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    background-color: var(--background-light);
+}
+
+li a {
+    display: block;
+    padding: 5px 0px 5px 00px;
+    color: var(--text);
+}

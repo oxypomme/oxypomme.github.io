@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <title>Portfolio - oxypomme</title>
     <link rel="icon" href="res/icon.ico" />
-    <link rel="stylesheet" href="css/cv.css" />
+    <link rel="stylesheet" href="css/cv/cv.css" />
     <meta name="viewport" content="initial-scale=1" />
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="scripts/mobileCheck.js"></script>
 </head>
+
+<script lang="javascript" type="text/javascript">
+    var style = document.createElement('link');
+    style.setAttribute("rel", "stylesheet");
+    style.setAttribute("href", mobileCheck() ? "./css/cv/cvmobile.css" : "./css/cv/cvdesktop.css");
+    document.head.appendChild(style);
+</script>
 
 <body>
     <header>
