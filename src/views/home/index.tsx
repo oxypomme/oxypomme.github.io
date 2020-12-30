@@ -6,7 +6,7 @@ import logo from "../../logo.svg";
 
 const App = styled.div`
     text-align: center;
-`
+`;
 
 const Header = styled.header`
     background-color: #282c34;
@@ -17,7 +17,7 @@ const Header = styled.header`
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-`
+`;
 
 const Logo = styled.img`
     height: 40vmin;
@@ -37,15 +37,15 @@ const Logo = styled.img`
             transform: rotate(360deg);
         }
     }
-`
+`;
 
 const Code = styled.code`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-`
+`;
 
 const Link = styled.a`
     color: #61dafb;
-`
+`;
 
 // #endregion
 

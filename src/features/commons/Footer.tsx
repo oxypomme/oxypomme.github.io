@@ -21,7 +21,7 @@ const Foot = styled.footer`
     font-size: 12px;
 
     padding-bottom: 10px;
-`
+`;
 
 const Image = styled.img`
     vertical-align: middle;
@@ -31,7 +31,7 @@ const Image = styled.img`
     &:hover{
         opacity: 0.75;
     }
-`
+`;
 
 const IconWithLink = styled.a`
     vertical-align: middle;
@@ -44,11 +44,11 @@ const IconWithLink = styled.a`
     & > svg:hover{
         opacity: 0.75;
     }
-`
+`;
 
 const Paragraph = styled.p`
     margin-top: 0;
-`
+`;
 
 //#endregion
 
