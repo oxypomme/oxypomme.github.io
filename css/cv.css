@@ -178,6 +178,7 @@ ul li img {
     margin-right: 5px;
     padding: 5px;
     border-radius: 5px;
+    cursor: default;
     transition: opacity .25s;
 }
 
