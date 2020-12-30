@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { Separator } from "../../components/styledComponents";
+
 import logo from "../../logo.svg";
 
 // #region Styles
@@ -48,19 +50,29 @@ const Link = styled.a`
 
 const Home = () => {
     return (
-        <Main>
-            <Logo src={logo} alt="logo" />
-            <p>
-                Edit <Code>src/App.tsx</Code> and save to reload.
+        <div>
+            <Header>
+                <h1>OxyPomme</h1>
+                <p>
+                    Sous titre
                 </p>
-            <Link
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Learn React
+                <img src="https://avatars1.githubusercontent.com/u/34627360?s=460&v=4" alt="avatar" />
+            </Header>
+            <Separator />
+            <Main>
+                <Logo src={logo} alt="logo" />
+                <p>
+                    Edit <Code>src/App.tsx</Code> and save to reload.
+                </p>
+                <Link
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Learn React
             </Link>
-        </Main>
+            </Main>
+        </div>
     );
 }
 
