@@ -4,13 +4,10 @@ import logo from "../../logo.svg";
 
 // #region Styles
 
-const App = styled.div`
-    text-align: center;
+const Header = styled.header`
 `;
 
-const Header = styled.header`
-    background-color: #282c34;
-    min-height: 100vh;
+const Main = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,21 +48,19 @@ const Link = styled.a`
 
 const Home = () => {
     return (
-        <App>
-            <Header>
-                <Logo src={logo} alt="logo" />
-                <p>
-                    Edit <Code>src/App.tsx</Code> and save to reload.
+        <Main>
+            <Logo src={logo} alt="logo" />
+            <p>
+                Edit <Code>src/App.tsx</Code> and save to reload.
                 </p>
-                <Link
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </Link>
-            </Header>
-        </App>
+            <Link
+                href="https://reactjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Learn React
+            </Link>
+        </Main>
     );
 }
 

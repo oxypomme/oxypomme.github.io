@@ -10,10 +10,7 @@ import creditImg from "../../res/devByOxyPomme.svg";
 // #region Styles
 
 const Foot = styled.footer`
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    height: var(--footer-size);
 
     background-color: var(--background-dark);
 

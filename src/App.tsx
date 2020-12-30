@@ -1,15 +1,26 @@
 import React from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import styled from '@emotion/styled';
 
 import Home from "./views/home";
 import Navbar from "./features/commons/Navbar";
 import Footer from "./features/commons/Footer";
 
+const AppContainer = styled.div`
+  margin-top: var(--nav-size);
+  text-align: center;
+  min-height: calc(100vh - var(--nav-size) - var(--footer-size) - 14px);
+`;
+
 const App = () => {
   return (
     <HashRouter basename='/'>
       <Navbar />
-      <Route exact path="/" component={Home} />
+      <AppContainer>
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </AppContainer>
       <Footer />
     </HashRouter>
   );
