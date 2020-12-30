@@ -166,7 +166,7 @@ main div:not(#projects) ul li {
     margin-bottom: 5px;
 }
 
-ul li img {
+main ul li img {
     width: 16px;
     margin-right: 8px;
     vertical-align: middle;
@@ -264,7 +264,7 @@ nav img {
     filter: invert(100%);
 }
 
-@media screen and (min-width:781px) {
+@media screen and (min-width:1080px) {
     .anchor {
         top: -49px;
     }
@@ -354,7 +354,7 @@ nav img {
 }
 
 /*Mobile*/
-@media screen and (max-width:780px) {
+@media screen and (max-width:1080px) {
 
     .flex.nmobile {
         display: initial;
