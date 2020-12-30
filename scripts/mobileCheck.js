@@ -1,3 +1,4 @@
+// https://stackoverflow.com/a/11381730
 const mobileCheck = () => {
     let check = false;
     (function (a) {
