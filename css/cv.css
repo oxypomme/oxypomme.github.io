@@ -123,10 +123,6 @@ a:hover {
     text-align: center;
 }
 
-#formations div {
-    margin: 10px;
-}
-
 #formations .card>p:last-of-type {
     font-style: italic;
 }
@@ -359,6 +355,16 @@ nav img {
 
 /*Mobile*/
 @media screen and (max-width:780px) {
+
+    .flex.nmobile {
+        display: initial;
+    }
+
+    .flex.nmobile .card {
+        width: 91vw;
+        max-width: 700px;
+        margin: 20px auto;
+    }
 
     /*NAVBAR*/
     nav {
