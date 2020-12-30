@@ -113,10 +113,6 @@ a {
     align-items: flex-start;
 }
 
-.flex.column {
-    flex-direction: column;
-}
-
 #formations h3 {
     text-align: center;
 }
@@ -139,12 +135,6 @@ a {
     background-color: var(--accent2-dark-transparent);
 }
 
-
-#projects .card {
-    position: relative;
-    height: 550px;
-}
-
 #projects .card.perso>p:first-of-type {
     color: orange;
 }
@@ -155,11 +145,6 @@ a {
 
 #projects .card>p img {
     vertical-align: middle;
-}
-
-#projects .card>p:last-of-type {
-    position: absolute;
-    bottom: 0;
 }
 
 div:not(#projects) h4 {
@@ -270,6 +255,20 @@ nav img {
 @media screen and (min-width:781px) {
     .anchor {
         top: -49px;
+    }
+
+    .flex.column {
+        flex-direction: column;
+    }
+
+    #projects .card {
+        position: relative;
+        height: 550px;
+    }
+
+    #projects .card>p:last-of-type {
+        position: absolute;
+        bottom: 0;
     }
 
     /*NAVBAR*/
