@@ -31,6 +31,7 @@
     /*Various Text*/
     --text: white;
     --link: var(--accent1);
+    --linkhover: var(--accent1-dark);
     --note: gray;
     --important: red;
     --button-text: black;
@@ -97,6 +98,11 @@ section {
 
 a {
     color: var(--link);
+    transition: color .25s;
+}
+
+a:hover {
+    color: var(--linkhover);
 }
 
 .anchor {
