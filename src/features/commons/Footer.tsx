@@ -30,14 +30,15 @@ const Image = styled.img`
     }
 `;
 
+const LinkText = styled.span`
+    text-decoration: underline;
+`;
+
+
 const IconWithLink = styled.a<{ margin?: string, VAlign?: boolean }>`
     ${props => props.VAlign ? "vertical-align: middle;" : ''}
     text-decoration: none;
 
-    & a {
-        text-decoration: underline;
-    }
-    
     & > svg{
         ${props => props.margin ? "margin:" + props.margin + ";" : ''}
         transition: opacity 0.25s;
@@ -98,7 +99,7 @@ const Footer = () => {
                 </a>
             </Paragraph>
             <Paragraph>
-                All icons used are from <IconWithLink href="https://fontawesome.com"><FontAwesomeIcon icon={faFontAwesome} color="#339af0" /> Font Awesome</IconWithLink>.
+                All icons used are from <IconWithLink href="https://fontawesome.com"><FontAwesomeIcon icon={faFontAwesome} color="#339af0" /> <LinkText>Font Awesome</LinkText></IconWithLink>.
             </Paragraph>
             <Separator />
             <div>
