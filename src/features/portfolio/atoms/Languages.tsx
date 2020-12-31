@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCss3Alt, faHtml5 } from '@fortawesome/free-brands-svg-icons';
-import { faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { faCode } from '@fortawesome/free-solid-svg-icons';
 
 import { HiddenList, Card } from '../../../components/styledComponents';
 
@@ -21,7 +21,7 @@ const FontStyledIcon = styled(FontAwesomeIcon)`
 const Languages = () => {
     return (
         <Card>
-            <h3><FontStyledIcon icon={faLaptopCode} />Langages couramment pratiqués</h3>
+            <h3><FontStyledIcon icon={faCode} />Langages couramment pratiqués</h3>
             <HiddenList>
                 <LanguageItem>C#</LanguageItem>
                 <LanguageItem>TypeScript</LanguageItem>

@@ -26,7 +26,9 @@ export interface IProject {
     skills: string | null,
     languages: ILanguage[],
     techs: ILanguage[] | null,
-    link: string | null
+    link: string | null,
+    icon: string | null,
+    iconStore: "fas" | "far" | "fab" | null,
 }
 
 const PrjCard = styled(Card)`
@@ -73,7 +75,7 @@ const FontStyledIcon = styled(FontAwesomeIcon)`
 `;
 
 const ProjectCard = (project: IProject) => {
-    const getIconStore = (name: string): IconPack => {
+    const getIconStore = (name: "fas" | "far" | "fab" | null): IconPack => {
         if (name === "fas") {
             return fas;
         } else if (name === "far") {
@@ -84,7 +86,7 @@ const ProjectCard = (project: IProject) => {
 
     return (
         <PrjCard>
-            <h3>{project.name}</h3>
+            <h3>{project.icon ? <FontStyledIcon icon={getIconStore((project.iconStore ? project.iconStore : "fas"))[project.icon]} /> : ''}{project.name}</h3>
             {project.isPersonal ?
                 <PersonalNotice>Projet personnel.{project.collaborators && <br />}{project.collaborators && "en collaboration avec " + project.collaborators.map((collab, key) => collab + (key + 1 !== project.collaborators?.length ? "," : "."))}</PersonalNotice>
                 :
@@ -108,7 +110,7 @@ const ProjectCard = (project: IProject) => {
                         orderByKey
                     >
                         {data => !data.isLoading && data.value ?
-                            <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value.iconStore ? data.value.iconStore : "fab")[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
+                            <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
                             : <WaitingForData key={key} />}
                     </FirebaseDatabaseNode>)}
             </HiddenList>
@@ -122,7 +124,7 @@ const ProjectCard = (project: IProject) => {
                                 orderByKey
                             >
                                 {data => !data.isLoading && data.value ?
-                                    <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value.iconStore ? data.value.iconStore : "fab")[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
+                                    <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
                                     : <WaitingForData key={key} />}
                             </FirebaseDatabaseNode>)}
                     </HiddenList>
