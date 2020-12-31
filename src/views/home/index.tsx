@@ -1,4 +1,6 @@
+import React from 'react';
 import styled from '@emotion/styled';
+import DocumentMeta from 'react-document-meta';
 
 import { Separator } from "../../components/styledComponents";
 
@@ -49,8 +51,17 @@ const Link = styled.a`
 // #endregion
 
 const Home = () => {
+    const meta = {
+        meta: {
+            property: {
+                'og:title': "oxypomme.github.io",
+                'og:url': "https://oxypomme.github.io/",
+            }
+        },
+    }
+
     return (
-        <div>
+        <DocumentMeta {...meta}>
             <Header>
                 <h1>OxyPomme</h1>
                 <p>
@@ -72,7 +83,7 @@ const Home = () => {
                     Learn React
             </Link>
             </Main>
-        </div>
+        </DocumentMeta>
     );
 }
 
