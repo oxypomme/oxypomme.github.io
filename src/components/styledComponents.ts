@@ -39,3 +39,16 @@ export const FlexContainer = styled.div`
     justify-content: center;
     align-items: flex-start;
 `;
+
+export const WaitingForData = styled.div<{ length?: number }>`
+    background-color: #00000030;
+    color: #00000000;
+    border-radius: 2px;
+    width: ${({ length }) => (length || 8) * 8 + "px"};
+    height: 31px;
+    display: inline-block;
+    margin: 0 2px;
+    &: before {
+        content: "_";
+    }
+`;

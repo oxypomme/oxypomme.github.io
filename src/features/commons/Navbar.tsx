@@ -2,6 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faIdCard } from '@fortawesome/free-regular-svg-icons';
+
 const Nav = styled.nav`
     height: var(--nav-size);
     width: 100%;
@@ -39,14 +43,18 @@ const NavItem = styled.li`
     & > a.active {
         background-color: var(--accent1);
     }
+
+    & svg {
+        margin-right: 5px;
+    }
 `;
 
 const Navbar = () => {
     return (
         <Nav>
             <NavList>
-                <NavItem><NavLink exact to="/" >Home</NavLink></NavItem>
-                <NavItem><NavLink exact to="/portfolio" >Portfolio</NavLink></NavItem>
+                <NavItem><NavLink exact to="/"><FontAwesomeIcon icon={faHome} />Home</NavLink></NavItem>
+                <NavItem><NavLink exact to="/portfolio"><FontAwesomeIcon icon={faIdCard} />Portfolio</NavLink></NavItem>
             </NavList>
         </Nav>
     );

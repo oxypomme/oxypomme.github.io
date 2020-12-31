@@ -2,12 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, fab } from '@fortawesome/free-brands-svg-icons';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 import '@firebase/database';
 
-import { Card, HiddenList } from "../../../../components/styledComponents";
+import { Card, HiddenList, WaitingForData } from "../../../../components/styledComponents";
 import ILanguage from "./ILanguage";
 
 export interface IProject {
@@ -28,30 +28,30 @@ export interface IProject {
 
 const PrjCard = styled(Card)`
     position: relative;
-    height: 550px;
+    height: 575px;
 `;
 
 const PersonalNotice = styled.p`
     color: orange;
 `;
 
-const Language = styled.li<{ bgColor: string, color: string | null }>`
+const Language = styled.li<{ bgColor: string | null, color: string | null }>`
     display: inline;
     margin: 0 5px 0 0;
     padding: 5px;
-    background-color: ${props => props.bgColor};
-    color: ${props => props.color && "white"};
+    background-color: ${props => props.bgColor ? props.bgColor : "transparent"};
+    color: ${props => props.color ? props.color : "white"};
     border-radius: 5px;
     cursor: default;
     transition: opacity .25s;
-    
+
     &:hover{
         opacity: 0.75;
     }
 `;
 
 const GitHubLink = styled.p`
-    position: absolute,
+    position: absolute;
     bottom: 0;
 
     & > svg {
@@ -63,6 +63,10 @@ const GitHubLink = styled.p`
     &:hover > svg{
         opacity: 0.75;
     }
+`;
+
+const FontStyledIcon = styled(FontAwesomeIcon)`
+    margin-right: 5px;
 `;
 
 const ProjectCard = (project: IProject) => {
@@ -93,7 +97,7 @@ const ProjectCard = (project: IProject) => {
                     >
                         {data => !data.isLoading && data.value ?
                             <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.name}</Language>
-                            : <p {...key}>{/*TODO:*/}Loading</p>}
+                            : <WaitingForData key={key} />}
                     </FirebaseDatabaseNode>)}
             </HiddenList>
             {project.techs ?
@@ -106,8 +110,8 @@ const ProjectCard = (project: IProject) => {
                                 orderByKey
                             >
                                 {data => !data.isLoading && data.value ?
-                                    <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.name}</Language>
-                                    : <p {...key}>{/*TODO:*/}Loading</p>}
+                                    <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={fab[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
+                                    : <WaitingForData key={key} />}
                             </FirebaseDatabaseNode>)}
                     </HiddenList>
                 </div>
@@ -116,7 +120,7 @@ const ProjectCard = (project: IProject) => {
             {project.link ?
                 <GitHubLink>
                     <FontAwesomeIcon icon={faGithub} size="2x" color="DimGray" />
-                    <a href={"https://github.com/" + project.link + "/"}>{project.link}</a>
+                    <a href={"https://github.com/" + project.link + "/"} target="_blank" rel="noreferrer">{project.link}</a>
                 </GitHubLink>
                 : ''
             }

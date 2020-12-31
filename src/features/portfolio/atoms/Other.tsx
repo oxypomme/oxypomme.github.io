@@ -5,7 +5,7 @@ import { HiddenList, Card } from '../../../components/styledComponents';
 const Other = () => {
     return (
         <Card>
-            <h3>Autre compétences</h3>
+            <h3>Autres compétences</h3>
             <HiddenList>
                 <li>Langues :
                     <HiddenList>

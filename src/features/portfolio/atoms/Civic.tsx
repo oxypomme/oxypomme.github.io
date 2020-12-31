@@ -1,6 +1,14 @@
 import React from 'react';
+import styled from '@emotion/styled';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { HiddenList, Card } from '../../../components/styledComponents';
+
+const FontStyledIcon = styled(FontAwesomeIcon)`
+    margin-right: 5px;
+`;
 
 const Civic = () => {
     const [age, setAge] = React.useState<number>(18);
@@ -11,7 +19,7 @@ const Civic = () => {
 
     return (
         <Card>
-            <h3>Informations civiles</h3>
+            <h3><FontStyledIcon icon={faUser} />Informations civiles</h3>
             <p>SUBLET Tom</p>
             <HiddenList>
                 <li>Né le 28/08 ({age} ans)</li>

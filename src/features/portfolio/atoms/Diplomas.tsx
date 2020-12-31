@@ -4,6 +4,9 @@ import styled from '@emotion/styled';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 import '@firebase/database';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+
 import DiplomaCard, { IDiploma } from "./protons/DiplomaCard";
 
 const DiplomaContainer = styled.div`
@@ -14,10 +17,14 @@ const DiplomaContainer = styled.div`
     }
 `;
 
+const FontStyledIcon = styled(FontAwesomeIcon)`
+    margin-right: 5px;
+`;
+
 const Diplomas = () => {
     return (
         <DiplomaContainer>
-            <h3>Diplômes et formations</h3>
+            <h3><FontStyledIcon icon={faGraduationCap} />Diplômes et formations</h3>
             <FirebaseDatabaseNode
                 path="/diplomas/"
                 orderByKey

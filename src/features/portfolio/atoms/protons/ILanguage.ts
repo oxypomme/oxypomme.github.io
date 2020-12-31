@@ -1,5 +1,7 @@
 export default interface ILanguage {
     name: string,
-    color: string,
-    textColor: string | null
+    color: string | null,
+    textColor: string | null,
+    icon: string | null,
+    iconColor: string | null,
 }

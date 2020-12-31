@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithubSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+import { faFontAwesome, faGithubSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 
 import { Separator } from "../../components/styledComponents";
 
@@ -15,7 +15,7 @@ const Foot = styled.footer`
     background-color: var(--background-dark);
 
     text-align: center;
-    font-size: 12px;
+    font-size: 14px; 
 
     padding-bottom: 10px;
 `;
@@ -30,15 +30,20 @@ const Image = styled.img`
     }
 `;
 
-const IconWithLink = styled.a`
+const IconWithLink = styled.a<{ margin?: string }>`
     vertical-align: middle;
+    text-decoration: none;
+
+    & a {
+        text-decoration: underline;
+    }
     
     & > svg{
-        margin: 5px;
+        ${props => props.margin ? "margin:" + props.margin + ";" : ''}
         transition: opacity 0.25s;
     }
 
-    & > svg:hover{
+    &:hover > svg{
         opacity: 0.75;
     }
 `;
@@ -67,6 +72,7 @@ const Footer = () => {
                     href="https://github.com/oxypomme"
                     target="_blank"
                     rel="noreferrer"
+                    margin="5px"
                 >
                     <FontAwesomeIcon icon={faGithubSquare} size="2x" color="DimGray" />
                 </IconWithLink>
@@ -75,6 +81,7 @@ const Footer = () => {
                     href="https://twitter.com/OxyT0m8"
                     target="_blank"
                     rel="noreferrer"
+                    margin="5px"
                 >
                     <FontAwesomeIcon icon={faTwitterSquare} size="2x" color="DodgerBlue" />
                 </IconWithLink>
@@ -89,7 +96,7 @@ const Footer = () => {
                 </a>
             </Paragraph>
             <Paragraph>
-                All icons used are from <a href="https://fontawesome.com">Font Awesome</a>.
+                All icons used are from <IconWithLink href="https://fontawesome.com"><FontAwesomeIcon icon={faFontAwesome} color="#339af0" /> Font Awesome</IconWithLink>.
             </Paragraph>
             <Separator />
             <div>
