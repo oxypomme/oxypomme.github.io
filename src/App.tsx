@@ -2,7 +2,9 @@ import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import Home from "./views/home";
+import { FirebaseDatabaseProvider } from '@react-firebase/database';
+import firebase from 'firebase/app';
+import firebaseConfig from "./firebase/config.json";
 import Navbar from "./features/commons/Navbar";
 import Footer from "./features/commons/Footer";
 
@@ -18,12 +20,14 @@ const App = () => {
   return (
     <HashRouter basename='/'>
       <Navbar />
+      <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
       <AppContainer>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route component={NotFound} />
         </Switch>
       </AppContainer>
+      </FirebaseDatabaseProvider>
       <Footer />
     </HashRouter>
   );
