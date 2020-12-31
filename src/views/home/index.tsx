@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import DocumentMeta from 'react-document-meta';
+import styled from '@emotion/styled';
 
 import { Separator } from "../../components/styledComponents";
 
@@ -56,9 +56,10 @@ const Home = () => {
             property: {
                 'og:title': "oxypomme.github.io",
                 'og:url': "https://oxypomme.github.io/",
+                'og:description': "The home place of oxypomme",
             }
         },
-    }
+    };
 
     return (
         <DocumentMeta {...meta}>
