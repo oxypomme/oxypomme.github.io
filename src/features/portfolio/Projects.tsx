@@ -1,6 +1,7 @@
 import React from 'react';
 
-import ProjectCard, { IProject } from "./atoms/protons/ProjectCard";
+import ProjectCard from "./atoms/protons/ProjectCard";
+import IProject from "./atoms/protons/IProject";
 import { FlexContainer } from '../../components/styledComponents';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 

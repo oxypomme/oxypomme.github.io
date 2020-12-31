@@ -10,30 +10,18 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 import '@firebase/database';
 
-import { Card, HiddenList, WaitingForData } from "../../../../components/styledComponents";
-import ILanguage from "./ILanguage";
+import mobileCheck from "../../../../includes/mobileCheck";
 
-export interface IProject {
-    isPersonal: boolean,
-    name: string,
-    infos: {
-        semester: number,
-        duration: number,
-        group: number
-    } | null,
-    collaborators: string[] | null,
-    goal: string,
-    skills: string | null,
-    languages: ILanguage[],
-    techs: ILanguage[] | null,
-    link: string | null,
-    icon: string | null,
-    iconStore: "fas" | "far" | "fab" | null,
-}
+import { Card, HiddenList, WaitingForData } from "../../../../components/styledComponents";
+import IProject from "./IProject";
 
 const PrjCard = styled(Card)`
     position: relative;
-    height: 575px;
+    ${!mobileCheck() ? "height: 575px;" : ''}
+
+    & h4 {
+        margin: 0 auto;
+    }
 `;
 
 const PersonalNotice = styled.p`
@@ -41,9 +29,9 @@ const PersonalNotice = styled.p`
 `;
 
 const Language = styled.li<{ bgColor: string | null, color: string | null }>`
-    display: inline;
-    margin: 0 5px 0 0;
-    padding: 5px;
+    display: inline-block;
+    margin: 0 10px 5px 0;
+    padding: 2px 5px;
     background-color: ${props => props.bgColor ? props.bgColor : "transparent"};
     color: ${props => props.color ? props.color : "white"};
     border-radius: 5px;
@@ -56,7 +44,8 @@ const Language = styled.li<{ bgColor: string | null, color: string | null }>`
 `;
 
 const GitHubLink = styled.p`
-    position: absolute;
+    ${!mobileCheck() ? "position: absolute;" : ''}
+    
     bottom: 0;
 
     & > svg {
@@ -96,24 +85,30 @@ const ProjectCard = (project: IProject) => {
                     <li><h4>Nombre de personnes dans le groupe:</h4> {project.infos?.group}</li>
                 </HiddenList>
             }
-            <h4>Objectif :</h4>
-            <p>{project.goal}</p>
-            <h4>Compétences :</h4>
+            <div>
+                <h4>Objectif :</h4>
+                <p>{project.goal}</p>
+            </div>
             {project.skills &&
-                <p>{project.skills}</p>
+                <div>
+                    <h4>Compétences :</h4>
+                    <p>{project.skills}</p>
+                </div>
             }
-            <h4>Langage{project.languages.length > 1 ? 's' : ''} utilisé{project.languages.length > 1 ? 's' : ''} :</h4>
-            <HiddenList>
-                {project.languages.map((lang, key) =>
-                    <FirebaseDatabaseNode
-                        path={"/languages/" + lang}
-                        orderByKey
-                    >
-                        {data => !data.isLoading && data.value ?
-                            <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
-                            : <WaitingForData key={key} />}
-                    </FirebaseDatabaseNode>)}
-            </HiddenList>
+            <div>
+                <h4>Langage{project.languages.length > 1 ? 's' : ''} utilisé{project.languages.length > 1 ? 's' : ''} :</h4>
+                <HiddenList>
+                    {project.languages.map((lang, key) =>
+                        <FirebaseDatabaseNode
+                            path={"/languages/" + lang}
+                            orderByKey
+                        >
+                            {data => !data.isLoading && data.value ?
+                                <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
+                                : <WaitingForData key={key} />}
+                        </FirebaseDatabaseNode>)}
+                </HiddenList>
+            </div>
             {project.techs ?
                 <div>
                     <h4>Technologie{project.techs.length > 1 ? 's' : ''} utilisée{project.techs.length > 1 ? 's' : ''} :</h4>
