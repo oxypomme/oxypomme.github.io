@@ -13,6 +13,8 @@ const DiplomaContainer = styled.div`
     margin: 0 20px;
 
     & > div {
+        width: 89.335vw;
+        max-width: 700px;
         margin: 20px auto;
     }
 `;
