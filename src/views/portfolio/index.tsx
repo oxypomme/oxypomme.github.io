@@ -1,5 +1,4 @@
 import React from 'react';
-import DocumentMeta from 'react-document-meta';
 import styled from '@emotion/styled';
 import { HashLink } from 'react-router-hash-link';
 
@@ -15,19 +14,9 @@ const Anchor = styled.div`
     top: calc(-1 * var(--nav-size));
 `;
 
-const Portfolio = ({ location }: any) => {
-    const meta = {
-        meta: {
-            property: {
-                'og:title': "oxypomme",
-                'og:url': "https://oxypomme.github.io/Portfolio",
-                'og:description': "Quick view of oxypomme",
-            }
-        },
-    };
-
+const Portfolio = () => {
     return (
-        <DocumentMeta {...meta}>
+        <div>
             <header>
                 <h1>Portfolio</h1>
                 <HiddenList>
@@ -43,7 +32,7 @@ const Portfolio = ({ location }: any) => {
                 <Anchor id="projectsAnchor" />
                 <Projects />
             </main>
-        </DocumentMeta >
+        </div >
     );
 }
 

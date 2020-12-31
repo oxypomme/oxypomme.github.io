@@ -1,5 +1,4 @@
 import React from 'react';
-import DocumentMeta from 'react-document-meta';
 import styled from '@emotion/styled';
 
 import { Separator } from "../../components/styledComponents";
@@ -7,9 +6,6 @@ import { Separator } from "../../components/styledComponents";
 import logo from "../../logo.svg";
 
 // #region Styles
-
-const Header = styled.header`
-`;
 
 const Main = styled.main`
     display: flex;
@@ -51,25 +47,15 @@ const Link = styled.a`
 // #endregion
 
 const Home = () => {
-    const meta = {
-        meta: {
-            property: {
-                'og:title': "oxypomme.github.io",
-                'og:url': "https://oxypomme.github.io/",
-                'og:description': "The home place of oxypomme",
-            }
-        },
-    };
-
     return (
-        <DocumentMeta {...meta}>
-            <Header>
+        <div>
+            <header>
                 <h1>OxyPomme</h1>
                 <p>
                     Sous titre
                 </p>
                 <img src="https://avatars1.githubusercontent.com/u/34627360?s=460&v=4" alt="avatar" />
-            </Header>
+            </header>
             <Separator />
             <Main>
                 <Logo src={logo} alt="logo" />
@@ -84,7 +70,7 @@ const Home = () => {
                     Learn React
             </Link>
             </Main>
-        </DocumentMeta>
+        </div>
     );
 }
 
