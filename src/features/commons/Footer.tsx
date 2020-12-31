@@ -30,8 +30,8 @@ const Image = styled.img`
     }
 `;
 
-const IconWithLink = styled.a<{ margin?: string }>`
-    vertical-align: middle;
+const IconWithLink = styled.a<{ margin?: string, VAlign?: boolean }>`
+    ${props => props.VAlign ? "vertical-align: middle;" : ''}
     text-decoration: none;
 
     & a {
@@ -73,6 +73,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     margin="5px"
+                    VAlign
                 >
                     <FontAwesomeIcon icon={faGithubSquare} size="2x" color="DimGray" />
                 </IconWithLink>
@@ -82,6 +83,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                     margin="5px"
+                    VAlign
                 >
                     <FontAwesomeIcon icon={faTwitterSquare} size="2x" color="DodgerBlue" />
                 </IconWithLink>
