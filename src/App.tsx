@@ -6,6 +6,8 @@ import Home from "./views/home";
 import Navbar from "./features/commons/Navbar";
 import Footer from "./features/commons/Footer";
 
+import NotFound from "./views/errors/NotFound";
+
 const AppContainer = styled.div`
   margin-top: var(--nav-size);
   text-align: center;
@@ -19,6 +21,7 @@ const App = () => {
       <AppContainer>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route component={NotFound} />
         </Switch>
       </AppContainer>
       <Footer />
