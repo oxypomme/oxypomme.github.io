@@ -87,12 +87,12 @@ const ProjectCard = (project: IProject) => {
             }
             <div>
                 <h4>Objectif :</h4>
-                <p>{project.goal}</p>
+                <p>{project.goal.split("\n").map((str, key, array) => <span>{str}{(key + 1 !== array.length ? <br /> : '')}</span>)}</p>
             </div>
             {project.skills &&
                 <div>
                     <h4>Compétences :</h4>
-                    <p>{project.skills}</p>
+                    <p>{project.skills.split("\n").map((str, key, array) => <span>{str}{(key + 1 !== array.length ? <br /> : '')}</span>)}</p>
                 </div>
             }
             <div>
