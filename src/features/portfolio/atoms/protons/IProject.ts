@@ -1,6 +1,7 @@
 import ILanguage from "./ILanguage";
+import IIconable from "./IIconable";
 
-export default interface IProject {
+export default interface IProject extends IIconable {
     isPersonal: boolean,
     name: string,
     infos: {
@@ -14,6 +15,4 @@ export default interface IProject {
     languages: ILanguage[],
     techs: ILanguage[] | null,
     link: string | null,
-    icon: string | null,
-    iconStore: "fas" | "far" | "fab" | null,
 }

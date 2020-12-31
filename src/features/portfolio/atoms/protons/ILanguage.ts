@@ -1,8 +1,7 @@
-export default interface ILanguage {
+import IIconable from "./IIconable";
+
+export default interface ILanguage extends IIconable {
     name: string,
     color: string | null,
     textColor: string | null,
-    icon: string | null,
-    iconColor: string | null,
-    iconStore: "fas" | "far" | "fab" | null,
 }
