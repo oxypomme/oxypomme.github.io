@@ -4,4 +4,5 @@ export default interface ILanguage {
     textColor: string | null,
     icon: string | null,
     iconColor: string | null,
+    iconStore: string | null,
 }

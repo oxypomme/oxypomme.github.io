@@ -2,7 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconPack } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from "@fortawesome/free-solid-svg-icons"
+import { far } from "@fortawesome/free-regular-svg-icons";
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 import '@firebase/database';
@@ -70,6 +73,15 @@ const FontStyledIcon = styled(FontAwesomeIcon)`
 `;
 
 const ProjectCard = (project: IProject) => {
+    const getIconStore = (name: string): IconPack => {
+        if (name === "fas") {
+            return fas;
+        } else if (name === "far") {
+            return far;
+        }
+        return fab;
+    }
+
     return (
         <PrjCard>
             <h3>{project.name}</h3>
@@ -96,7 +108,7 @@ const ProjectCard = (project: IProject) => {
                         orderByKey
                     >
                         {data => !data.isLoading && data.value ?
-                            <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.name}</Language>
+                            <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value.iconStore ? data.value.iconStore : "fab")[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
                             : <WaitingForData key={key} />}
                     </FirebaseDatabaseNode>)}
             </HiddenList>
@@ -110,7 +122,7 @@ const ProjectCard = (project: IProject) => {
                                 orderByKey
                             >
                                 {data => !data.isLoading && data.value ?
-                                    <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={fab[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
+                                    <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value.iconStore ? data.value.iconStore : "fab")[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
                                     : <WaitingForData key={key} />}
                             </FirebaseDatabaseNode>)}
                     </HiddenList>
