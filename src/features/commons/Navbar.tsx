@@ -51,7 +51,7 @@ const NavItem = styled.li`
 
 const Navbar = () => {
     return (
-        <Nav>
+        <Nav id="navbar">
             <NavList>
                 <NavItem><NavLink exact to="/"><FontAwesomeIcon icon={faHome} />Home</NavLink></NavItem>
                 <NavItem><NavLink exact to="/portfolio"><FontAwesomeIcon icon={faIdCard} />Portfolio</NavLink></NavItem>

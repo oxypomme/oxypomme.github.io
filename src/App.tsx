@@ -23,7 +23,7 @@ const AppContainer = styled.div`
 const App = () => {
   return (
     <HashRouter basename='/'>
-      <Navbar id="navbar" />
+      <Navbar />
       <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
         <AppContainer>
           <Switch>
