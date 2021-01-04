@@ -28,6 +28,10 @@ const PersonalNotice = styled.p`
     color: orange;
 `;
 
+const Skill = styled.span`
+    display: block;
+`;
+
 const Language = styled.li<{ bgColor: string | null, color: string | null }>`
     display: inline-block;
     margin: 0 10px 5px 0;
@@ -87,12 +91,12 @@ const ProjectCard = (project: IProject) => {
             }
             <div>
                 <h4>Objectif :</h4>
-                <p>{project.goal.split("\n").map((str, key, array) => <span>{str}{(key + 1 !== array.length ? <br /> : '')}</span>)}</p>
+                <p>{project.goal.split("\n").map((str, key) => <Skill key={key}>{str}</Skill>)}</p>
             </div>
             {project.skills &&
                 <div>
                     <h4>Compétences :</h4>
-                    <p>{project.skills.split("\n").map((str, key, array) => <span>{str}{(key + 1 !== array.length ? <br /> : '')}</span>)}</p>
+                    <p>{project.skills.split("\n").map((str, key) => <Skill key={key}>{str}</Skill>)}</p>
                 </div>
             }
             <div>
@@ -100,11 +104,12 @@ const ProjectCard = (project: IProject) => {
                 <HiddenList>
                     {project.languages.map((lang, key) =>
                         <FirebaseDatabaseNode
+                            key={key}
                             path={"/languages/" + lang}
                             orderByKey
                         >
                             {data => !data.isLoading && data.value ?
-                                <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
+                                <Language key={key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
                                 : <WaitingForData key={key} />}
                         </FirebaseDatabaseNode>)}
                 </HiddenList>
@@ -115,6 +120,7 @@ const ProjectCard = (project: IProject) => {
                     <HiddenList>
                         {project.techs.map((lang, key) =>
                             <FirebaseDatabaseNode
+                                key={key}
                                 path={"/techs/" + lang}
                                 orderByKey
                             >
