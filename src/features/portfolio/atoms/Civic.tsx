@@ -14,7 +14,7 @@ const Civic = () => {
     const [age, setAge] = React.useState<number>(18);
 
     React.useEffect(() => {
-        setAge(new Date().getFullYear() - 2001);
+        setAge(new Date(new Date().getTime() - new Date(2001, 7, 28).getTime()).getFullYear() - 1970);
     }, [])
 
     return (
