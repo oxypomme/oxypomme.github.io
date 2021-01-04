@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBabyCarriage, faUser, faFlag, faGlobeEurope, faSignature } from '@fortawesome/free-solid-svg-icons';
 
 import { HiddenList, Card } from '../../../components/styledComponents';
 
@@ -20,11 +20,11 @@ const Civic = () => {
     return (
         <Card>
             <h3><FontStyledIcon icon={faUser} />Informations civiles</h3>
-            <p>SUBLET Tom</p>
+            <p><FontStyledIcon icon={faSignature} />SUBLET Tom</p>
             <HiddenList>
-                <li>Né le 28/08 ({age} ans)</li>
-                <li>Département: Moselle</li>
-                <li>Pays: France</li>
+                <li><FontStyledIcon icon={faBabyCarriage} />Né le 28/08 ({age} ans)</li>
+                <li><FontStyledIcon icon={faFlag} />Département: Moselle</li>
+                <li><FontStyledIcon icon={faGlobeEurope} />Pays: France</li>
             </HiddenList>
         </Card>
     );

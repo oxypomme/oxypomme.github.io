@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGitAlt } from '@fortawesome/free-brands-svg-icons';
-import { faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faFileExcel, faLaptopCode, faPhotoVideo, faWrench } from '@fortawesome/free-solid-svg-icons';
 
 import { HiddenList, Card } from '../../../components/styledComponents';
 
@@ -16,10 +16,10 @@ const Tools = () => {
         <Card>
             <h3><FontStyledIcon icon={faWrench} />Outils maitrisés</h3>
             <HiddenList>
-                <li>Visual Studio Code/Community</li>
+                <li><FontStyledIcon icon={faLaptopCode} color="#BB90EB" />Visual Studio Code/Community</li>
                 <li><FontStyledIcon icon={faGitAlt} color="orangered" />Git</li>
-                <li>Suite Office</li>
-                <li>Suite Adobe</li>
+                <li><FontStyledIcon icon={faFileExcel} color="green" />Suite Office</li>
+                <li><FontStyledIcon icon={faPhotoVideo} color="#1FBAE0" />Suite Adobe</li>
             </HiddenList>
         </Card>
     );
