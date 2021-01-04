@@ -9,7 +9,7 @@ import DiplomaCard, { IDiploma } from "./protons/DiplomaCard";
 const ExperiencesContainer = styled.div`
     margin: 0 20px;
 
-    & > div {
+    & > div  > div{
         width: 89.335vw;
         max-width: 700px;
         margin: 20px auto;
@@ -19,14 +19,17 @@ const ExperiencesContainer = styled.div`
 const Experiences = () => {
     return (
         <ExperiencesContainer>
-            <h3>Experiences</h3>
             <FirebaseDatabaseNode
                 path="/experiences/"
                 orderByKey
             >
-                {data => !data.isLoading ?
-                    data.value != null && data.value.reverse().map(({ name, location, date }: IDiploma, key: number) => <DiplomaCard key={key} name={name} location={location} date={date} />)
-                    : <p key={0}>{/*TODO:*/}Loading</p>}
+                {data => !data.isLoading && data.value && data.value[0].name ?
+                    <div>
+                        <h3>Experiences</h3>
+                        {data.value != null && data.value.reverse().map(({ name, location, date }: IDiploma, key: number) => <DiplomaCard key={key} name={name} location={location} date={date} />)}
+                    </div>
+                    : <></>
+                }
             </FirebaseDatabaseNode>
         </ExperiencesContainer >
     );
