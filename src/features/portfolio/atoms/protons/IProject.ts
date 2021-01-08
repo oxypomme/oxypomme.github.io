@@ -15,4 +15,5 @@ export default interface IProject extends IIconable {
     languages: ILanguage[],
     techs: ILanguage[] | null,
     link: string | null,
+    imageURL: string | null
 }

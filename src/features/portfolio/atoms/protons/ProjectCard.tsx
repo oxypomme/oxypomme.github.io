@@ -15,9 +15,12 @@ import mobileCheck from "../../../../includes/mobileCheck";
 import { Card, HiddenList, WaitingForData } from "../../../../components/styledComponents";
 import IProject from "./IProject";
 
-const PrjCard = styled(Card)`
+const PrjCard = styled(Card) <{ img: string | null }>`
     position: relative;
     ${!mobileCheck() ? "height: 575px;" : ''}
+    ${props => props.img ? "background: url(" + props.img + ");" : ''}
+    background-position: center;
+    background-size: cover;
 
     & h4 {
         margin: 0 auto;
@@ -78,7 +81,7 @@ const ProjectCard = (project: IProject) => {
     }
 
     return (
-        <PrjCard>
+        <PrjCard img={project.imageURL}>
             <h3>{project.icon ? <FontStyledIcon icon={getIconStore((project.iconStore ? project.iconStore : "fas"))[project.icon]} /> : ''}{project.name}</h3>
             {project.isPersonal ?
                 <PersonalNotice>Projet personnel.{project.collaborators && <br />}{project.collaborators && "en collaboration avec " + project.collaborators.map((collab, key) => collab + (key + 1 !== project.collaborators?.length ? "," : "."))}</PersonalNotice>
