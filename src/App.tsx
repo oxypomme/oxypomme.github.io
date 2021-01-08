@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, HashRouter as Router, Switch } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import { FirebaseDatabaseProvider } from '@react-firebase/database';
@@ -22,7 +22,7 @@ const AppContainer = styled.div`
 
 const App = () => {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename='/'>
       <Navbar />
       <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
         <AppContainer>
