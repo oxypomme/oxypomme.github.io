@@ -15,16 +15,37 @@ import mobileCheck from "../../../../includes/mobileCheck";
 import { Card, HiddenList, WaitingForData } from "../../../../components/styledComponents";
 import IProject from "./IProject";
 
-const PrjCard = styled(Card) <{ img: string | null }>`
+const PrjCard = styled(Card)`
     position: relative;
     ${!mobileCheck() ? "height: 575px;" : ''}
-    ${props => props.img ? "background: url(" + props.img + ");" : ''}
-    background-position: center;
-    background-size: cover;
+    padding: 0;
+
+    &:hover > div:first-of-type {
+        opacity: 0.5;
+    }
 
     & h4 {
         margin: 0 auto;
     }
+`;
+
+const ImgPrjCard = styled.div<{ img: string | null }>`
+    ${props => props.img ? "background: url(" + props.img + ");" : ''}
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    filter: blur(8px);
+    transition: opacity 0.25s;
+    border-radius: 5px;
+`;
+
+const ContPrjCard = styled.div`
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 10px 20px;
 `;
 
 const PersonalNotice = styled.p`
@@ -81,67 +102,70 @@ const ProjectCard = (project: IProject) => {
     }
 
     return (
-        <PrjCard img={project.imageURL}>
-            <h3>{project.icon ? <FontStyledIcon icon={getIconStore((project.iconStore ? project.iconStore : "fas"))[project.icon]} /> : ''}{project.name}</h3>
-            {project.isPersonal ?
-                <PersonalNotice>Projet personnel.{project.collaborators && <br />}{project.collaborators && "en collaboration avec " + project.collaborators.map((collab, key) => collab + (key + 1 !== project.collaborators?.length ? "," : "."))}</PersonalNotice>
-                :
-                <HiddenList>
-                    <li><h4>Semestre concerné:</h4> Semestre {project.infos?.semester}</li>
-                    <li><h4>Durée:</h4> {project.infos?.duration} semaines</li>
-                    <li><h4>Nombre de personnes dans le groupe:</h4> {project.infos?.group}</li>
-                </HiddenList>
-            }
-            <div>
-                <h4>Objectif :</h4>
-                <p>{project.goal.split("\n").map((str, key) => <Skill key={key}>{str}</Skill>)}</p>
-            </div>
-            {project.skills &&
-                <div>
-                    <h4>Compétences :</h4>
-                    <p>{project.skills.split("\n").map((str, key) => <Skill key={key}>{str}</Skill>)}</p>
-                </div>
-            }
-            <div>
-                <h4>Langage{project.languages.length > 1 ? 's' : ''} utilisé{project.languages.length > 1 ? 's' : ''} :</h4>
-                <HiddenList>
-                    {project.languages.map((lang, key) =>
-                        <FirebaseDatabaseNode
-                            key={key}
-                            path={"/languages/" + lang}
-                            orderByKey
-                        >
-                            {data => !data.isLoading && data.value ?
-                                <Language key={key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
-                                : <WaitingForData key={key} />}
-                        </FirebaseDatabaseNode>)}
-                </HiddenList>
-            </div>
-            {project.techs ?
-                <div>
-                    <h4>Technologie{project.techs.length > 1 ? 's' : ''} utilisée{project.techs.length > 1 ? 's' : ''} :</h4>
+        <PrjCard>
+            <ImgPrjCard img={project.imageURL} />
+            <ContPrjCard>
+                <h3>{project.icon ? <FontStyledIcon icon={getIconStore((project.iconStore ? project.iconStore : "fas"))[project.icon]} /> : ''}{project.name}</h3>
+                {project.isPersonal ?
+                    <PersonalNotice>Projet personnel.{project.collaborators && <br />}{project.collaborators && "en collaboration avec " + project.collaborators.map((collab, key) => collab + (key + 1 !== project.collaborators?.length ? "," : "."))}</PersonalNotice>
+                    :
                     <HiddenList>
-                        {project.techs.map((lang, key) =>
+                        <li><h4>Semestre concerné:</h4> Semestre {project.infos?.semester}</li>
+                        <li><h4>Durée:</h4> {project.infos?.duration} semaines</li>
+                        <li><h4>Nombre de personnes dans le groupe:</h4> {project.infos?.group}</li>
+                    </HiddenList>
+                }
+                <div>
+                    <h4>Objectif :</h4>
+                    <p>{project.goal.split("\n").map((str, key) => <Skill key={key}>{str}</Skill>)}</p>
+                </div>
+                {project.skills &&
+                    <div>
+                        <h4>Compétences :</h4>
+                        <p>{project.skills.split("\n").map((str, key) => <Skill key={key}>{str}</Skill>)}</p>
+                    </div>
+                }
+                <div>
+                    <h4>Langage{project.languages.length > 1 ? 's' : ''} utilisé{project.languages.length > 1 ? 's' : ''} :</h4>
+                    <HiddenList>
+                        {project.languages.map((lang, key) =>
                             <FirebaseDatabaseNode
                                 key={key}
-                                path={"/techs/" + lang}
+                                path={"/languages/" + lang}
                                 orderByKey
                             >
                                 {data => !data.isLoading && data.value ?
-                                    <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
+                                    <Language key={key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
                                     : <WaitingForData key={key} />}
                             </FirebaseDatabaseNode>)}
                     </HiddenList>
                 </div>
-                : ''
-            }
-            {project.link ?
-                <GitHubLink>
-                    <FontAwesomeIcon icon={faGithub} size="2x" color="DimGray" />
-                    <a href={"https://github.com/" + project.link + "/"} target="_blank" rel="noreferrer">{project.link}</a>
-                </GitHubLink>
-                : ''
-            }
+                {project.techs ?
+                    <div>
+                        <h4>Technologie{project.techs.length > 1 ? 's' : ''} utilisée{project.techs.length > 1 ? 's' : ''} :</h4>
+                        <HiddenList>
+                            {project.techs.map((lang, key) =>
+                                <FirebaseDatabaseNode
+                                    key={key}
+                                    path={"/techs/" + lang}
+                                    orderByKey
+                                >
+                                    {data => !data.isLoading && data.value ?
+                                        <Language {...key} color={data.value.textColor} bgColor={data.value.color}>{data.value.icon ? <FontStyledIcon icon={getIconStore(data.value?.iconStore)[data.value.icon]} color={data.value.iconColor} /> : ''}{data.value.name}</Language>
+                                        : <WaitingForData key={key} />}
+                                </FirebaseDatabaseNode>)}
+                        </HiddenList>
+                    </div>
+                    : ''
+                }
+                {project.link ?
+                    <GitHubLink>
+                        <FontAwesomeIcon icon={faGithub} size="2x" color="DimGray" />
+                        <a href={"https://github.com/" + project.link + "/"} target="_blank" rel="noreferrer">{project.link}</a>
+                    </GitHubLink>
+                    : ''
+                }
+            </ContPrjCard>
         </PrjCard>
     );
 }
