@@ -35,7 +35,7 @@ const ImgPrjCard = styled.div<{ img: string | null }>`
     background-size: cover;
     width: 100%;
     height: 100%;
-    filter: blur(8px);
+    filter: blur(4px);
     transition: opacity 0.25s;
     border-radius: 5px;
 `;
@@ -43,8 +43,8 @@ const ImgPrjCard = styled.div<{ img: string | null }>`
 const ContPrjCard = styled.div`
     position: absolute;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 40px);
+    height: calc(100% - 20px);
     margin: 10px 20px;
 `;
 
