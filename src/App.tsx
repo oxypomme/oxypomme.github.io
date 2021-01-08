@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import { FirebaseDatabaseProvider } from '@react-firebase/database';
@@ -22,7 +22,7 @@ const AppContainer = styled.div`
 
 const App = () => {
   return (
-    <HashRouter basename='/'>
+    <Router basename={process.env.PUBLIC_URL}>
       <Navbar />
       <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
         <AppContainer>
@@ -34,7 +34,7 @@ const App = () => {
         </AppContainer>
       </FirebaseDatabaseProvider>
       <Footer />
-    </HashRouter>
+    </Router>
   );
 }
 
