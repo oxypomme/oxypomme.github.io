@@ -85,6 +85,11 @@ const GitHubLink = styled.p`
     &:hover > svg{
         opacity: 0.75;
     }
+
+    & svg>path{
+        stroke: var(--background-dark);;
+        stroke-width: 10px;
+    }
 `;
 
 const FontStyledIcon = styled(FontAwesomeIcon)`
