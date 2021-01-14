@@ -29,6 +29,8 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/Portfolio" component={Portfolio} />
+            <Route exact path="/Pulse" component={() => { window.location.href = 'https://oxypomme.github.io/Pulse/'; return null; }} />
+            <Route exact path="/Matchable" component={() => { window.location.href = 'https://matchable-80a41.web.app/'; return null; }} />
             <Route component={NotFound} />
           </Switch>
         </AppContainer>
