@@ -48,7 +48,7 @@ export const WaitingForData = styled.div<{ length?: number }>`
     height: 31px;
     display: inline-block;
     margin: 0 2px;
-    &: before {
+    &::before {
         content: "_";
     }
 `;
