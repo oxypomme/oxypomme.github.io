@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faChartPie, faHome } from '@fortawesome/free-solid-svg-icons';
 import { faIdCard } from '@fortawesome/free-regular-svg-icons';
 
 const Nav = styled.nav`
@@ -55,6 +55,7 @@ const Navbar = () => {
             <NavList>
                 <NavItem><NavLink exact to="/"><FontAwesomeIcon icon={faHome} />Home</NavLink></NavItem>
                 <NavItem><NavLink exact to="/portfolio"><FontAwesomeIcon icon={faIdCard} />Portfolio</NavLink></NavItem>
+                <NavItem><NavLink exact to="/gdcgraph"><FontAwesomeIcon icon={faChartPie} />GDC Graph</NavLink></NavItem>
             </NavList>
         </Nav>
     );
