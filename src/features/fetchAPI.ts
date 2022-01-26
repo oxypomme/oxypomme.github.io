@@ -60,14 +60,12 @@ interface API {
   description: Description;
 }
 
-const API_URL = "http://localhost:1337/api";
-
 export const getAPI = async <Endpoint extends keyof API>(
   endpoint: Endpoint,
   locale: Locale = Locale.FRENCH
 ) => {
   const { data } = await axios.get<StrapiResult<API[Endpoint]>>(
-    `${API_URL}/${endpoint}`,
+    `${process.env.REACT_APP_API_URL}/${endpoint}`,
     {
       params: {
         locale,
