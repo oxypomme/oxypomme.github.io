@@ -1,14 +1,10 @@
 import React from "react";
 import "animate.css";
-import ScrollAnimation from "react-animate-on-scroll";
+import ScrollAnimation, { ScrollAnimationProps } from "react-animate-on-scroll";
 
-interface Props {
+type Props = Omit<ScrollAnimationProps, "animateIn" | "animateOut"> & {
 	animation: string;
-	delay?: number;
-	animateOnce?: boolean;
-	className?: string;
-	[key: string]: any;
-}
+};
 
 function Animated({
 	children,

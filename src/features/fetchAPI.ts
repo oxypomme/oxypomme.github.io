@@ -1,0 +1,78 @@
+import axios from "axios";
+import { Locale } from "./languages";
+
+type StrapiDate = `${number}-${number}-${number}`;
+
+export type StrapiAttributes<T> = T & {
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date;
+  locale: Locale;
+};
+
+export type StrapiObject<T> = {
+  id: number;
+  attributes: StrapiAttributes<T>;
+};
+
+export interface StrapiResult<T extends API[keyof API]> {
+  data: T extends Array<infer E> ? StrapiObject<E>[] : StrapiObject<T>;
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+
+export interface Diploma {
+  start: StrapiDate;
+  end: StrapiDate;
+  name: string;
+  location: string;
+  isApprentice: boolean;
+  description?: string;
+  logo?: string;
+}
+
+export interface Experience {
+  start: StrapiDate;
+  end?: StrapiDate;
+  name: string;
+  location?: string;
+  role: string;
+  description?: string;
+  logo?: string;
+}
+
+export interface Description {
+  role: string;
+  description?: string;
+}
+
+interface API {
+  diplomes: Diploma[];
+  [endpoint: `diplomes/${number}`]: Diploma;
+  experiences: Experience[];
+  [endpoint: `experiences/${number}`]: Experience;
+  description: Description;
+}
+
+const API_URL = "http://localhost:1337/api";
+
+export const getAPI = async <Endpoint extends keyof API>(
+  endpoint: Endpoint,
+  locale: Locale = Locale.FRENCH
+) => {
+  const { data } = await axios.get<StrapiResult<API[Endpoint]>>(
+    `${API_URL}/${endpoint}`,
+    {
+      params: {
+        locale,
+      },
+    }
+  );
+  return data;
+};
