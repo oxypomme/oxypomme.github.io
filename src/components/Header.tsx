@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography, Container } from "@mui/material";
 import ReactMarkdown from "react-markdown";
 import Animated from "./Animated";
 import { getAPI, StrapiAttributes, Description } from "../features/fetchAPI";
@@ -19,7 +19,7 @@ function Header({ locale }: Props) {
     (async () => {
       try {
         const { data } = await getAPI("description", locale);
-        setData(data.attributes);
+        setData(data?.attributes ?? null);
       } catch (error) {
         setData(null);
       }
@@ -46,11 +46,24 @@ function Header({ locale }: Props) {
           </Typography>
         </Animated>
       )}
-      {data && data.description && (
+      {data && (
         <Animated animation="fadeInUp" delay={1.75}>
-          <ReactMarkdown components={MUIMarkdown}>
-            {data.description}
-          </ReactMarkdown>
+          <Box sx={{ display: "flex" }}>
+            {data.avatar && (
+              <Avatar
+                sx={{ width: "156px", height: "auto", marginRight: "24px" }}
+                variant="rounded"
+                src={data.avatar}
+              />
+            )}
+            <div>
+              {data.description && (
+                <ReactMarkdown components={MUIMarkdown}>
+                  {data.description}
+                </ReactMarkdown>
+              )}
+            </div>
+          </Box>
         </Animated>
       )}
     </Box>

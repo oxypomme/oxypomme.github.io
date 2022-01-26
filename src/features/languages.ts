@@ -38,4 +38,8 @@ export const localizedStrings: LocalizedData<LocalizedData<string>> & {
     fr: "En alternance",
     en: "Aprenticeship",
   },
-};
+  languages: {
+    fr: "Langues",
+    en: "Languages",
+  },
+} as const;

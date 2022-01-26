@@ -17,14 +17,16 @@ export type StrapiObject<T> = {
 
 export interface StrapiResult<T extends API[keyof API]> {
   data: T extends Array<infer E> ? StrapiObject<E>[] : StrapiObject<T>;
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
+  meta:
+    | {
+        pagination: {
+          page: number;
+          pageSize: number;
+          pageCount: number;
+          total: number;
+        };
+      }
+    | {};
 }
 
 export interface Diploma {
@@ -50,6 +52,7 @@ export interface Experience {
 export interface Description {
   role: string;
   description?: string;
+  avatar?: string;
 }
 
 interface API {

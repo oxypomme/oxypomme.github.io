@@ -54,7 +54,7 @@ function Experience({ locale }: Props) {
                 {logo && (
                   <CardMedia
                     component="img"
-                    sx={{ width: 151 }}
+                    sx={{ width: 156 }}
                     image={logo}
                     alt={name + " logo"}
                   />
