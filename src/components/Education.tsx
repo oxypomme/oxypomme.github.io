@@ -9,16 +9,18 @@ import {
 import dayjs from "dayjs";
 import React from "react";
 import { Diploma, getAPI, StrapiObject } from "../features/fetchAPI";
-import { dayjsLocales, Locale, localizedStrings } from "../features/languages";
+import { Locale, localizedStrings } from "../features/languages";
 import Animated from "./Animated";
 
-function Education() {
-  const [locale, setLocale] = React.useState<Locale>(Locale.ENGLISH);
+type Props = React.PropsWithoutRef<{
+  locale: Locale;
+}>;
+
+function Education({ locale }: Props) {
   const [content, setContent] = React.useState<StrapiObject<Diploma>[]>([]);
 
   React.useEffect(() => {
     (async () => {
-      await dayjsLocales[locale]();
       try {
         const { data } = await getAPI("diplomes", locale);
         setContent(data);

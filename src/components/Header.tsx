@@ -6,8 +6,11 @@ import { getAPI, StrapiAttributes, Description } from "../features/fetchAPI";
 import MUIMarkdown from "./MUIMarkdown";
 import { Locale } from "../features/languages";
 
-function Header() {
-  const [locale, setLocale] = React.useState<Locale>(Locale.ENGLISH);
+type Props = React.PropsWithoutRef<{
+  locale: Locale;
+}>;
+
+function Header({ locale }: Props) {
   const [data, setData] = React.useState<StrapiAttributes<Description> | null>(
     null
   );

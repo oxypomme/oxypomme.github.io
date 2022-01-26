@@ -14,18 +14,19 @@ import {
   StrapiObject,
 } from "../features/fetchAPI";
 import dayjs from "dayjs";
-import { dayjsLocales, Locale, localizedStrings } from "../features/languages";
+import { Locale, localizedStrings } from "../features/languages";
 
-function Experience() {
-  const [locale, setLocale] = React.useState<Locale>(Locale.ENGLISH);
+type Props = React.PropsWithoutRef<{
+  locale: Locale;
+}>;
+
+function Experience({ locale }: Props) {
   const [content, setContent] = React.useState<StrapiObject<ExperienceData>[]>(
     []
   );
 
   React.useEffect(() => {
     (async () => {
-      // Import correct DayJS locale
-      await dayjsLocales[locale]();
       try {
         const { data } = await getAPI("experiences", locale);
         setContent(data);
