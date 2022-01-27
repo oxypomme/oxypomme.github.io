@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
 import React from "react";
+import Education from "../components/Education";
+import Experience from "../components/Experience";
 import type { Locale } from "../features/languages";
-import Education from "./Education";
-import Experience from "./Experience";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -10,11 +10,11 @@ type Props = React.PropsWithoutRef<{
 
 function Profile({ locale }: Props) {
   return (
-    <Grid container spacing={24} sx={{ height: "100vh" }}>
+    <Grid container>
       <Grid item xs={6}>
         <Education locale={locale} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={6} sx={{ textAlign: "right" }}>
         <Experience locale={locale} />
       </Grid>
     </Grid>

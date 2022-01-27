@@ -1,20 +1,15 @@
+import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
+import dayjs from "dayjs";
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Stack,
-  Typography,
-} from "@mui/material";
-import Animated from "./Animated";
+import ReactMarkdown from "react-markdown";
 import {
   Experience as ExperienceData,
   getAPI,
   StrapiObject,
 } from "../features/fetchAPI";
-import dayjs from "dayjs";
 import { Locale, localizedStrings } from "../features/languages";
+import Animated from "./Animated";
+import MUIMarkdown from "./MUIMarkdown";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -38,7 +33,7 @@ function Experience({ locale }: Props) {
   }, [locale]);
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{ width: "75%", marginLeft: "auto" }}>
       <Animated animation="fadeInDown">
         <Typography variant="h3">
           {localizedStrings.experience[locale]}
@@ -70,7 +65,9 @@ function Experience({ locale }: Props) {
                     {role}
                   </Typography>
                   {description && (
-                    <Typography variant="body1">{description}</Typography>
+                    <ReactMarkdown components={MUIMarkdown}>
+                      {description}
+                    </ReactMarkdown>
                   )}
                 </CardContent>
               </Card>

@@ -1,13 +1,21 @@
-import React from "react";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Header from "./components/Header";
-import Profile from "./components/Profile";
-import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
-import { dayjsLocales, Locale } from "./features/languages";
+import CssBaseline from "@mui/material/CssBaseline";
+import Stack from "@mui/material/Stack";
+import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import React from "react";
 import LocaleFab from "./components/LocaleFab";
+import { dayjsLocales, Locale } from "./features/languages";
+import Header from "./views/Header";
+import Profile from "./views/Profile";
+
+const MainStack = styled(Stack)`
+  > * {
+    width: 100% !important;
+    height: 100vh;
+    padding: 5vh 0;
+  }
+`;
 
 function App() {
   const [locale, setLocale] = React.useState(Locale.ENGLISH);
@@ -38,10 +46,10 @@ function App() {
       <LocaleFab locale={locale} onClick={onLocaleClick} />
       <CssBaseline />
       <Container>
-        <Stack>
+        <MainStack>
           <Header locale={locale} />
           <Profile locale={locale} />
-        </Stack>
+        </MainStack>
       </Container>
     </ThemeProvider>
   );

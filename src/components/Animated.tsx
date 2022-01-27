@@ -1,5 +1,5 @@
-import React from "react";
 import "animate.css";
+import React from "react";
 import ScrollAnimation, { ScrollAnimationProps } from "react-animate-on-scroll";
 
 type Props = React.PropsWithChildren<

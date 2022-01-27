@@ -1,16 +1,11 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import { Diploma, getAPI, StrapiObject } from "../features/fetchAPI";
 import { Locale, localizedStrings } from "../features/languages";
 import Animated from "./Animated";
+import MUIMarkdown from "./MUIMarkdown";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -31,7 +26,7 @@ function Education({ locale }: Props) {
   }, [locale]);
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{ width: "75%" }}>
       <Animated animation="fadeInDown">
         <Typography variant="h3">
           {localizedStrings.education[locale]}
@@ -57,7 +52,9 @@ function Education({ locale }: Props) {
                     </Typography>
                   )}
                   {description && (
-                    <Typography variant="body1">{description}</Typography>
+                    <ReactMarkdown components={MUIMarkdown}>
+                      {description}
+                    </ReactMarkdown>
                   )}
                 </CardContent>
                 {logo && (

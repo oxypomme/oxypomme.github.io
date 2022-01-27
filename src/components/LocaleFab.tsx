@@ -1,8 +1,8 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { Locale, localizedStrings } from "../features/languages";
-import { Fab, styled } from "@mui/material";
 import TranslateIcon from "@mui/icons-material/Translate";
+import { Fab, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import React from "react";
+import { Locale, localizedStrings } from "../features/languages";
 
 const FabGroup = {
   Button: styled(Fab)``,
