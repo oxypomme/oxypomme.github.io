@@ -42,4 +42,16 @@ export const localizedStrings: LocalizedData<LocalizedData<string>> & {
     fr: "Langues",
     en: "Languages",
   },
+  projects: {
+    fr: "Projets",
+    en: "Projects",
+  },
+  interestProjects: {
+    fr: "Projets notables",
+    en: "Cool projects",
+  },
+  otherProjects: {
+    fr: "Projets autres",
+    en: "Other projects",
+  },
 } as const;

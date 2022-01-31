@@ -17,16 +17,14 @@ export type StrapiObject<T> = {
 
 export interface StrapiResult<T extends API[keyof API]> {
   data: T extends Array<infer E> ? StrapiObject<E>[] : StrapiObject<T>;
-  meta:
-    | {
-        pagination: {
-          page: number;
-          pageSize: number;
-          pageCount: number;
-          total: number;
-        };
-      }
-    | {};
+  meta: {
+    pagination?: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
 }
 
 export interface Diploma {
@@ -55,22 +53,52 @@ export interface Description {
   avatar?: string;
 }
 
+export enum EProjectType {
+  PERSONAL = "personal",
+  SCHOOL = "school",
+  BUSINESS = "business",
+}
+
+export interface ProgConcept {
+  name: string;
+  color?: string;
+  icon?: string;
+}
+
+export interface Project {
+  name: string;
+  type: EProjectType;
+  goal: string;
+  description?: string;
+  featured: boolean;
+  imageURL?: string;
+  languages: {
+    data: StrapiObject<ProgConcept>[];
+  };
+  technologies: {
+    data: StrapiObject<ProgConcept>[];
+  };
+}
+
 interface API {
   diplomes: Diploma[];
-  [endpoint: `diplomes/${number}`]: Diploma;
+  // [endpoint: `diplomes/${number}`]: Diploma;
   experiences: Experience[];
-  [endpoint: `experiences/${number}`]: Experience;
+  // [endpoint: `experiences/${number}`]: Experience;
   description: Description;
+  projects: Project[];
 }
 
 export const getAPI = async <Endpoint extends keyof API>(
   endpoint: Endpoint,
-  locale: Locale = Locale.FRENCH
+  locale: Locale = Locale.FRENCH,
+  query: Record<string, any> = {}
 ) => {
   const { data } = await axios.get<StrapiResult<API[Endpoint]>>(
     `${process.env.REACT_APP_API_URL}/${endpoint}`,
     {
       params: {
+        ...query,
         locale,
       },
     }

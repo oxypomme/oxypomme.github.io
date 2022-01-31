@@ -19,7 +19,7 @@ function Animated({
   return (
     <ScrollAnimation
       {...props}
-      className={`animate__animated ${className}`}
+      className={`animate__animated ${className ?? ""}`}
       animateIn={`animate__${animation}`}
       animateOnce={animateOnce ?? true}
       delay={(delay ?? 0.5) * 1000}

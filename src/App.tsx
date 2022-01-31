@@ -8,6 +8,7 @@ import LocaleFab from "./components/LocaleFab";
 import { dayjsLocales, Locale } from "./features/languages";
 import Header from "./views/Header";
 import Profile from "./views/Profile";
+import Projects from "./views/Projects";
 
 const MainStack = styled(Stack)`
   > * {
@@ -49,6 +50,7 @@ function App() {
         <MainStack>
           <Header locale={locale} />
           <Profile locale={locale} />
+          <Projects locale={locale} />
         </MainStack>
       </Container>
     </ThemeProvider>

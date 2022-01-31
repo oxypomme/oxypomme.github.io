@@ -5,7 +5,7 @@ import React from "react";
 import { Locale, localizedStrings } from "../features/languages";
 
 const FabGroup = {
-  Button: styled(Fab)``,
+  Button: styled(Fab)({}),
   Menu: styled(Box)(({ visible }: { visible: boolean }) => ({
     display: visible ? "flex" : "none",
     flexDirection: "column",
