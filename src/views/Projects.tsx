@@ -45,6 +45,9 @@ function Component({ locale, sx }: Props) {
         const { data, meta } = await getAPI("projects", locale, {
           populate: ["languages", "technologies", "git"],
         });
+        if (data) {
+          data.reverse();
+        }
         setProjects(data ?? []);
         setPagination(meta.pagination);
       } catch (error) {

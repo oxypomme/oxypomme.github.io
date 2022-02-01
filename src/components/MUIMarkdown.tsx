@@ -13,8 +13,16 @@ const components: Components = {
     const params = {
       [key]: href,
       ...props,
+      target: props.target ?? (key === "href" ? "_blank" : undefined),
     };
-    return <Link {...params}>{children}</Link>;
+    if (params.target === "_blank" && !params.rel) {
+      params.rel = "noopener";
+    }
+    return (
+      <Link {...params} onClick={(e) => e.stopPropagation()}>
+        {children}
+      </Link>
+    );
   },
   ul: ({ children, ...props }) => (
     <ul style={{ marginLeft: "1rem" }} {...props}>
