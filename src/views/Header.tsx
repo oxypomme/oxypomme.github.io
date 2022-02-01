@@ -37,7 +37,9 @@ function Header({ locale, sx }: Props) {
       }}
     >
       <Animated animation="fadeInUp">
-        <Typography variant="h1">SUBLET Tom</Typography>
+        <Typography variant="h2" component="h1">
+          SUBLET Tom
+        </Typography>
       </Animated>
       {data && (
         <>
