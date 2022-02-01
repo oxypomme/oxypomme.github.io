@@ -26,7 +26,7 @@ function Education({ locale }: Props) {
   }, [locale]);
 
   return (
-    <Stack spacing={2} sx={{ width: "75%" }}>
+    <Stack spacing={2} sx={{ width: { sm: "95%", md: "75%" } }}>
       <Animated animation="fadeInDown">
         <Typography variant="h3">
           {localizedStrings.education[locale]}

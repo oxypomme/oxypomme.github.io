@@ -1,7 +1,12 @@
+import { Stack } from "@mui/material";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
-import Stack from "@mui/material/Stack";
-import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import {
+  createTheme,
+  SxProps,
+  Theme,
+  ThemeProvider,
+} from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
 import LocaleFab from "./components/LocaleFab";
@@ -10,17 +15,14 @@ import Header from "./views/Header";
 import Profile from "./views/Profile";
 import Projects from "./views/Projects";
 
-const MainStack = styled(Stack)`
-  > * {
-    width: 100% !important;
-    height: 100vh;
-    padding: 5vh 0;
-  }
-`;
-
 function App() {
   const [locale, setLocale] = React.useState(Locale.ENGLISH);
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const sx: SxProps<Theme> = {
+    width: "100% !important",
+    height: { sm: "100vh" },
+    padding: "5vh 0",
+  };
 
   React.useEffect(() => {
     // Import dayjs locale
@@ -47,11 +49,11 @@ function App() {
       <LocaleFab locale={locale} onClick={onLocaleClick} />
       <CssBaseline />
       <Container>
-        <MainStack>
-          <Header locale={locale} />
-          <Profile locale={locale} />
-          <Projects locale={locale} />
-        </MainStack>
+        <Stack>
+          <Header locale={locale} sx={sx} />
+          <Profile locale={locale} sx={sx} />
+          <Projects locale={locale} sx={sx} />
+        </Stack>
       </Container>
     </ThemeProvider>
   );

@@ -1,6 +1,6 @@
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Masonry from "@mui/lab/Masonry";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import Animated from "../components/Animated";
 import Project from "../components/Project";
@@ -13,9 +13,10 @@ import { Locale, localizedStrings } from "../features/languages";
 
 type Props = {
   locale: Locale;
+  sx?: SxProps<Theme>;
 };
 
-function Component({ locale }: Props) {
+function Component({ locale, sx }: Props) {
   const [projects, setProjects] = React.useState<StrapiObject<ProjectType>[]>(
     []
   );
@@ -54,7 +55,7 @@ function Component({ locale }: Props) {
   }, [locale]);
 
   return (
-    <Stack>
+    <Stack sx={{ ...sx }}>
       <Typography variant="h3">{localizedStrings.projects[locale]}</Typography>
       <Box sx={{ marginTop: 1, marginBottom: 2 }}>
         <Animated animation="fadeInUp">
@@ -62,7 +63,14 @@ function Component({ locale }: Props) {
             {localizedStrings.interestProjects[locale]}
           </Typography>
         </Animated>
-        <Masonry columns={3} spacing={2}>
+        <Masonry
+          columns={{
+            xs: 1,
+            sm: 2,
+            md: 3,
+          }}
+          spacing={2}
+        >
           {featured.map((p) => (
             <Box key={p.id}>
               <Project p={p.attributes} featured />
@@ -76,7 +84,13 @@ function Component({ locale }: Props) {
             {localizedStrings.otherProjects[locale]}
           </Typography>
         </Animated>
-        <Masonry columns={2} spacing={2}>
+        <Masonry
+          columns={{
+            xs: 1,
+            md: 2,
+          }}
+          spacing={2}
+        >
           {other.map((p, i) => (
             <Box key={p.id}>
               <Project p={p.attributes} rtl={false && i % 2 === 1} />

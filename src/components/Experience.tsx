@@ -33,7 +33,10 @@ function Experience({ locale }: Props) {
   }, [locale]);
 
   return (
-    <Stack spacing={2} sx={{ width: "75%", marginLeft: "auto" }}>
+    <Stack
+      spacing={2}
+      sx={{ width: { sm: "95%", md: "75%" }, marginLeft: "auto" }}
+    >
       <Animated animation="fadeInDown">
         <Typography variant="h3">
           {localizedStrings.experience[locale]}

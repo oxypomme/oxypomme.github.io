@@ -1,4 +1,4 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Grid, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
@@ -8,9 +8,10 @@ import { Locale } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
+  sx?: SxProps<Theme>;
 }>;
 
-function Header({ locale }: Props) {
+function Header({ locale, sx }: Props) {
   const [data, setData] = React.useState<StrapiAttributes<Description> | null>(
     null
   );
@@ -29,6 +30,7 @@ function Header({ locale }: Props) {
   return (
     <Box
       sx={{
+        ...sx,
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -46,22 +48,24 @@ function Header({ locale }: Props) {
           </Animated>
 
           <Animated animation="fadeInUp" delay={1.75}>
-            <Box sx={{ display: "flex" }}>
+            <Grid container spacing={3}>
               {data.avatar && (
-                <Avatar
-                  sx={{ width: "156px", height: "auto", marginRight: "24px" }}
-                  variant="rounded"
-                  src={data.avatar}
-                />
+                <Grid item xs={12} sm={4} md={2}>
+                  <Avatar
+                    sx={{ width: "100%", height: "auto" }}
+                    variant="rounded"
+                    src={data.avatar}
+                  />
+                </Grid>
               )}
-              <div>
+              <Grid item xs={12} sm={8} md={10}>
                 {data.description && (
                   <ReactMarkdown components={MUIMarkdown}>
                     {data.description}
                   </ReactMarkdown>
                 )}
-              </div>
-            </Box>
+              </Grid>
+            </Grid>
           </Animated>
         </>
       )}

@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardActionArea,
@@ -50,7 +51,17 @@ function Project({ rtl, p, featured }: Props) {
           }}
         >
           {p.imageURL && (
-            <div style={{ width: featured ? undefined : "35%" }}>
+            <Box
+              sx={{
+                width: featured ? undefined : "35%",
+                display: featured
+                  ? undefined
+                  : {
+                      xs: "none",
+                      sm: "block",
+                    },
+              }}
+            >
               <CardMedia
                 component="img"
                 sx={{
@@ -60,7 +71,7 @@ function Project({ rtl, p, featured }: Props) {
                 image={p.imageURL}
                 alt={`${p.name} screenshot`}
               />
-            </div>
+            </Box>
           )}
           <CardContent sx={{ flex: 1 }}>
             <Typography variant="overline">{type}</Typography>
