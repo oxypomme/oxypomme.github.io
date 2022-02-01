@@ -68,7 +68,7 @@ export interface ProgConcept {
 export interface Project {
   name: string;
   type: EProjectType;
-  goal: string;
+  goal?: string;
   description?: string;
   featured: boolean;
   imageURL?: string;
@@ -78,6 +78,12 @@ export interface Project {
   technologies: {
     data: StrapiObject<ProgConcept>[];
   };
+  git?: {
+    id: number;
+    provider: string;
+    url: string;
+  };
+  url?: string;
 }
 
 interface API {

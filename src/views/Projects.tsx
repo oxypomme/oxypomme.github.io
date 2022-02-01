@@ -1,3 +1,4 @@
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Masonry from "@mui/lab/Masonry";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
@@ -5,7 +6,7 @@ import Animated from "../components/Animated";
 import Project from "../components/Project";
 import {
   getAPI,
-  Project as ProjectModel,
+  Project as ProjectType,
   StrapiObject,
 } from "../features/fetchAPI";
 import { Locale, localizedStrings } from "../features/languages";
@@ -15,7 +16,7 @@ type Props = {
 };
 
 function Component({ locale }: Props) {
-  const [projects, setProjects] = React.useState<StrapiObject<ProjectModel>[]>(
+  const [projects, setProjects] = React.useState<StrapiObject<ProjectType>[]>(
     []
   );
   const [pagination, setPagination] = React.useState<
@@ -41,7 +42,7 @@ function Component({ locale }: Props) {
     (async () => {
       try {
         const { data, meta } = await getAPI("projects", locale, {
-          populate: ["languages", "technologies"],
+          populate: ["languages", "technologies", "git"],
         });
         setProjects(data ?? []);
         setPagination(meta.pagination);
@@ -90,6 +91,7 @@ function Component({ locale }: Props) {
             href="https://github.com/oxypomme?tab=repositories"
           >
             See more
+            <OpenInNewIcon />
           </Button>
         </Box>
       )}

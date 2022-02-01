@@ -16,6 +16,16 @@ const components: Components = {
     };
     return <Link {...params}>{children}</Link>;
   },
+  ul: ({ children, ...props }) => (
+    <ul style={{ marginLeft: "1rem" }} {...props}>
+      {children}
+    </ul>
+  ),
+  li: ({ children, ...props }) => (
+    <Typography variant="body1" component="li" {...props}>
+      {children}
+    </Typography>
+  ),
 };
 
 export default components;
