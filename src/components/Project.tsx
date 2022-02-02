@@ -8,6 +8,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Chip,
   SvgIcon,
   SxProps,
   Typography,
@@ -106,42 +107,75 @@ function Project({ rtl, p, featured }: Props) {
                 />
               </Box>
             )}
-            <CardContent sx={{ flex: 1 }}>
-              <Typography variant="overline">{type}</Typography>
-              <Typography variant="h5">{p.name}</Typography>
-              {p.goal && (
-                <Typography variant="subtitle1" gutterBottom>
+            <Box sx={{ flex: 1 }}>
+              <CardContent>
+                <Typography variant="overline">{type}</Typography>
+                <Typography variant="h5">{p.name}</Typography>
+                {p.goal && (
+                  <Typography variant="subtitle1" gutterBottom>
+                    <ReactMarkdown components={MUIMarkdown}>
+                      {p.goal}
+                    </ReactMarkdown>
+                  </Typography>
+                )}
+                {featured && p.description && (
                   <ReactMarkdown components={MUIMarkdown}>
-                    {p.goal}
+                    {p.description}
                   </ReactMarkdown>
-                </Typography>
-              )}
-              {featured && p.description && (
-                <ReactMarkdown components={MUIMarkdown}>
-                  {p.description}
-                </ReactMarkdown>
-              )}
-            </CardContent>
+                )}
+                {p.languages ? (
+                  <Box sx={{ mt: 1 }}>
+                    {p.languages.data.map((l) => (
+                      <Chip
+                        key={l.id}
+                        label={l.attributes.name}
+                        sx={{ backgroundColor: l.attributes.color, mr: 1 }}
+                        size="small"
+                      />
+                    ))}
+                  </Box>
+                ) : (
+                  <></>
+                )}
+                {p.technologies ? (
+                  <Box sx={{ mt: 1 }}>
+                    {p.technologies.data.map((l) => (
+                      <Chip
+                        key={l.id}
+                        label={l.attributes.name}
+                        sx={{ backgroundColor: l.attributes.color, mr: 1 }}
+                        size="small"
+                      />
+                    ))}
+                  </Box>
+                ) : (
+                  <></>
+                )}
+              </CardContent>
+              <CardActions>
+                {p.git && (
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={(e) => openLink(e, p.git?.url)}
+                  >
+                    {ProviderIcon}
+                    {p.git.provider}
+                  </Button>
+                )}
+                {p.url && (
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={(e) => openLink(e)}
+                  >
+                    <OpenInNew sx={iconSx} />
+                    Open
+                  </Button>
+                )}
+              </CardActions>
+            </Box>
           </Box>
-
-          <CardActions>
-            {p.git && (
-              <Button
-                size="small"
-                color="primary"
-                onClick={(e) => openLink(e, p.git?.url)}
-              >
-                {ProviderIcon}
-                {p.git.provider}
-              </Button>
-            )}
-            {p.url && (
-              <Button size="small" color="primary" onClick={(e) => openLink(e)}>
-                <OpenInNew sx={iconSx} />
-                Open
-              </Button>
-            )}
-          </CardActions>
         </Card>
       </CardActionArea>
     </Animated>
