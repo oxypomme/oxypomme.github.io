@@ -22,6 +22,7 @@
     "react": "^17.0.2",
     "react-animate-on-scroll": "^2.1.5",
     "react-dom": "^17.0.2",
+    "react-lazyload": "^3.2.0",
     "react-markdown": "^8.0.0",
     "react-scripts": "5.0.0",
     "typescript": "^4.4.2",
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@types/react-animate-on-scroll": "^2.1.5",
     "@types/react-animations": "^1.0.0",
+    "@types/react-lazyload": "^3.1.1",
     "env-cmd": "^10.1.0",
     "gh-pages": "^3.2.3",
     "prettier": "^2.5.1",

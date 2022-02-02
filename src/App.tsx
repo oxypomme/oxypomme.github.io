@@ -4,6 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, SxProps, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
+import LazyLoad from "react-lazyload";
 import LocaleFab from "./components/LocaleFab";
 import { dayjsLocales, Locale } from "./features/languages";
 import Header from "./views/Header";
@@ -18,7 +19,6 @@ const sx: SxProps = {
     xs: 2,
     sm: 3,
   },
-  scrollSnapAlign: "center",
 };
 
 function App() {
@@ -61,9 +61,23 @@ function App() {
         }}
         className="mandatory-scroll-container"
       >
-        <Header locale={locale} sx={sx} />
-        <Profile locale={locale} sx={sx} />
-        <Projects locale={locale} sx={sx} />
+        <Header locale={locale} sx={{ ...sx, scrollSnapAlign: "center" }} />
+        <LazyLoad
+          height="100vh"
+          style={{ scrollSnapAlign: "center" }}
+          overflow
+          once
+        >
+          <Profile locale={locale} sx={sx} />
+        </LazyLoad>
+        <LazyLoad
+          height="100vh"
+          style={{ scrollSnapAlign: "start" }}
+          overflow
+          once
+        >
+          <Projects locale={locale} sx={sx} />
+        </LazyLoad>
       </Stack>
     </ThemeProvider>
   );
