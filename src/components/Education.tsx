@@ -34,18 +34,28 @@ function Education({ locale }: Props) {
       </Animated>
       {content &&
         content.map(({ attributes }, i) => {
-          const { start, end, name, description, isApprentice, logo } =
-            attributes;
+          const {
+            start,
+            end,
+            name,
+            description,
+            isApprentice,
+            logo,
+            location,
+          } = attributes;
 
           return (
             <Animated animation="fadeInLeft" key={i}>
-              <Card variant="outlined" sx={{ display: "flex" }}>
+              <Card variant="outlined" sx={{ display: "flex", p: 1 }}>
                 <CardContent sx={{ flex: 1 }}>
                   <Typography variant="overline">
                     {dayjs(start).locale(locale).format("YYYY")} -{" "}
                     {dayjs(end).locale(locale).format("YYYY")}
                   </Typography>
                   <Typography variant="h5">{name}</Typography>
+                  <Typography variant="subtitle2" gutterBottom>
+                    {location}
+                  </Typography>
                   {isApprentice && (
                     <Typography variant="subtitle1" gutterBottom>
                       {localizedStrings.aprentice[locale]}
@@ -60,7 +70,7 @@ function Education({ locale }: Props) {
                 {logo && (
                   <CardMedia
                     component="img"
-                    sx={{ width: 156 }}
+                    sx={{ width: 156, height: "100%", alignSelf: "center" }}
                     image={logo}
                     alt={name + " logo"}
                   />

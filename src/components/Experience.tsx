@@ -44,15 +44,16 @@ function Experience({ locale }: Props) {
       </Animated>
       {content &&
         content.map(({ attributes }, i) => {
-          const { start, end, name, description, role, logo } = attributes;
+          const { start, end, name, description, role, logo, location } =
+            attributes;
 
           return (
             <Animated animation="fadeInRight" key={i}>
-              <Card variant="outlined" sx={{ display: "flex" }}>
+              <Card variant="outlined" sx={{ display: "flex", p: 1 }}>
                 {logo && (
                   <CardMedia
                     component="img"
-                    sx={{ width: 156 }}
+                    sx={{ width: 156, height: "100%", alignSelf: "center" }}
                     image={logo}
                     alt={name + " logo"}
                   />
@@ -64,6 +65,9 @@ function Experience({ locale }: Props) {
                       `- ${dayjs(end).locale(locale).format("MMMM YYYY")}`}
                   </Typography>
                   <Typography variant="h5">{name}</Typography>
+                  <Typography variant="subtitle2" gutterBottom>
+                    {location}
+                  </Typography>
                   <Typography variant="subtitle1" gutterBottom>
                     {role}
                   </Typography>
