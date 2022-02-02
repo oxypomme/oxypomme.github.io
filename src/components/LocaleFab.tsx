@@ -1,19 +1,8 @@
+import CloseIcon from "@mui/icons-material/Close";
 import TranslateIcon from "@mui/icons-material/Translate";
-import { Fab, styled } from "@mui/material";
-import Box from "@mui/material/Box";
+import { SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
 import React from "react";
 import { Locale, localizedStrings } from "../features/languages";
-
-const FabGroup = {
-  Button: styled(Fab)({}),
-  Menu: styled(Box)(({ visible }: { visible: string }) => ({
-    display: visible === "true" ? "flex" : "none",
-    flexDirection: "column",
-  })),
-  Label: styled("span")(({ visible }: { visible: string }) => ({
-    display: visible === "true" ? "inline" : "none",
-  })),
-};
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -21,48 +10,36 @@ type Props = React.PropsWithoutRef<{
 }>;
 
 function LocaleFAB({ locale, onClick }: Props) {
-  const [open, setOpen] = React.useState(false);
-
-  const onMouseEnterGroup = (e: React.MouseEvent) => {
-    setOpen(true);
-  };
-  const onMouseLeaveGroup = (e: React.MouseEvent) => {
-    setOpen(false);
-  };
-
   return (
-    <Box
-      sx={{
-        position: "fixed",
-        top: "1rem",
-        right: "1rem",
-      }}
-      onMouseEnter={onMouseEnterGroup}
-      onMouseLeave={onMouseLeaveGroup}
-    >
-      <FabGroup.Button size="small" variant="extended">
-        <TranslateIcon />
-        <FabGroup.Label visible={open.toString()}>
-          {localizedStrings.languages[locale]}
-        </FabGroup.Label>
-      </FabGroup.Button>
-      <FabGroup.Menu visible={open.toString()}>
+    <>
+      <SpeedDial
+        sx={{
+          position: "fixed",
+          top: "1rem",
+          right: "1rem",
+        }}
+        icon={
+          <SpeedDialIcon icon={<TranslateIcon />} openIcon={<CloseIcon />} />
+        }
+        ariaLabel="Language Menu"
+        direction="down"
+        FabProps={{ size: "medium" }}
+      >
         {Object.values(Locale).map((l, i) => (
-          <Fab
+          <SpeedDialAction
             key={i}
-            sx={{ marginTop: "0.5rem" }}
-            onClick={(e) => {
-              setOpen(false);
-              onClick(e, l);
+            FabProps={{
+              sx: { fontSize: "1.5em" },
+              children: "Langue",
             }}
-            size="small"
-            variant="extended"
-          >
-            {localizedStrings[l][locale]}
-          </Fab>
+            icon={localizedStrings[l][locale].split(" ")[0]}
+            tooltipTitle={localizedStrings[l][locale].split(" ")[1]}
+            tooltipOpen
+            onClick={(e) => onClick(e, l)}
+          />
         ))}
-      </FabGroup.Menu>
-    </Box>
+      </SpeedDial>
+    </>
   );
 }
 

@@ -13,6 +13,10 @@ export const dayjsLocales: LocalizedData<() => Promise<any>> = {
 export const localizedStrings: LocalizedData<LocalizedData<string>> & {
   [key: string]: LocalizedData<string>;
 } = {
+  languages: {
+    fr: "Langues",
+    en: "Languages",
+  },
   // French language name
   fr: {
     fr: "🇫🇷 Français",
@@ -36,10 +40,6 @@ export const localizedStrings: LocalizedData<LocalizedData<string>> & {
   aprentice: {
     fr: "En alternance",
     en: "Aprenticeship",
-  },
-  languages: {
-    fr: "Langues",
-    en: "Languages",
   },
   projects: {
     fr: "Projets",
