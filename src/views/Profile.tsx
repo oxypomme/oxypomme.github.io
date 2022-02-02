@@ -1,4 +1,4 @@
-import { Grid, SxProps, Theme } from "@mui/material";
+import { Grid, SxProps } from "@mui/material";
 import React from "react";
 import Education from "../components/Education";
 import Experience from "../components/Experience";
@@ -6,7 +6,7 @@ import type { Locale } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
-  sx?: SxProps<Theme>;
+  sx?: SxProps;
 }>;
 
 function Profile({ locale, sx }: Props) {

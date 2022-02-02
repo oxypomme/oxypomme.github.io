@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, SxProps, Theme, Typography } from "@mui/material";
+import { Avatar, Box, Grid, SxProps, Typography } from "@mui/material";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
@@ -8,7 +8,7 @@ import { Locale } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
-  sx?: SxProps<Theme>;
+  sx?: SxProps;
 }>;
 
 function Header({ locale, sx }: Props) {

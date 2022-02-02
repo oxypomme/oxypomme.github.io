@@ -1,12 +1,7 @@
 import { Stack } from "@mui/material";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
-import {
-  createTheme,
-  SxProps,
-  Theme,
-  ThemeProvider,
-} from "@mui/material/styles";
+import { createTheme, SxProps, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
 import LocaleFab from "./components/LocaleFab";
@@ -18,7 +13,7 @@ import Projects from "./views/Projects";
 function App() {
   const [locale, setLocale] = React.useState(Locale.ENGLISH);
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const sx: SxProps<Theme> = {
+  const sx: SxProps = {
     width: "100% !important",
     height: { sm: "100vh" },
     padding: "5vh 0",

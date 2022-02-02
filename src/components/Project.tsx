@@ -1,3 +1,5 @@
+import GitHubIcon from "@mui/icons-material/GitHub";
+import OpenInNew from "@mui/icons-material/OpenInNew";
 import {
   Box,
   Button,
@@ -6,6 +8,8 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  SvgIcon,
+  SxProps,
   Typography,
 } from "@mui/material";
 import React from "react";
@@ -13,6 +17,8 @@ import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
 import MUIMarkdown from "../components/MUIMarkdown";
 import { EProjectType, Project as ProjectType } from "../features/fetchAPI";
+import { ReactComponent as GitIcon } from "../icons/git.svg";
+import { ReactComponent as GitLabIcon } from "../icons/gitlab.svg";
 
 type Props = {
   rtl?: boolean;
@@ -20,7 +26,26 @@ type Props = {
   p: ProjectType;
 };
 
+const iconSx: SxProps = {
+  mr: 0.5,
+  fontSize: 20,
+};
+
 function Project({ rtl, p, featured }: Props) {
+  const ProviderIcon = React.useMemo(() => {
+    if (p.git) {
+      switch (p.git.provider.toLowerCase()) {
+        case "github":
+          return <GitHubIcon sx={iconSx} />;
+        case "gitlab":
+          return <SvgIcon component={GitLabIcon} inheritViewBox sx={iconSx} />;
+        default:
+          return <SvgIcon component={GitIcon} inheritViewBox sx={iconSx} />;
+      }
+    }
+    return <></>;
+  }, [p]);
+
   const type = React.useMemo(() => {
     switch (p.type) {
       case EProjectType.PERSONAL:
@@ -32,16 +57,24 @@ function Project({ rtl, p, featured }: Props) {
       default:
         break;
     }
+    return "";
   }, [p]);
 
   const openLink = (e: React.MouseEvent, url?: string): void => {
     e.stopPropagation();
-    window.open(url ?? p.url, "_blank", "noopener")?.focus();
+    if (url || p.url) {
+      window.open(url ?? p.url, "_blank", "noopener")?.focus();
+    }
   };
 
   return (
     <Animated animation="fadeIn">
-      <CardActionArea disabled={!p.url} onClick={(e) => openLink(e)}>
+      <CardActionArea
+        component="div"
+        disableTouchRipple={!p.url}
+        sx={{ cursor: p.url ? "pointer" : "inherit" }}
+        onClick={(e: React.MouseEvent) => openLink(e)}
+      >
         <Card variant="outlined">
           <Box
             sx={{
@@ -98,11 +131,13 @@ function Project({ rtl, p, featured }: Props) {
                 color="primary"
                 onClick={(e) => openLink(e, p.git?.url)}
               >
+                {ProviderIcon}
                 {p.git.provider}
               </Button>
             )}
             {p.url && (
               <Button size="small" color="primary" onClick={(e) => openLink(e)}>
+                <OpenInNew sx={iconSx} />
                 Open
               </Button>
             )}

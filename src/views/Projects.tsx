@@ -1,6 +1,6 @@
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Masonry from "@mui/lab/Masonry";
-import { Box, Button, Stack, SxProps, Theme, Typography } from "@mui/material";
+import { Box, Button, Stack, SxProps, Typography } from "@mui/material";
 import React from "react";
 import Animated from "../components/Animated";
 import Project from "../components/Project";
@@ -13,7 +13,7 @@ import { Locale, localizedStrings } from "../features/languages";
 
 type Props = {
   locale: Locale;
-  sx?: SxProps<Theme>;
+  sx?: SxProps;
 };
 
 function Component({ locale, sx }: Props) {
