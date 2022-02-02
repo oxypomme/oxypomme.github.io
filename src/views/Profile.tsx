@@ -1,24 +1,133 @@
-import { Grid, SxProps } from "@mui/material";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import {
+  Timeline,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+  TimelineItem,
+  TimelineOppositeContent,
+  TimelineSeparator,
+} from "@mui/lab";
+import { Box, SxProps, Typography } from "@mui/material";
+import dayjs from "dayjs";
 import React from "react";
-import Education from "../components/Education";
-import Experience from "../components/Experience";
-import type { Locale } from "../features/languages";
+import Animated from "../components/Animated";
+import ProfileElement from "../components/ProfileElement";
+import {
+  Diploma,
+  Experience,
+  getAPI,
+  StrapiObject,
+} from "../features/fetchAPI";
+import { Locale, localizedStrings } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
   sx?: SxProps;
 }>;
 
+const INIT_DELAY = 1;
+
 function Profile({ locale, sx }: Props) {
+  const [data, setData] = React.useState<StrapiObject<Diploma | Experience>[]>(
+    []
+  );
+  const lastData = React.useMemo(
+    () => (data.length > 0 ? data[data.length - 1].attributes : null),
+    [data]
+  );
+
+  React.useEffect(() => {
+    (async () => {
+      let timeline: Array<StrapiObject<Diploma> | StrapiObject<Experience>> =
+        [];
+      try {
+        const { data } = await getAPI("diplomes", locale);
+        timeline = [...timeline, ...data];
+      } catch (error) {}
+
+      try {
+        const { data } = await getAPI("experiences", locale);
+        timeline = [...timeline, ...data];
+      } catch (error) {}
+      setData(
+        timeline.sort(
+          (a, b) =>
+            // Duration of a
+            dayjs(a.attributes.end).diff(dayjs(b.attributes.start)) -
+            // Duration of b
+            dayjs(b.attributes.end).diff(dayjs(b.attributes.start))
+        )
+      );
+    })();
+  }, [locale]);
+
   return (
-    <Grid container sx={{ ...sx }}>
-      <Grid item xs={12} sm={6}>
-        <Education locale={locale} />
-      </Grid>
-      <Grid item xs={12} sm={6} sx={{ textAlign: { sm: "right" } }}>
-        <Experience locale={locale} />
-      </Grid>
-    </Grid>
+    <Box
+      sx={{
+        ...sx,
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Animated animation="fadeInDown">
+        <Typography variant="h3" sx={{ textAlign: "center" }} gutterBottom>
+          {localizedStrings.timeline[locale]}
+        </Typography>
+      </Animated>
+      <Timeline>
+        {data.length && (
+          <>
+            <Animated animation="fadeInUp" delay={INIT_DELAY}>
+              <TimelineItem sx={{ minHeight: 0 }}>
+                <TimelineSeparator>
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent />
+              </TimelineItem>
+            </Animated>
+            {data.map(({ attributes }, i) => (
+              <ProfileElement
+                key={i}
+                delay={i * 0.25 + INIT_DELAY}
+                locale={locale}
+                d={attributes}
+              />
+            ))}
+            <Animated
+              animation="fadeInUp"
+              delay={data.length * 0.25 + INIT_DELAY}
+            >
+              <TimelineItem>
+                <TimelineOppositeContent
+                  variant="overline"
+                  color="text.secondary"
+                >
+                  {lastData && lastData.end
+                    ? dayjs(lastData.end)
+                        .add(1, "month")
+                        .locale(locale)
+                        .format("MMMM YYYY")
+                    : "?"}{" "}
+                  - ?
+                </TimelineOppositeContent>
+                <TimelineSeparator>
+                  <TimelineDot color="primary">
+                    <QuestionMarkIcon />
+                  </TimelineDot>
+                </TimelineSeparator>
+                <TimelineContent>
+                  <Typography variant="h5">
+                    {localizedStrings.timelineNext[locale]}
+                  </Typography>
+                </TimelineContent>
+              </TimelineItem>
+            </Animated>
+          </>
+        )}
+      </Timeline>
+    </Box>
   );
 }
 

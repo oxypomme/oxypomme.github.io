@@ -23,15 +23,14 @@ export const localizedStrings: LocalizedData<LocalizedData<string>> & {
     fr: "🇺🇸 Anglais",
     en: "🇺🇸 English",
   },
-  // Education part
-  education: {
-    fr: "Diplômes",
-    en: "Education",
+  // Timeline part
+  timeline: {
+    fr: "Comment je suis arrivé ici ?",
+    en: "How did I get there ?",
   },
-  // Experience part
-  experience: {
-    fr: "Expériences",
-    en: "Experiences",
+  timelineNext: {
+    fr: "Avec vous ?",
+    en: "With you ?",
   },
   // Aprentice label
   aprentice: {

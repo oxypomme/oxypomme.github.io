@@ -15,7 +15,7 @@ function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const sx: SxProps = {
     width: "100% !important",
-    height: { sm: "100vh" },
+    minHeight: { sm: "100vh" },
     padding: "5vh 0",
   };
 

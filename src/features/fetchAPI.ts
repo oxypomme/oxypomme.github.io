@@ -42,6 +42,7 @@ export interface Experience {
   end?: StrapiDate;
   name: string;
   location?: string;
+  isApprentice: boolean;
   role: string;
   description?: string;
   logo?: string;
