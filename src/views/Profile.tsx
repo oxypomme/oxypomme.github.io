@@ -76,10 +76,10 @@ function Profile({ locale, sx }: Props) {
           {localizedStrings.timeline[locale]}
         </Typography>
       </Animated>
-      <Timeline>
+      <Timeline sx={{ flexGrow: 0 }}>
         {data.length && (
           <>
-            <Animated animation="fadeInUp" delay={INIT_DELAY}>
+            <Animated animation="fadeInUp">
               <TimelineItem sx={{ minHeight: 0 }}>
                 <TimelineSeparator>
                   <TimelineConnector />

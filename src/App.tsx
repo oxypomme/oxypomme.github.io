@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import Container from "@mui/material/Container";
+// import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, SxProps, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -10,14 +10,20 @@ import Header from "./views/Header";
 import Profile from "./views/Profile";
 import Projects from "./views/Projects";
 
+const sx: SxProps = {
+  width: "100% !important",
+  minHeight: { sm: "100vh" },
+  py: "5vh",
+  px: {
+    xs: 2,
+    sm: 3,
+  },
+  scrollSnapAlign: "center",
+};
+
 function App() {
   const [locale, setLocale] = React.useState(Locale.ENGLISH);
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const sx: SxProps = {
-    width: "100% !important",
-    minHeight: { sm: "100vh" },
-    padding: "5vh 0",
-  };
 
   React.useEffect(() => {
     // Import dayjs locale
@@ -43,13 +49,22 @@ function App() {
     <ThemeProvider theme={theme}>
       <LocaleFab locale={locale} onClick={onLocaleClick} />
       <CssBaseline />
-      <Container>
-        <Stack>
-          <Header locale={locale} sx={sx} />
-          <Profile locale={locale} sx={sx} />
-          <Projects locale={locale} sx={sx} />
-        </Stack>
-      </Container>
+      <Stack
+        sx={{
+          scrollSnapType: "y mandatory",
+          height: "100vh",
+          overflow: "auto",
+          px: {
+            xs: 2,
+            sm: 3,
+          },
+        }}
+        className="mandatory-scroll-container"
+      >
+        <Header locale={locale} sx={sx} />
+        <Profile locale={locale} sx={sx} />
+        <Projects locale={locale} sx={sx} />
+      </Stack>
     </ThemeProvider>
   );
 }

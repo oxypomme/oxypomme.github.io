@@ -36,7 +36,7 @@ function Header({ locale, sx }: Props) {
         flexDirection: "column",
       }}
     >
-      <Animated animation="fadeInUp">
+      <Animated animation="fadeInUp" delay={0.5}>
         <Typography variant="h2" component="h1">
           SUBLET Tom
         </Typography>

@@ -22,7 +22,8 @@ function Animated({
       className={`animate__animated ${className ?? ""}`}
       animateIn={`animate__${animation}`}
       animateOnce={animateOnce ?? true}
-      delay={(delay ?? 0.5) * 1000}
+      scrollableParentSelector=".mandatory-scroll-container"
+      delay={(delay ?? 0.25) * 1000}
     >
       {children}
     </ScrollAnimation>
