@@ -24,12 +24,12 @@ const components: Components = {
       </Link>
     );
   },
-  ul: ({ children, ...props }) => (
+  ul: ({ children, ordered, ...props }) => (
     <ul style={{ marginLeft: "1rem" }} {...props}>
       {children}
     </ul>
   ),
-  li: ({ children, ...props }) => (
+  li: ({ children, ordered, ...props }) => (
     <Typography variant="body1" component="li" {...props}>
       {children}
     </Typography>

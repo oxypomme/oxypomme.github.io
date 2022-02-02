@@ -6,12 +6,12 @@ import { Locale, localizedStrings } from "../features/languages";
 
 const FabGroup = {
   Button: styled(Fab)({}),
-  Menu: styled(Box)(({ visible }: { visible: boolean }) => ({
-    display: visible ? "flex" : "none",
+  Menu: styled(Box)(({ visible }: { visible: string }) => ({
+    display: visible === "true" ? "flex" : "none",
     flexDirection: "column",
   })),
-  Label: styled("span")(({ visible }: { visible: boolean }) => ({
-    display: visible ? "inline" : "none",
+  Label: styled("span")(({ visible }: { visible: string }) => ({
+    display: visible === "true" ? "inline" : "none",
   })),
 };
 
@@ -42,11 +42,11 @@ function LocaleFAB({ locale, onClick }: Props) {
     >
       <FabGroup.Button size="small" variant="extended">
         <TranslateIcon />
-        <FabGroup.Label visible={open}>
+        <FabGroup.Label visible={open.toString()}>
           {localizedStrings.languages[locale]}
         </FabGroup.Label>
       </FabGroup.Button>
-      <FabGroup.Menu visible={open}>
+      <FabGroup.Menu visible={open.toString()}>
         {Object.values(Locale).map((l, i) => (
           <Fab
             key={i}
