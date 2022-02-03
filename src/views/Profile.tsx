@@ -113,7 +113,7 @@ function Profile({ locale, sx }: Props) {
                   - ?
                 </TimelineOppositeContent>
                 <TimelineSeparator>
-                  <TimelineDot color="grey">
+                  <TimelineDot color="success">
                     <QuestionMarkIcon />
                   </TimelineDot>
                 </TimelineSeparator>

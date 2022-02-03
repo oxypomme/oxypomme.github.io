@@ -4,7 +4,11 @@ import { Components } from "react-markdown";
 
 const components: Components = {
   p: ({ children, ...props }) => (
-    <Typography variant="body1" {...props}>
+    <Typography
+      variant="body1"
+      sx={{ "&:not(:first-child)": { mt: 2 } }}
+      {...props}
+    >
       {children}
     </Typography>
   ),
