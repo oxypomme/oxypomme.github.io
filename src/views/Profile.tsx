@@ -71,11 +71,9 @@ function Profile({ locale, sx }: Props) {
         flexDirection: "column",
       }}
     >
-      <Animated animation="fadeInDown">
-        <Typography variant="h3" sx={{ textAlign: "center" }} gutterBottom>
-          {localizedStrings.timeline[locale]}
-        </Typography>
-      </Animated>
+      <Typography variant="h3" sx={{ textAlign: "center" }} gutterBottom>
+        {localizedStrings.timeline[locale]}
+      </Typography>
       <Timeline sx={{ flexGrow: 0 }}>
         {data.length && (
           <>

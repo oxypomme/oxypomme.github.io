@@ -1,3 +1,4 @@
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import { Avatar, Box, Grid, SxProps, Typography } from "@mui/material";
 import React from "react";
 import ReactMarkdown from "react-markdown";
@@ -34,6 +35,7 @@ function Header({ locale, sx }: Props) {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
+        position: "relative",
       }}
     >
       <Animated animation="fadeInUp" delay={0.5}>
@@ -71,6 +73,28 @@ function Header({ locale, sx }: Props) {
           </Animated>
         </>
       )}
+      <Typography
+        variant="h3"
+        component="div"
+        sx={{
+          position: "absolute",
+          width: "100%",
+          left: 0,
+          bottom: "5rem",
+          textAlign: "center",
+          color: "#222",
+        }}
+      >
+        <Animated animation="fadeInDown" repeat={5} delay={3}>
+          <DoubleArrowIcon
+            sx={{ mx: 1, color: "#222", transform: "rotateZ(90deg)" }}
+          />
+          See more
+          <DoubleArrowIcon
+            sx={{ mx: 1, color: "#222", transform: "rotateZ(90deg)" }}
+          />
+        </Animated>
+      </Typography>
     </Box>
   );
 }
