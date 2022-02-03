@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+import { orange } from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, SxProps, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -34,6 +35,12 @@ function App() {
       createTheme({
         palette: {
           mode: prefersDarkMode ? "dark" : "light",
+          primary: {
+            main: orange[800], // "#ef6c00"
+          },
+          secondary: {
+            main: "#007dff",
+          },
         },
       }),
     [prefersDarkMode]
