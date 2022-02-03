@@ -22,13 +22,21 @@ const sx: SxProps = {
 };
 
 function App() {
-  const [locale, setLocale] = React.useState(Locale.ENGLISH);
+  const [locale, setLocale] = React.useState(Locale.FRENCH);
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   React.useEffect(() => {
     // Import dayjs locale
     (async () => await dayjsLocales[locale]())();
   }, [locale]);
+
+  React.useEffect(() => {
+    const searchLocale = new URLSearchParams(window.location.search).get("l");
+
+    if (searchLocale && Object.values<string>(Locale).includes(searchLocale)) {
+      setLocale(searchLocale as Locale);
+    }
+  }, []);
 
   const theme = React.useMemo(
     () =>
@@ -48,6 +56,16 @@ function App() {
 
   const onLocaleClick = (e: React.MouseEvent, l: Locale) => {
     e.preventDefault();
+
+    // Set locale in URL
+    const search = new URLSearchParams(window.location.search);
+    search.set("l", l);
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + "?" + search.toString()
+    );
+
     setLocale(l);
   };
 

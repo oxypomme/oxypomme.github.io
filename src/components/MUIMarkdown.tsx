@@ -6,7 +6,7 @@ const components: Components = {
   p: ({ children, ...props }) => (
     <Typography
       variant="body1"
-      sx={{ "&:not(:first-child)": { mt: 2 } }}
+      sx={{ "&:not(:first-of-type)": { mt: 2 } }}
       {...props}
     >
       {children}

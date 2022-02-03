@@ -1,4 +1,3 @@
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Masonry from "@mui/lab/Masonry";
 import { Box, Button, Stack, SxProps, Typography } from "@mui/material";
 import React from "react";
@@ -20,15 +19,6 @@ function Component({ locale, sx }: Props) {
   const [projects, setProjects] = React.useState<StrapiObject<ProjectType>[]>(
     []
   );
-  const [pagination, setPagination] = React.useState<
-    | {
-        page: number;
-        pageSize: number;
-        pageCount: number;
-        total: number;
-      }
-    | undefined
-  >(undefined);
 
   const featured = React.useMemo(
     () => projects.filter((p) => p.attributes.featured),
@@ -42,17 +32,15 @@ function Component({ locale, sx }: Props) {
   React.useEffect(() => {
     (async () => {
       try {
-        const { data, meta } = await getAPI("projects", locale, {
+        const { data } = await getAPI("projects", locale, {
           populate: ["languages", "technologies", "git"],
         });
         if (data) {
           data.reverse();
         }
         setProjects(data ?? []);
-        setPagination(meta.pagination);
       } catch (error) {
         setProjects([]);
-        setPagination(undefined);
       }
     })();
   }, [locale]);
@@ -101,17 +89,17 @@ function Component({ locale, sx }: Props) {
           ))}
         </Masonry>
       </Box>
-      {pagination && pagination.total > pagination.pageSize && (
-        <Box>
-          <Button
-            size="large"
-            href="https://github.com/oxypomme?tab=repositories"
-          >
-            See more
-            <OpenInNewIcon />
-          </Button>
-        </Box>
-      )}
+      <Box>
+        <Button
+          size="large"
+          href="https://github.com/oxypomme?tab=repositories"
+          target="_blank"
+          rel="noopener"
+          variant="outlined"
+        >
+          And more on GitHub...
+        </Button>
+      </Box>
     </Stack>
   );
 }

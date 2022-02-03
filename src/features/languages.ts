@@ -41,6 +41,7 @@ export const localizedStrings: LocalizedData<LocalizedData<string>> & {
     fr: "En alternance",
     en: "Aprenticeship",
   },
+  // Projects
   projects: {
     fr: "Projets",
     en: "Projects",
@@ -52,5 +53,9 @@ export const localizedStrings: LocalizedData<LocalizedData<string>> & {
   otherProjects: {
     fr: "Projets autres",
     en: "Other projects",
+  },
+  morePorjects: {
+    fr: "Et plus encore sur GitHub",
+    en: "And more on GitHub...",
   },
 } as const;
