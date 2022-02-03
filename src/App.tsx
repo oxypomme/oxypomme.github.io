@@ -1,10 +1,9 @@
 import { Stack } from "@mui/material";
-// import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, SxProps, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
-import LazyLoad from "react-lazyload";
+import LazyPanel from "./components/LazyPanel";
 import LocaleFab from "./components/LocaleFab";
 import { dayjsLocales, Locale } from "./features/languages";
 import Header from "./views/Header";
@@ -61,23 +60,15 @@ function App() {
         }}
         className="mandatory-scroll-container"
       >
-        <Header locale={locale} sx={{ ...sx, scrollSnapAlign: "center" }} />
-        <LazyLoad
-          height="100vh"
-          style={{ scrollSnapAlign: "center" }}
-          overflow
-          once
-        >
+        <LazyPanel overflow>
+          <Header locale={locale} sx={sx} />
+        </LazyPanel>
+        <LazyPanel overflow>
           <Profile locale={locale} sx={sx} />
-        </LazyLoad>
-        <LazyLoad
-          height="100vh"
-          style={{ scrollSnapAlign: "start" }}
-          overflow
-          once
-        >
+        </LazyPanel>
+        <LazyPanel align="start" overflow>
           <Projects locale={locale} sx={sx} />
-        </LazyLoad>
+        </LazyPanel>
       </Stack>
     </ThemeProvider>
   );

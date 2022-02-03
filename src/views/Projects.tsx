@@ -11,10 +11,10 @@ import {
 } from "../features/fetchAPI";
 import { Locale, localizedStrings } from "../features/languages";
 
-type Props = {
+type Props = React.PropsWithoutRef<{
   locale: Locale;
   sx?: SxProps;
-};
+}>;
 
 function Component({ locale, sx }: Props) {
   const [projects, setProjects] = React.useState<StrapiObject<ProjectType>[]>(

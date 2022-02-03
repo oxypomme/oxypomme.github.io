@@ -21,11 +21,11 @@ import { EProjectType, Project as ProjectType } from "../features/fetchAPI";
 import { ReactComponent as GitIcon } from "../icons/git.svg";
 import { ReactComponent as GitLabIcon } from "../icons/gitlab.svg";
 
-type Props = {
+type Props = React.PropsWithoutRef<{
   rtl?: boolean;
   featured?: boolean;
   p: ProjectType;
-};
+}>;
 
 const iconSx: SxProps = {
   mr: 0.5,
