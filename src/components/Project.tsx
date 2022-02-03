@@ -9,6 +9,9 @@ import {
   CardContent,
   CardMedia,
   Chip,
+  Container,
+  Fade,
+  Modal,
   SvgIcon,
   SxProps,
   Typography,
@@ -20,26 +23,55 @@ import MUIMarkdown from "../components/MUIMarkdown";
 import {
   EGitProvider,
   EProjectType,
+  ProgConcept,
   Project as ProjectType,
+  StrapiObject,
 } from "../features/fetchAPI";
 import { ReactComponent as GitIcon } from "../icons/git.svg";
 import { ReactComponent as GitLabIcon } from "../icons/gitlab.svg";
-
-type Props = React.PropsWithoutRef<{
-  rtl?: boolean;
-  featured?: boolean;
-  p: ProjectType;
-}>;
 
 const iconSx: SxProps = {
   mr: 0.5,
   fontSize: 20,
 };
 
-function Project({ rtl, p, featured }: Props) {
+type ConceptsProps = React.PropsWithoutRef<{
+  concepts?: { data: StrapiObject<ProgConcept>[] };
+  sx?: SxProps;
+  inline?: boolean;
+}>;
+
+function ProjectConcepts({ concepts, sx, inline }: ConceptsProps) {
+  if (!concepts) {
+    return <></>;
+  }
+
+  return (
+    <Box sx={{ ...sx, mt: inline ? undefined : 1 }}>
+      {concepts.data.map((l) => (
+        <Chip
+          key={l.id}
+          label={l.attributes.name}
+          sx={{
+            backgroundColor: l.attributes.color,
+            mr: inline ? undefined : 1,
+            ml: inline ? 1 : undefined,
+          }}
+          size="small"
+        />
+      ))}
+    </Box>
+  );
+}
+
+type ActionProps = React.PropsWithoutRef<{
+  project: ProjectType;
+}>;
+
+function ProjectActions({ project }: ActionProps) {
   const ProviderIcon = React.useMemo(() => {
-    if (p.git) {
-      switch (p.git.provider) {
+    if (project.git) {
+      switch (project.git.provider) {
         case EGitProvider.GITHUB:
           return <GitHubIcon sx={iconSx} />;
         case EGitProvider.GITLAB:
@@ -49,7 +81,65 @@ function Project({ rtl, p, featured }: Props) {
       }
     }
     return <></>;
-  }, [p]);
+  }, [project]);
+
+  const openLink = (e: React.MouseEvent, url?: string): void => {
+    e.stopPropagation();
+    if (url || project.url) {
+      window.open(url ?? project.url, "_blank", "noopener")?.focus();
+    }
+  };
+
+  return (
+    <>
+      {project.git && (
+        <Button
+          size="small"
+          color="primary"
+          onClick={(e) => openLink(e, project.git?.url)}
+        >
+          {ProviderIcon}
+          {project.git.provider}
+        </Button>
+      )}
+      {project.url && (
+        <Button size="small" color="primary" onClick={(e) => openLink(e)}>
+          <OpenInNew sx={iconSx} />
+          Open
+        </Button>
+      )}
+    </>
+  );
+}
+
+type ImageProps = React.PropsWithoutRef<{
+  imageURL: string;
+  alt: string;
+  featured?: boolean;
+}>;
+
+function ProjectImage({ imageURL, alt, featured }: ImageProps) {
+  return (
+    <CardMedia
+      component="img"
+      sx={{
+        aspectRatio: "16/9",
+        height: featured ? undefined : "100%",
+      }}
+      image={imageURL}
+      alt={alt}
+    />
+  );
+}
+
+type Props = React.PropsWithoutRef<{
+  rtl?: boolean;
+  featured?: boolean;
+  p: ProjectType;
+}>;
+
+function Project({ rtl, p, featured }: Props) {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const type = React.useMemo(() => {
     switch (p.type) {
@@ -65,124 +155,135 @@ function Project({ rtl, p, featured }: Props) {
     return "";
   }, [p]);
 
-  const openLink = (e: React.MouseEvent, url?: string): void => {
-    e.stopPropagation();
-    if (url || p.url) {
-      window.open(url ?? p.url, "_blank", "noopener")?.focus();
+  const modalOpen = (e: React.MouseEvent): void => {
+    if (p.description) {
+      setIsModalOpen(true);
     }
+  };
+  const modalClose = (e: React.MouseEvent): void => {
+    setIsModalOpen(false);
   };
 
   return (
-    <Animated animation="fadeIn">
-      <CardActionArea
-        component="div"
-        disableTouchRipple={!p.url}
-        sx={{ cursor: p.url ? "pointer" : "inherit" }}
-        onClick={(e: React.MouseEvent) => openLink(e)}
+    <>
+      {/* Card */}
+      <Animated animation="fadeIn">
+        <CardActionArea
+          component="div"
+          disableTouchRipple={!p.description}
+          sx={{ cursor: p.description ? "pointer" : "inherit" }}
+          onClick={modalOpen}
+        >
+          <Card variant="outlined">
+            <Box
+              sx={{
+                display: featured ? undefined : "flex",
+                flexDirection: rtl ? "row-reverse" : undefined,
+                textAlign: rtl ? "right" : undefined,
+              }}
+            >
+              {p.imageURL && (
+                <Box
+                  sx={{
+                    width: featured ? undefined : "35%",
+                    display: featured
+                      ? undefined
+                      : {
+                          xs: "none",
+                          sm: "block",
+                        },
+                  }}
+                >
+                  <ProjectImage
+                    imageURL={p.imageURL}
+                    alt={`${p.name} screenshot`}
+                    featured={featured}
+                  />
+                </Box>
+              )}
+              <Box sx={{ flex: 1 }}>
+                <CardContent>
+                  <Typography variant="overline">{type}</Typography>
+                  <Typography variant="h5">{p.name}</Typography>
+                  {p.goal && (
+                    <Typography variant="subtitle1" gutterBottom>
+                      <ReactMarkdown components={MUIMarkdown}>
+                        {p.goal}
+                      </ReactMarkdown>
+                    </Typography>
+                  )}
+                  <ProjectConcepts concepts={p.languages} />
+                  <ProjectConcepts concepts={p.technologies} />
+                </CardContent>
+                <CardActions>
+                  <ProjectActions project={p} />
+                </CardActions>
+              </Box>
+            </Box>
+          </Card>
+        </CardActionArea>
+      </Animated>
+      {/* Modal */}
+      <Modal
+        open={isModalOpen}
+        onClose={modalClose}
+        closeAfterTransition
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <Card variant="outlined">
-          <Box
+        <Fade in={isModalOpen}>
+          <Card
             sx={{
-              display: featured ? undefined : "flex",
-              flexDirection: rtl ? "row-reverse" : undefined,
-              textAlign: rtl ? "right" : undefined,
+              width: {
+                xs: "90%",
+                sm: "70%",
+                md: "50%",
+                lg: "40%",
+              },
+              maxHeight: "88.5%",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            {p.imageURL && (
-              <Box
-                sx={{
-                  width: featured ? undefined : "35%",
-                  display: featured
-                    ? undefined
-                    : {
-                        xs: "none",
-                        sm: "block",
-                      },
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  sx={{
-                    aspectRatio: "16/9",
-                    height: featured ? undefined : "100%",
-                  }}
-                  image={p.imageURL}
-                  alt={`${p.name} screenshot`}
-                />
-              </Box>
+            {p.imageURL ? (
+              <ProjectImage
+                imageURL={p.imageURL}
+                alt={`${p.name} screenshot`}
+              />
+            ) : (
+              <></>
             )}
-            <Box sx={{ flex: 1 }}>
-              <CardContent>
-                <Typography variant="overline">{type}</Typography>
-                <Typography variant="h5">{p.name}</Typography>
-                {p.goal && (
-                  <Typography variant="subtitle1" gutterBottom>
-                    <ReactMarkdown components={MUIMarkdown}>
-                      {p.goal}
-                    </ReactMarkdown>
-                  </Typography>
-                )}
-                {featured && p.description && (
-                  <ReactMarkdown components={MUIMarkdown}>
-                    {p.description}
-                  </ReactMarkdown>
-                )}
-                {p.languages ? (
-                  <Box sx={{ mt: 1 }}>
-                    {p.languages.data.map((l) => (
-                      <Chip
-                        key={l.id}
-                        label={l.attributes.name}
-                        sx={{ backgroundColor: l.attributes.color, mr: 1 }}
-                        size="small"
-                      />
-                    ))}
-                  </Box>
-                ) : (
-                  <></>
-                )}
-                {p.technologies ? (
-                  <Box sx={{ mt: 1 }}>
-                    {p.technologies.data.map((l) => (
-                      <Chip
-                        key={l.id}
-                        label={l.attributes.name}
-                        sx={{ backgroundColor: l.attributes.color, mr: 1 }}
-                        size="small"
-                      />
-                    ))}
-                  </Box>
-                ) : (
-                  <></>
-                )}
-              </CardContent>
+            <Container sx={{ py: 1 }}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {p.name}
+                <ProjectConcepts
+                  inline
+                  concepts={p.languages}
+                  sx={{ display: "inline-block", mt: 0 }}
+                />
+              </Typography>
+            </Container>
+            <CardContent
+              sx={{ overflow: "auto", flex: 1, pt: 0, pb: "8px !important" }}
+            >
+              <div id="modal-modal-description">
+                <ReactMarkdown components={MUIMarkdown}>
+                  {p.description ?? ""}
+                </ReactMarkdown>
+              </div>
               <CardActions>
-                {p.git && (
-                  <Button
-                    size="small"
-                    color="primary"
-                    onClick={(e) => openLink(e, p.git?.url)}
-                  >
-                    {ProviderIcon}
-                    {p.git.provider}
-                  </Button>
-                )}
-                {p.url && (
-                  <Button
-                    size="small"
-                    color="primary"
-                    onClick={(e) => openLink(e)}
-                  >
-                    <OpenInNew sx={iconSx} />
-                    Open
-                  </Button>
-                )}
+                <ProjectActions project={p} />
               </CardActions>
-            </Box>
-          </Box>
-        </Card>
-      </CardActionArea>
-    </Animated>
+            </CardContent>
+          </Card>
+        </Fade>
+      </Modal>
+    </>
   );
 }
 
