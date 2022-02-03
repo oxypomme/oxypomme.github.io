@@ -54,16 +54,21 @@ export interface Description {
   avatar?: string;
 }
 
+export interface ProgConcept {
+  name: string;
+  color?: string;
+  icon?: string;
+}
+
 export enum EProjectType {
   PERSONAL = "personal",
   SCHOOL = "school",
   BUSINESS = "business",
 }
 
-export interface ProgConcept {
-  name: string;
-  color?: string;
-  icon?: string;
+export enum EGitProvider {
+  GITHUB = "GitHub",
+  GITLAB = "GitLab",
 }
 
 export interface Project {
@@ -81,7 +86,7 @@ export interface Project {
   };
   git?: {
     id: number;
-    provider: string;
+    provider: EGitProvider;
     url: string;
   };
   url?: string;

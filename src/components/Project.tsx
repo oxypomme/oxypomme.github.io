@@ -17,7 +17,11 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
 import MUIMarkdown from "../components/MUIMarkdown";
-import { EProjectType, Project as ProjectType } from "../features/fetchAPI";
+import {
+  EGitProvider,
+  EProjectType,
+  Project as ProjectType,
+} from "../features/fetchAPI";
 import { ReactComponent as GitIcon } from "../icons/git.svg";
 import { ReactComponent as GitLabIcon } from "../icons/gitlab.svg";
 
@@ -35,10 +39,10 @@ const iconSx: SxProps = {
 function Project({ rtl, p, featured }: Props) {
   const ProviderIcon = React.useMemo(() => {
     if (p.git) {
-      switch (p.git.provider.toLowerCase()) {
-        case "github":
+      switch (p.git.provider) {
+        case EGitProvider.GITHUB:
           return <GitHubIcon sx={iconSx} />;
-        case "gitlab":
+        case EGitProvider.GITLAB:
           return <SvgIcon component={GitLabIcon} inheritViewBox sx={iconSx} />;
         default:
           return <SvgIcon component={GitIcon} inheritViewBox sx={iconSx} />;
