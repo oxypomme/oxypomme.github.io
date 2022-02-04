@@ -230,57 +230,57 @@ function Project({ rtl, p, featured }: Props) {
         closeAfterTransition
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
       >
         <Fade in={isModalOpen}>
-          <Card
+          <Container
+            maxWidth="sm"
             sx={{
-              width: {
-                xs: "90%",
-                sm: "70%",
-                md: "50%",
-                lg: "40%",
-              },
-              maxHeight: "88.5%",
+              height: "100%",
               display: "flex",
-              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            {p.imageURL ? (
-              <ProjectImage
-                imageURL={p.imageURL}
-                alt={`${p.name} screenshot`}
-              />
-            ) : (
-              <></>
-            )}
-            <Container sx={{ py: 1 }}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                {p.name}
-                <ProjectConcepts
-                  inline
-                  concepts={p.languages}
-                  sx={{ display: "inline-block", mt: 0 }}
-                />
-              </Typography>
-            </Container>
-            <CardContent
-              sx={{ overflow: "auto", flex: 1, pt: 0, pb: "8px !important" }}
+            <Card
+              sx={{
+                maxHeight: "88.5%",
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
-              <div id="modal-modal-description">
-                <ReactMarkdown components={MUIMarkdown}>
-                  {p.description ?? ""}
-                </ReactMarkdown>
-              </div>
-              <CardActions>
-                <ProjectActions project={p} />
-              </CardActions>
-            </CardContent>
-          </Card>
+              {p.imageURL ? (
+                <ProjectImage
+                  imageURL={p.imageURL}
+                  alt={`${p.name} screenshot`}
+                  featured
+                />
+              ) : (
+                <></>
+              )}
+              <Container sx={{ py: 1 }}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  {p.name}
+                  <ProjectConcepts
+                    inline
+                    concepts={p.languages}
+                    sx={{ display: "inline-block", mt: 0 }}
+                  />
+                </Typography>
+              </Container>
+              <CardContent
+                sx={{ overflow: "auto", flex: 1, pt: 0, pb: "8px !important" }}
+              >
+                <div id="modal-modal-description">
+                  <ReactMarkdown components={MUIMarkdown}>
+                    {p.description ?? ""}
+                  </ReactMarkdown>
+                </div>
+                <CardActions>
+                  <ProjectActions project={p} />
+                </CardActions>
+              </CardContent>
+            </Card>
+          </Container>
         </Fade>
       </Modal>
     </>

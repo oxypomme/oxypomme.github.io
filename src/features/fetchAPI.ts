@@ -92,6 +92,15 @@ export interface Project {
   url?: string;
 }
 
+export interface Testimonial {
+  author: {
+    id: number;
+    name: string;
+    role: string;
+  };
+  content: string;
+}
+
 interface API {
   diplomes: Diploma[];
   // [endpoint: `diplomes/${number}`]: Diploma;

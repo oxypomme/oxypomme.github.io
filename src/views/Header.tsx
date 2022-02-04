@@ -51,26 +51,28 @@ function Header({ locale, sx }: Props) {
             </Typography>
           </Animated>
 
-          <Animated animation="fadeInUp" delay={1.75}>
-            <Grid container spacing={3}>
-              {data.avatar && (
-                <Grid item xs={12} sm={4} md={2}>
+          <Grid container spacing={3}>
+            {data.avatar && (
+              <Grid item xs={12} sm={4} md={2}>
+                <Animated animation="fadeInUp" delay={0.5}>
                   <Avatar
                     sx={{ width: "100%", height: "auto" }}
                     variant="rounded"
                     src={data.avatar}
                   />
-                </Grid>
-              )}
+                </Animated>
+              </Grid>
+            )}
+            {data.description && (
               <Grid item xs={12} sm={8} md={10}>
-                {data.description && (
+                <Animated animation="fadeInUp" delay={1.75}>
                   <ReactMarkdown components={MUIMarkdown}>
                     {data.description}
                   </ReactMarkdown>
-                )}
+                </Animated>
               </Grid>
-            </Grid>
-          </Animated>
+            )}
+          </Grid>
         </>
       )}
       <Typography

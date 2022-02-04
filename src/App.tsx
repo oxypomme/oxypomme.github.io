@@ -10,6 +10,7 @@ import { dayjsLocales, Locale } from "./features/languages";
 import Header from "./views/Header";
 import Profile from "./views/Profile";
 import Projects from "./views/Projects";
+import Testimonials from "./views/Testimonials";
 
 const sx: SxProps = {
   width: "100% !important",
@@ -93,6 +94,9 @@ function App() {
         </LazyPanel>
         <LazyPanel align="start" overflow>
           <Projects locale={locale} sx={sx} />
+        </LazyPanel>
+        <LazyPanel overflow>
+          <Testimonials locale={locale} sx={sx} />
         </LazyPanel>
       </Stack>
     </ThemeProvider>

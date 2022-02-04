@@ -97,7 +97,7 @@ function Component({ locale, sx }: Props) {
           rel="noopener"
           variant="outlined"
         >
-          And more on GitHub...
+          {localizedStrings.moreProjects[locale]}
         </Button>
       </Box>
     </Stack>
