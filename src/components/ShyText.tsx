@@ -24,6 +24,10 @@ function ShyText({ animation, sx, children }: Props) {
       variant="h3"
       component="div"
       sx={{
+        display: {
+          xs: "none",
+          sm: "block",
+        },
         position: "absolute",
         width: "100%",
         left: 0,

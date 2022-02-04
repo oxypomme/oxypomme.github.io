@@ -88,7 +88,7 @@ function Projects({ locale, sx }: Props) {
             >
               {featured.map((p) => (
                 <Box key={p.id}>
-                  <Project p={p.attributes} featured />
+                  <Project data={p.attributes} featured />
                 </Box>
               ))}
             </Masonry>
@@ -109,7 +109,7 @@ function Projects({ locale, sx }: Props) {
             >
               {other.map((p, i) => (
                 <Box key={p.id}>
-                  <Project p={p.attributes} rtl={false && i % 2 === 1} />
+                  <Project data={p.attributes} rtl={false && i % 2 === 1} />
                 </Box>
               ))}
             </Masonry>

@@ -74,9 +74,19 @@ export enum EGitProvider {
   GITLAB = "GitLab",
 }
 
+export enum EProjectDomain {
+  WEB = "web",
+  BOT = "bot",
+  SOFTWARE = "software",
+  PORTABLE_SOFTWARE = "portable_software",
+  MOBILE = "mobile",
+  GAME = "game",
+}
+
 export interface Project {
   name: string;
   type: EProjectType;
+  domain: EProjectDomain;
   goal?: string;
   description?: string;
   featured: boolean;

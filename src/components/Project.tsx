@@ -1,5 +1,13 @@
+import {
+  DesktopWindows,
+  Games,
+  Language,
+  Laptop,
+  PhoneIphone,
+} from "@mui/icons-material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import OpenInNew from "@mui/icons-material/OpenInNew";
+import SmartToy from "@mui/icons-material/SmartToy";
 import type { SxProps } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -18,12 +26,14 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
 import MUIMarkdown from "../components/MUIMarkdown";
-import type {
+import {
+  EGitProvider,
+  EProjectDomain,
+  EProjectType,
   ProgConcept,
   Project as ProjectType,
   StrapiObject,
 } from "../features/fetchAPI";
-import { EGitProvider, EProjectType } from "../features/fetchAPI";
 import { ReactComponent as GitIcon } from "../icons/git.svg";
 import { ReactComponent as GitLabIcon } from "../icons/gitlab.svg";
 
@@ -72,6 +82,11 @@ type ActionProps = React.PropsWithoutRef<{
   project: ProjectType;
 }>;
 
+/**
+ * Render buttons to project's links
+ *
+ * @param project The project
+ */
 function ProjectActions({ project }: ActionProps) {
   const ProviderIcon = React.useMemo(() => {
     if (project.git) {
@@ -122,6 +137,13 @@ type ImageProps = React.PropsWithoutRef<{
   featured?: boolean;
 }>;
 
+/**
+ * Render an image of a project
+ *
+ * @param imageURL The project's image
+ * @param alt The project's image alt
+ * @param featured Is the project featured
+ */
 function ProjectImage({ imageURL, alt, featured }: ImageProps) {
   return (
     <CardMedia
@@ -139,14 +161,26 @@ function ProjectImage({ imageURL, alt, featured }: ImageProps) {
 type Props = React.PropsWithoutRef<{
   rtl?: boolean;
   featured?: boolean;
-  p: ProjectType;
+  data: ProjectType;
 }>;
 
-function Project({ rtl, p, featured }: Props) {
+type SvgProps = {
+  sx: SxProps;
+  fontSize: "inherit" | "large" | "medium" | "small" | undefined;
+};
+
+/**
+ * Render a project
+ *
+ * @param rtl Image at right
+ * @param data The project's data
+ * @param featured Is the project featured
+ */
+function Project({ rtl, data, featured }: Props) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const type = React.useMemo(() => {
-    switch (p.type) {
+    switch (data.type) {
       case EProjectType.PERSONAL:
         return "💡 Personal project";
 
@@ -157,10 +191,62 @@ function Project({ rtl, p, featured }: Props) {
         break;
     }
     return "";
-  }, [p]);
+  }, [data]);
+
+  const domain = React.useMemo(() => {
+    const props: SvgProps = {
+      sx: {
+        verticalAlign: "text-top",
+      },
+      fontSize: "inherit",
+    };
+
+    switch (data.domain) {
+      case EProjectDomain.BOT:
+        return (
+          <>
+            <SmartToy {...props} /> Bot
+          </>
+        );
+      case EProjectDomain.GAME:
+        return (
+          <>
+            <Games {...props} /> Game
+          </>
+        );
+      case EProjectDomain.MOBILE:
+        return (
+          <>
+            <PhoneIphone {...props} /> Mobile
+          </>
+        );
+      case EProjectDomain.PORTABLE_SOFTWARE:
+        return (
+          <>
+            <Laptop {...props} /> Software (portable)
+          </>
+        );
+      case EProjectDomain.SOFTWARE:
+        return (
+          <>
+            <DesktopWindows {...props} /> Software
+          </>
+        );
+      case EProjectDomain.WEB:
+        return (
+          <>
+            <Language {...props} /> Web
+          </>
+        );
+
+      default:
+        break;
+    }
+    return <></>;
+  }, [data]);
 
   const modalOpen = (): void => {
-    if (p.description) {
+    if (data.description) {
       setIsModalOpen(true);
     }
   };
@@ -174,8 +260,8 @@ function Project({ rtl, p, featured }: Props) {
       <Animated animation="fadeIn">
         <CardActionArea
           component="div"
-          disableTouchRipple={!p.description}
-          sx={{ cursor: p.description ? "pointer" : "inherit" }}
+          disableTouchRipple={!data.description}
+          sx={{ cursor: data.description ? "pointer" : "inherit" }}
           onClick={modalOpen}
         >
           <Card variant="outlined">
@@ -186,7 +272,7 @@ function Project({ rtl, p, featured }: Props) {
                 textAlign: rtl ? "right" : undefined,
               }}
             >
-              {p.imageURL && (
+              {data.imageURL && (
                 <Box
                   sx={{
                     width: featured ? undefined : "35%",
@@ -199,8 +285,8 @@ function Project({ rtl, p, featured }: Props) {
                   }}
                 >
                   <ProjectImage
-                    imageURL={p.imageURL}
-                    alt={`${p.name} screenshot`}
+                    imageURL={data.imageURL}
+                    alt={`${data.name} screenshot`}
                     featured={featured}
                   />
                 </Box>
@@ -208,19 +294,22 @@ function Project({ rtl, p, featured }: Props) {
               <Box sx={{ flex: 1 }}>
                 <CardContent>
                   <Typography variant="overline">{type}</Typography>
-                  <Typography variant="h5">{p.name}</Typography>
-                  {p.goal && (
+                  <Typography variant="h5">{data.name}</Typography>
+                  {data.goal && (
                     <Typography variant="subtitle1" gutterBottom>
                       <ReactMarkdown components={MUIMarkdown}>
-                        {p.goal}
+                        {data.goal}
                       </ReactMarkdown>
                     </Typography>
                   )}
-                  <ProjectConcepts concepts={p.languages} />
-                  <ProjectConcepts concepts={p.technologies} />
+                  <Typography variant="overline" component="div">
+                    {domain}
+                  </Typography>
+                  <ProjectConcepts concepts={data.languages} />
+                  <ProjectConcepts concepts={data.technologies} />
                 </CardContent>
                 <CardActions>
-                  <ProjectActions project={p} />
+                  <ProjectActions project={data} />
                 </CardActions>
               </Box>
             </Box>
@@ -252,21 +341,24 @@ function Project({ rtl, p, featured }: Props) {
                 flexDirection: "column",
               }}
             >
-              {p.imageURL ? (
+              {data.imageURL ? (
                 <ProjectImage
-                  imageURL={p.imageURL}
-                  alt={`${p.name} screenshot`}
+                  imageURL={data.imageURL}
+                  alt={`${data.name} screenshot`}
                   featured
                 />
               ) : (
                 <></>
               )}
               <Container sx={{ py: 1 }}>
+                <Typography variant="overline" component="div">
+                  {domain}
+                </Typography>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                  {p.name}
+                  {data.name}
                   <ProjectConcepts
                     inline
-                    concepts={p.languages}
+                    concepts={data.languages}
                     sx={{ display: "inline-block", mt: 0 }}
                   />
                 </Typography>
@@ -276,11 +368,11 @@ function Project({ rtl, p, featured }: Props) {
               >
                 <div id="modal-modal-description">
                   <ReactMarkdown components={MUIMarkdown}>
-                    {p.description ?? ""}
+                    {data.description ?? ""}
                   </ReactMarkdown>
                 </div>
                 <CardActions>
-                  <ProjectActions project={p} />
+                  <ProjectActions project={data} />
                 </CardActions>
               </CardContent>
             </Card>

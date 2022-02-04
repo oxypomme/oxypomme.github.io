@@ -63,7 +63,7 @@ function Header({ locale, sx }: Props) {
 
           <Grid container spacing={3}>
             {data.avatar && (
-              <Grid item xs={12} sm={4} md={2}>
+              <Grid item xs={12} sm={4} md={2} lg={1.5}>
                 <Animated animation="fadeInUp" delay={0.5}>
                   <Avatar
                     sx={{ width: "100%", height: "auto" }}
@@ -74,7 +74,7 @@ function Header({ locale, sx }: Props) {
               </Grid>
             )}
             {data.description && (
-              <Grid item xs={12} sm={8} md={10}>
+              <Grid item xs={12} sm={8} md={10} lg={10.5}>
                 <Animated animation="fadeInUp" delay={1.75}>
                   <ReactMarkdown components={MUIMarkdown}>
                     {data.description}
