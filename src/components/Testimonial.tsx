@@ -4,12 +4,15 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import type { Testimonial as TestimonialType } from "../features/fetchAPI";
+import type {
+  StrapiAttributes,
+  Testimonial as TestimonialType,
+} from "../features/fetchAPI";
 import type { Locale } from "../features/languages";
 import MUIMarkdown from "./MUIMarkdown";
 
 type Props = React.PropsWithoutRef<{
-  data: TestimonialType;
+  data: StrapiAttributes<TestimonialType>;
   locale: Locale;
 }>;
 

@@ -119,6 +119,7 @@ interface API {
   // [endpoint: `experiences/${number}`]: Experience;
   description: Description;
   projects: Project[];
+  testimonials: Testimonial[];
 }
 
 export const getAPI = async <Endpoint extends keyof API>(

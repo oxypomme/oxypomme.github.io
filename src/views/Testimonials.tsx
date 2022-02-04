@@ -15,49 +15,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Animated from "../components/Animated";
 import LoadingError from "../components/LoadingError";
 import Testimonial from "../components/Testimonial";
-import type { Testimonial as TestimonialType } from "../features/fetchAPI";
+import type {
+  StrapiObject,
+  Testimonial as TestimonialType,
+} from "../features/fetchAPI";
+import getAPI from "../features/fetchAPI";
 import type { Locale } from "../features/languages";
 import { localizedStrings } from "../features/languages";
-
-const data: readonly TestimonialType[] = [
-  {
-    name: "Julien TOUBON",
-    role: "Web Developper",
-    content: `It was a real pleasure to work with Tom Sublet.
-
-He is a very passionate and reliable developer.
-
-He got a high knowledge of the web that make him able to adapt quickly and take the lead on all the project we worked on together.
-
-No doubt that he is going to build nice waves to surf on.`,
-  },
-  {
-    name: "Lorem ipsum",
-    role: "dolor sit amet",
-    logo: "https://api.lorem.space/image/face?w=40&h=40&hash=auvzpgqv",
-    content: `Morbi ac augue a libero venenatis tincidunt in eget purus.
-
-Pellentesque ut lacinia justo. Duis ac sapien eu purus vestibulum imperdiet.
-
-Donec consectetur et arcu sit amet euismod.
-Maecenas a tellus id dui commodo rutrum nec at nisl.
-Proin sit amet sollicitudin sem. Proin tristique ac velit in lobortis.
-In pharetra mollis erat, nec mollis urna pulvinar a.
-
-Sed tincidunt, lorem eu vestibulum tristique, sapien arcu dignissim magna,
-ut elementum augue elit non nisl.`,
-  },
-  {
-    name: "Ipsum lorem",
-    role: "dolor sit amet",
-    content: `Morbi ac augue a libero venenatis tincidunt in eget purus.
-
-Pellentesque ut lacinia justo. Duis ac sapien eu purus vestibulum imperdiet.
-
-Donec consectetur et arcu sit amet euismod.
-Maecenas a tellus id dui commodo rutrum nec at nisl.`,
-  },
-];
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -66,14 +30,18 @@ type Props = React.PropsWithoutRef<{
 
 function Testimonials({ locale, sx }: Props) {
   const [testimonials, setTestimonials] = React.useState<
-    readonly TestimonialType[] | null | undefined
+    readonly StrapiObject<TestimonialType>[] | null | undefined
   >(undefined);
 
   React.useEffect(() => {
     (async () => {
       try {
-        // TODO: Fetch API
-        setTestimonials(data);
+        const { data } = await getAPI("testimonials", locale);
+        if (data.length) {
+          setTestimonials(data);
+        } else {
+          throw new Error("No Data");
+        }
       } catch (error) {
         setTestimonials(null);
       }
@@ -117,7 +85,7 @@ function Testimonials({ locale, sx }: Props) {
               >
                 {testimonials.map((t, i) => (
                   <SwiperSlide key={i}>
-                    <Testimonial data={t} locale={locale} />
+                    <Testimonial data={t.attributes} locale={locale} />
                   </SwiperSlide>
                 ))}
               </Swiper>
