@@ -43,8 +43,8 @@ export const localizedStrings: LocalizedData<LocalizedData<string>> & {
   },
   // Projects
   projects: {
-    fr: "Projets",
-    en: "Projects",
+    fr: "Qu'ai-je fait ?",
+    en: "What did I do ?",
   },
   interestProjects: {
     fr: "Projets notables",

@@ -35,6 +35,7 @@ function Animated({
           if (delay) {
             await new Promise((resolve) => setTimeout(resolve, delay * 1000));
           }
+          node.classList.add(inAnimation);
           const outAnimation = `animate__${animation.replace("In", "Out")}`;
 
           interval = setInterval(async () => {
@@ -52,7 +53,7 @@ function Animated({
         };
       }
     }
-  }, []);
+  }, [animation, delay, duration, inAnimation, repeat]);
 
   return (
     <ScrollAnimation

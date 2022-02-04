@@ -1,7 +1,15 @@
 import Masonry from "@mui/lab/Masonry";
-import { Box, Button, Stack, SxProps, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Stack,
+  SxProps,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import Animated from "../components/Animated";
+import LoadingError from "../components/LoadingError";
 import Project from "../components/Project";
 import {
   getAPI,
@@ -16,16 +24,16 @@ type Props = React.PropsWithoutRef<{
 }>;
 
 function Component({ locale, sx }: Props) {
-  const [projects, setProjects] = React.useState<StrapiObject<ProjectType>[]>(
-    []
-  );
+  const [projects, setProjects] = React.useState<
+    StrapiObject<ProjectType>[] | null | undefined
+  >(undefined);
 
   const featured = React.useMemo(
-    () => projects.filter((p) => p.attributes.featured),
+    () => (projects ? projects.filter((p) => p.attributes.featured) : []),
     [projects]
   );
   const other = React.useMemo(
-    () => projects.filter((p) => !p.attributes.featured),
+    () => (projects ? projects.filter((p) => !p.attributes.featured) : []),
     [projects]
   );
 
@@ -35,71 +43,95 @@ function Component({ locale, sx }: Props) {
         const { data } = await getAPI("projects", locale, {
           populate: ["languages", "technologies", "git"],
         });
-        if (data) {
+
+        if (data.length) {
           data.reverse();
+          setProjects(data);
+        } else {
+          throw new Error("No Data");
         }
-        setProjects(data ?? []);
       } catch (error) {
-        setProjects([]);
+        setProjects(null);
       }
     })();
   }, [locale]);
 
   return (
-    <Stack sx={{ ...sx }}>
-      <Typography variant="h3">{localizedStrings.projects[locale]}</Typography>
-      <Box sx={{ marginTop: 1, marginBottom: 2 }}>
-        <Animated animation="fadeInUp">
-          <Typography variant="h4">
-            {localizedStrings.interestProjects[locale]}
+    <Stack
+      sx={{
+        ...sx,
+        justifyContent: projects ? undefined : "center",
+      }}
+    >
+      {projects === undefined ? (
+        // Loading
+        <CircularProgress sx={{ alignSelf: "center" }} />
+      ) : projects ? (
+        // Projects
+        <>
+          <Typography variant="h3">
+            {localizedStrings.projects[locale]}
           </Typography>
-        </Animated>
-        <Masonry
-          columns={{
-            xs: 1,
-            sm: 2,
-            md: 3,
-          }}
-          spacing={2}
-        >
-          {featured.map((p) => (
-            <Box key={p.id}>
-              <Project p={p.attributes} featured />
-            </Box>
-          ))}
-        </Masonry>
-      </Box>
-      <Box sx={{ marginTop: 1, marginBottom: 2 }}>
-        <Animated animation="fadeInDown">
-          <Typography variant="h4">
-            {localizedStrings.otherProjects[locale]}
-          </Typography>
-        </Animated>
-        <Masonry
-          columns={{
-            xs: 1,
-            md: 2,
-          }}
-          spacing={2}
-        >
-          {other.map((p, i) => (
-            <Box key={p.id}>
-              <Project p={p.attributes} rtl={false && i % 2 === 1} />
-            </Box>
-          ))}
-        </Masonry>
-      </Box>
-      <Box>
-        <Button
-          size="large"
-          href="https://github.com/oxypomme?tab=repositories"
-          target="_blank"
-          rel="noopener"
-          variant="outlined"
-        >
-          {localizedStrings.moreProjects[locale]}
-        </Button>
-      </Box>
+          {/* Featured */}
+          <Box sx={{ marginTop: 1, marginBottom: 2 }}>
+            <Animated animation="fadeInUp">
+              <Typography variant="h4">
+                {localizedStrings.interestProjects[locale]}
+              </Typography>
+            </Animated>
+            <Masonry
+              columns={{
+                xs: 1,
+                sm: 2,
+                md: 3,
+              }}
+              spacing={2}
+            >
+              {featured.map((p) => (
+                <Box key={p.id}>
+                  <Project p={p.attributes} featured />
+                </Box>
+              ))}
+            </Masonry>
+          </Box>
+          {/* Other */}
+          <Box sx={{ marginTop: 1, marginBottom: 2 }}>
+            <Animated animation="fadeInDown">
+              <Typography variant="h4">
+                {localizedStrings.otherProjects[locale]}
+              </Typography>
+            </Animated>
+            <Masonry
+              columns={{
+                xs: 1,
+                md: 2,
+              }}
+              spacing={2}
+            >
+              {other.map((p, i) => (
+                <Box key={p.id}>
+                  <Project p={p.attributes} rtl={false && i % 2 === 1} />
+                </Box>
+              ))}
+            </Masonry>
+          </Box>
+          {/* GitHub button */}
+          <Box>
+            <Button
+              size="large"
+              href="https://github.com/oxypomme?tab=repositories"
+              target="_blank"
+              rel="noopener"
+              variant="outlined"
+            >
+              {localizedStrings.moreProjects[locale]}
+            </Button>
+          </Box>
+        </>
+      ) : (
+        // Error
+        <LoadingError />
+      )}
     </Stack>
   );
 }

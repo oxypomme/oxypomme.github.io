@@ -20,12 +20,16 @@ function Testimonial({ data: testimonial, locale }: Props) {
       </CardContent>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: "primary.main" }}>
-            {testimonial.author.name[0]}
+          <Avatar
+            sx={{ bgcolor: "primary.main" }}
+            src={testimonial.logo}
+            alt={testimonial.logo && testimonial.name}
+          >
+            {testimonial.name[0]}
           </Avatar>
         }
-        title={testimonial.author.name}
-        subheader={testimonial.author.role}
+        title={testimonial.name}
+        subheader={testimonial.role}
       />
     </Card>
   );

@@ -49,9 +49,12 @@ export interface Experience {
 }
 
 export interface Description {
+  name: string;
   role: string;
   description?: string;
+  profile_intro?: string;
   avatar?: string;
+  birthdate?: StrapiDate;
 }
 
 export interface ProgConcept {
@@ -93,11 +96,9 @@ export interface Project {
 }
 
 export interface Testimonial {
-  author: {
-    id: number;
-    name: string;
-    role: string;
-  };
+  name: string;
+  role?: string;
+  logo?: string;
   content: string;
 }
 
