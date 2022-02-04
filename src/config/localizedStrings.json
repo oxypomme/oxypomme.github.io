@@ -1,0 +1,70 @@
+{
+  "languages": {
+    "fr": "Langues",
+    "en": "Languages"
+  },
+  "fr": {
+    "fr": "🇫🇷 Français",
+    "en": "🇫🇷 French"
+  },
+  "en": {
+    "fr": "🇺🇸 Anglais",
+    "en": "🇺🇸 English"
+  },
+  "timeline": {
+    "fr": "Comment je suis arrivé ici ?",
+    "en": "How did I get there ?"
+  },
+  "timelineNext": {
+    "fr": "Avec vous ?",
+    "en": "With you ?"
+  },
+  "aprentice": {
+    "fr": "En alternance",
+    "en": "Aprenticeship"
+  },
+  "projects": {
+    "fr": "Qu'ai-je fait ?",
+    "en": "What did I do ?"
+  },
+  "interestProjects": {
+    "fr": "Projets notables",
+    "en": "Cool projects"
+  },
+  "otherProjects": {
+    "fr": "Projets autres",
+    "en": "Other projects"
+  },
+  "moreProjects": {
+    "fr": "Et plus encore sur GitHub",
+    "en": "And more on GitHub..."
+  },
+  "bot": {
+    "fr": "Bot",
+    "en": "Bot"
+  },
+  "game": {
+    "fr": "Jeu-vidéo",
+    "en": "Game"
+  },
+  "mobile": {
+    "fr": "Mobile",
+    "en": "Mobile"
+  },
+  "portableSoftware": {
+    "fr": "Logiciel",
+    "en": "Software"
+  },
+  "software": {
+    "fr": "Logiciel",
+    "en": "Software"
+  },
+  "web": {
+    "fr": "Web",
+    "en": "Web"
+  },
+  "testimonials": {
+    "fr": "Ils ont travaillés avec moi",
+    "en": "They worked with me"
+  }
+}

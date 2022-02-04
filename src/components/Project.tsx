@@ -26,14 +26,18 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
 import MUIMarkdown from "../components/MUIMarkdown";
-import {
-  EGitProvider,
-  EProjectDomain,
-  EProjectType,
+import type {
   ProgConcept,
   Project as ProjectType,
   StrapiObject,
 } from "../features/fetchAPI";
+import {
+  EGitProvider,
+  EProjectDomain,
+  EProjectType,
+} from "../features/fetchAPI";
+import type { Locale } from "../features/languages";
+import { localizedStrings } from "../features/languages";
 import { ReactComponent as GitIcon } from "../icons/git.svg";
 import { ReactComponent as GitLabIcon } from "../icons/gitlab.svg";
 
@@ -162,6 +166,7 @@ type Props = React.PropsWithoutRef<{
   rtl?: boolean;
   featured?: boolean;
   data: ProjectType;
+  locale: Locale;
 }>;
 
 type SvgProps = {
@@ -176,7 +181,7 @@ type SvgProps = {
  * @param data The project's data
  * @param featured Is the project featured
  */
-function Project({ rtl, data, featured }: Props) {
+function Project({ rtl, data, featured, locale }: Props) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const type = React.useMemo(() => {
@@ -205,37 +210,37 @@ function Project({ rtl, data, featured }: Props) {
       case EProjectDomain.BOT:
         return (
           <>
-            <SmartToy {...props} /> Bot
+            <SmartToy {...props} /> {localizedStrings.bot[locale]}
           </>
         );
       case EProjectDomain.GAME:
         return (
           <>
-            <Games {...props} /> Game
+            <Games {...props} /> {localizedStrings.game[locale]}
           </>
         );
       case EProjectDomain.MOBILE:
         return (
           <>
-            <PhoneIphone {...props} /> Mobile
+            <PhoneIphone {...props} /> {localizedStrings.mobile[locale]}
           </>
         );
       case EProjectDomain.PORTABLE_SOFTWARE:
         return (
           <>
-            <Laptop {...props} /> Software (portable)
+            <Laptop {...props} /> {localizedStrings.portableSoftware[locale]}
           </>
         );
       case EProjectDomain.SOFTWARE:
         return (
           <>
-            <DesktopWindows {...props} /> Software
+            <DesktopWindows {...props} /> {localizedStrings.software[locale]}
           </>
         );
       case EProjectDomain.WEB:
         return (
           <>
-            <Language {...props} /> Web
+            <Language {...props} /> {localizedStrings.web[locale]}
           </>
         );
 
