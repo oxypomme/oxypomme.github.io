@@ -1,6 +1,10 @@
-import { Alert, AlertTitle } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import React from "react";
 
+/**
+ * An error component about fetching data
+ */
 function LoadingError() {
   return (
     <Alert severity="error" sx={{ alignSelf: "center" }}>

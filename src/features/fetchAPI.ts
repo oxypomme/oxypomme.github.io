@@ -114,7 +114,7 @@ interface API {
 export const getAPI = async <Endpoint extends keyof API>(
   endpoint: Endpoint,
   locale: Locale = Locale.FRENCH,
-  query: Record<string, any> = {}
+  query: Record<string, unknown> = {}
 ) => {
   const { data } = await axios.get<StrapiResult<API[Endpoint]>>(
     `${process.env.REACT_APP_API_URL}/${endpoint}`,
@@ -127,3 +127,5 @@ export const getAPI = async <Endpoint extends keyof API>(
   );
   return data;
 };
+
+export default getAPI;

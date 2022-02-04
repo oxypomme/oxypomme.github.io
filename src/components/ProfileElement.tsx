@@ -1,49 +1,62 @@
 import SchoolIcon from "@mui/icons-material/School";
 import WorkIcon from "@mui/icons-material/Work";
-import {
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineItem,
-  TimelineOppositeContent,
-  TimelineSeparator,
-} from "@mui/lab";
-import { Typography } from "@mui/material";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
 import MUIMarkdown from "../components/MUIMarkdown";
-import { Diploma, Experience, StrapiAttributes } from "../features/fetchAPI";
-import { Locale, localizedStrings } from "../features/languages";
+import type {
+  Diploma,
+  Experience,
+  StrapiAttributes,
+} from "../features/fetchAPI";
+import type { Locale } from "../features/languages";
+import { localizedStrings } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
-  d: StrapiAttributes<Diploma> | StrapiAttributes<Experience>;
+  data: StrapiAttributes<Diploma> | StrapiAttributes<Experience>;
   delay: number;
 }>;
 
-function ProfileElement({ locale, d, delay }: Props) {
-  const isWork = "role" in d;
+/**
+ * Timeline element representing a profile element (Diploma or Experience)
+ *
+ * @param locale The current locale
+ * @param data The profile element (Diploma or Experience)
+ * @param delay The delay of the animation
+ */
+function ProfileElement({ locale, data, delay }: Props) {
+  const isWork = "role" in data;
   const dateTemplate = isWork ? "MMMM YYYY" : "YYYY";
 
   return (
     <Animated animation="fadeInUp" delay={delay}>
       <TimelineItem>
+        {/* Date */}
         <TimelineOppositeContent variant="overline" color="text.secondary">
-          {dayjs(d.start).locale(locale).format(dateTemplate)} -{" "}
-          {dayjs(d.end).locale(locale).format(dateTemplate)}
+          {dayjs(data.start).locale(locale).format(dateTemplate)} -{" "}
+          {dayjs(data.end).locale(locale).format(dateTemplate)}
         </TimelineOppositeContent>
+        {/* Separator */}
         <TimelineSeparator>
           <TimelineDot color={isWork ? "primary" : "secondary"}>
             {isWork ? <WorkIcon /> : <SchoolIcon />}
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
+        {/* Content */}
         <TimelineContent>
           <Typography variant="h5">
-            {d.name}
-            {d.isApprentice && (
+            {data.name}
+            {data.isApprentice && (
               <Typography
                 sx={{ ml: 2 }}
                 variant="subtitle1"
@@ -55,12 +68,12 @@ function ProfileElement({ locale, d, delay }: Props) {
             )}
           </Typography>
           <Typography variant="subtitle2" gutterBottom>
-            {d.location}
+            {data.location}
           </Typography>
 
-          {d.description && (
+          {data.description && (
             <ReactMarkdown components={MUIMarkdown}>
-              {d.description}
+              {data.description}
             </ReactMarkdown>
           )}
         </TimelineContent>

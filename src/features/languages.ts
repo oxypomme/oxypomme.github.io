@@ -3,9 +3,10 @@ export enum Locale {
   ENGLISH = "en",
 }
 
-interface LocalizedData<T> extends Record<Locale, T> {}
+// interface LocalizedData<T> extends Record<Locale, T> {}
+type LocalizedData<T> = Record<Locale, T>;
 
-export const dayjsLocales: LocalizedData<() => Promise<any>> = {
+export const dayjsLocales: LocalizedData<() => Promise<unknown>> = {
   fr: () => import("dayjs/locale/fr"),
   en: () => import("dayjs/locale/en"),
 };

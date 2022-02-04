@@ -1,6 +1,8 @@
 import CloseIcon from "@mui/icons-material/Close";
 import TranslateIcon from "@mui/icons-material/Translate";
-import { SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
+import SpeedDial from "@mui/material/SpeedDial";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
+import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import React from "react";
 import { Locale, localizedStrings } from "../features/languages";
 
@@ -9,6 +11,12 @@ type Props = React.PropsWithoutRef<{
   onClick: (e: React.MouseEvent, l: Locale) => void;
 }>;
 
+/**
+ * Button group for switching locale
+ *
+ * @param locale The current locale
+ * @param onClick Handler called when switching locale
+ */
 function LocaleFAB({ locale, onClick }: Props) {
   return (
     <>

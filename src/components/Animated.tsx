@@ -19,13 +19,13 @@ function Animated({
   className,
   ...props
 }: Props) {
-  const ref = React.useRef<any>(null);
+  const ref = React.useRef<ScrollAnimation>(null);
 
   const inAnimation = `animate__${animation}`;
 
   React.useEffect(() => {
     if (ref.current) {
-      const node = ref.current.node;
+      const node = (ref.current as unknown as { node: HTMLElement }).node;
       // Removing legacy class
       node.classList.remove("animated");
 

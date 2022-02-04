@@ -1,20 +1,19 @@
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
-import {
-  Avatar,
-  Box,
-  CircularProgress,
-  Grid,
-  SxProps,
-  Typography,
-} from "@mui/material";
+import type { SxProps } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
 import LoadingError from "../components/LoadingError";
 import MUIMarkdown from "../components/MUIMarkdown";
 import ShyText from "../components/ShyText";
-import { Description, getAPI, StrapiAttributes } from "../features/fetchAPI";
-import { Locale } from "../features/languages";
+import type { Description, StrapiAttributes } from "../features/fetchAPI";
+import getAPI from "../features/fetchAPI";
+import type { Locale } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;

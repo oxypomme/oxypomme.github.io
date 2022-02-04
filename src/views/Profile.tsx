@@ -1,26 +1,24 @@
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import {
-  Timeline,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineItem,
-  TimelineOppositeContent,
-  TimelineSeparator,
-} from "@mui/lab";
-import { Box, CircularProgress, SxProps, Typography } from "@mui/material";
+import Timeline from "@mui/lab/Timeline";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import type { SxProps } from "@mui/material";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import React from "react";
 import Animated from "../components/Animated";
 import LoadingError from "../components/LoadingError";
 import ProfileElement from "../components/ProfileElement";
-import {
-  Diploma,
-  Experience,
-  getAPI,
-  StrapiObject,
-} from "../features/fetchAPI";
-import { Locale, localizedStrings } from "../features/languages";
+import type { Diploma, Experience, StrapiObject } from "../features/fetchAPI";
+import getAPI from "../features/fetchAPI";
+import type { Locale } from "../features/languages";
+import { localizedStrings } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -45,12 +43,16 @@ function Profile({ locale, sx }: Props) {
       try {
         const { data } = await getAPI("diplomes", locale);
         timeline = [...timeline, ...data];
-      } catch (error) {}
+      } catch (error) {
+        console.error(error);
+      }
 
       try {
         const { data } = await getAPI("experiences", locale);
         timeline = [...timeline, ...data];
-      } catch (error) {}
+      } catch (error) {
+        console.error(error);
+      }
 
       if (timeline.length > 0) {
         setData(
@@ -108,7 +110,7 @@ function Profile({ locale, sx }: Props) {
                     key={i}
                     delay={i * 0.25 + INIT_DELAY}
                     locale={locale}
-                    d={attributes}
+                    data={attributes}
                   />
                 ))}
                 <Animated

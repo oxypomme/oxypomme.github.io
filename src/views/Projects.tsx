@@ -1,29 +1,28 @@
 import Masonry from "@mui/lab/Masonry";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Stack,
-  SxProps,
-  Typography,
-} from "@mui/material";
+import type { SxProps } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import React from "react";
 import Animated from "../components/Animated";
 import LoadingError from "../components/LoadingError";
 import Project from "../components/Project";
-import {
-  getAPI,
+import type {
   Project as ProjectType,
   StrapiObject,
 } from "../features/fetchAPI";
-import { Locale, localizedStrings } from "../features/languages";
+import getAPI from "../features/fetchAPI";
+import type { Locale } from "../features/languages";
+import { localizedStrings } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
   sx?: SxProps;
 }>;
 
-function Component({ locale, sx }: Props) {
+function Projects({ locale, sx }: Props) {
   const [projects, setProjects] = React.useState<
     StrapiObject<ProjectType>[] | null | undefined
   >(undefined);
@@ -136,4 +135,4 @@ function Component({ locale, sx }: Props) {
   );
 }
 
-export default Component;
+export default Projects;

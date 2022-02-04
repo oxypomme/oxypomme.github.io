@@ -1,32 +1,29 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
 import OpenInNew from "@mui/icons-material/OpenInNew";
-import {
-  Box,
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Chip,
-  Container,
-  Fade,
-  Modal,
-  SvgIcon,
-  SxProps,
-  Typography,
-} from "@mui/material";
+import type { SxProps } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Chip from "@mui/material/Chip";
+import Container from "@mui/material/Container";
+import Fade from "@mui/material/Fade";
+import Modal from "@mui/material/Modal";
+import SvgIcon from "@mui/material/SvgIcon";
+import Typography from "@mui/material/Typography";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Animated from "../components/Animated";
 import MUIMarkdown from "../components/MUIMarkdown";
-import {
-  EGitProvider,
-  EProjectType,
+import type {
   ProgConcept,
   Project as ProjectType,
   StrapiObject,
 } from "../features/fetchAPI";
+import { EGitProvider, EProjectType } from "../features/fetchAPI";
 import { ReactComponent as GitIcon } from "../icons/git.svg";
 import { ReactComponent as GitLabIcon } from "../icons/gitlab.svg";
 
@@ -41,6 +38,13 @@ type ConceptsProps = React.PropsWithoutRef<{
   inline?: boolean;
 }>;
 
+/**
+ * A concept is either a Language (JS) or a Techno (React)
+ * The component will build them as chips
+ *
+ * @param concepts The project's concepts
+ * @param sx The style passed to the container
+ */
 function ProjectConcepts({ concepts, sx, inline }: ConceptsProps) {
   if (!concepts) {
     return <></>;
@@ -155,12 +159,12 @@ function Project({ rtl, p, featured }: Props) {
     return "";
   }, [p]);
 
-  const modalOpen = (e: React.MouseEvent): void => {
+  const modalOpen = (): void => {
     if (p.description) {
       setIsModalOpen(true);
     }
   };
-  const modalClose = (e: React.MouseEvent): void => {
+  const modalClose = (): void => {
     setIsModalOpen(false);
   };
 

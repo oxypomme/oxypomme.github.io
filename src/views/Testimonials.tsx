@@ -15,8 +15,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Animated from "../components/Animated";
 import LoadingError from "../components/LoadingError";
 import Testimonial from "../components/Testimonial";
-import { Testimonial as TestimonialType } from "../features/fetchAPI";
-import { Locale, localizedStrings } from "../features/languages";
+import type { Testimonial as TestimonialType } from "../features/fetchAPI";
+import type { Locale } from "../features/languages";
+import { localizedStrings } from "../features/languages";
 
 const data: readonly TestimonialType[] = [
   {

@@ -1,6 +1,6 @@
-import { Stack } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
+import Stack from "@mui/material/Stack";
 import { createTheme, SxProps, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
