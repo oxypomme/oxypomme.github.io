@@ -130,6 +130,16 @@ function Projects({ locale, sx }: Props) {
               {localizedStrings.moreProjects[locale]}
             </Button>
           </Box>
+          {/* TLDR */}
+          <Box>
+            <Typography
+              variant="h4"
+              component="p"
+              sx={{ textAlign: "center", pb: 8, mt: 4 }}
+            >
+              {localizedStrings.tooMuchProjects[locale]}
+            </Typography>
+          </Box>
         </>
       ) : (
         // Error

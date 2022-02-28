@@ -1,9 +1,11 @@
+import Box from "@mui/material/Box";
 import { orange } from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
 import { createTheme, SxProps, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
+import Footer from "./components/Footer";
 import LazyPanel from "./components/LazyPanel";
 import LocaleFab from "./components/LocaleFab";
 import { dayjsLocales, Locale } from "./features/languages";
@@ -77,40 +79,44 @@ function App() {
     <ThemeProvider theme={theme}>
       <LocaleFab locale={locale} onClick={onLocaleClick} />
       <CssBaseline />
-      <Stack
-        sx={{
-          scrollSnapType: "y mandatory",
-          height: "100vh",
-          overflow: "auto",
-          px: {
-            xs: 2,
-            sm: 3,
-          },
-        }}
-        className="mandatory-scroll-container"
-      >
-        <LazyPanel overflow>
-          <Intro locale={locale} sx={sx} />
-        </LazyPanel>
-        <LazyPanel overflow>
-          <Profile locale={locale} sx={sx} />
-        </LazyPanel>
-        <LazyPanel align="start" overflow>
-          <Projects locale={locale} sx={sx} />
-        </LazyPanel>
-        <LazyPanel overflow>
-          <Testimonials locale={locale} sx={sx} />
-        </LazyPanel>
-        <LazyPanel overflow>
-          <Blog locale={locale} sx={sx} />
-        </LazyPanel>
-        <LazyPanel overflow>
-          <Resume locale={locale} sx={sx} />
-        </LazyPanel>
-        <LazyPanel overflow>
-          <Contact locale={locale} sx={sx} />
-        </LazyPanel>
-      </Stack>
+      <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+        <Stack
+          sx={{
+            scrollSnapType: "y mandatory",
+            overflow: "auto",
+            px: {
+              xs: 2,
+              sm: 3,
+            },
+          }}
+          className="mandatory-scroll-container"
+        >
+          <LazyPanel overflow>
+            <Intro locale={locale} sx={sx} />
+          </LazyPanel>
+          <LazyPanel overflow>
+            <Profile locale={locale} sx={sx} />
+          </LazyPanel>
+          <LazyPanel align="start" overflow>
+            <Projects locale={locale} sx={sx} />
+          </LazyPanel>
+          <LazyPanel overflow>
+            <Testimonials locale={locale} sx={sx} />
+          </LazyPanel>
+          <LazyPanel overflow>
+            <Blog locale={locale} sx={sx} />
+          </LazyPanel>
+          <LazyPanel overflow>
+            <Resume locale={locale} sx={sx} />
+          </LazyPanel>
+          <LazyPanel overflow>
+            <Contact locale={locale} sx={sx} />
+          </LazyPanel>
+        </Stack>
+        <Box>
+          <Footer />
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }

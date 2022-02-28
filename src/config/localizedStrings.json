@@ -37,7 +37,11 @@
   },
   "moreProjects": {
     "fr": "Et plus encore sur GitHub",
-    "en": "And more on GitHub..."
+    "en": "See more on GitHub..."
+  },
+  "tooMuchProjects": {
+    "fr": "En bref, j'ai fait beacuoup (peut-être trop) de choses.",
+    "en": "In brief, I've got many (maybe too much) projects."
   },
   "bot": {
     "fr": "Bot",
