@@ -36,8 +36,16 @@
     "en": "Other projects"
   },
   "moreProjects": {
-    "fr": "Et plus encore sur GitHub",
+    "fr": "Voir plus",
+    "en": "See more"
+  },
+  "githubProjects": {
+    "fr": "Et plus encore sur GitHub...",
     "en": "See more on GitHub..."
+  },
+  "gitlabProjects": {
+    "fr": "... ou GitLab",
+    "en": "... or GitLab"
   },
   "tooMuchProjects": {
     "fr": "En bref, j'ai fait beacuoup (peut-être trop) de choses.",

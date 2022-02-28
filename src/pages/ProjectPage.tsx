@@ -1,4 +1,3 @@
-import { ArrowRight } from "@mui/icons-material";
 import Masonry from "@mui/lab/Masonry";
 import type { SxProps } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -60,7 +59,7 @@ function Projects({ locale, sx }: Props) {
     <Stack
       sx={{
         ...sx,
-        justifyContent: "center",
+        justifyContent: projects ? undefined : "center",
       }}
     >
       {projects === undefined ? (
@@ -94,26 +93,61 @@ function Projects({ locale, sx }: Props) {
               ))}
             </Masonry>
           </Box>
+          {/* Other */}
+          <Box sx={{ marginTop: 1, marginBottom: 2 }}>
+            <Animated animation="fadeInDown">
+              <Typography variant="h4">
+                {localizedStrings.otherProjects[locale]}
+              </Typography>
+            </Animated>
+            <Masonry
+              columns={{
+                xs: 1,
+                md: 2,
+              }}
+              spacing={2}
+            >
+              {other.map((p, i) => (
+                <Box key={p.id}>
+                  <Project
+                    data={p.attributes}
+                    rtl={false && i % 2 === 1}
+                    locale={locale}
+                  />
+                </Box>
+              ))}
+            </Masonry>
+          </Box>
+          {/* GitHub button */}
+          <Box>
+            <Button
+              size="large"
+              href="https://github.com/oxypomme?tab=repositories"
+              target="_blank"
+              rel="noopener"
+              variant="outlined"
+            >
+              {localizedStrings.githubProjects[locale]}
+            </Button>
+            <Button
+              size="large"
+              href="https://gitlab.com/users/oxypomme/contributed"
+              target="_blank"
+              rel="noopener"
+              variant="outlined"
+            >
+              {localizedStrings.gitlabProjects[locale]}
+            </Button>
+          </Box>
           {/* TLDR */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              mt: 4,
-            }}
-          >
+          <Box>
             <Typography
               variant="h4"
               component="p"
-              sx={{ textAlign: "center", mb: 2 }}
+              sx={{ textAlign: "center", pb: 8, mt: 4 }}
             >
               {localizedStrings.tooMuchProjects[locale]}
             </Typography>
-            <Button size="large" variant="outlined">
-              {localizedStrings.moreProjects[locale]}
-              <ArrowRight />
-            </Button>
           </Box>
         </>
       ) : (

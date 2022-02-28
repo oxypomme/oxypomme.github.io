@@ -97,7 +97,7 @@ function App() {
           <LazyPanel overflow>
             <Profile locale={locale} sx={sx} />
           </LazyPanel>
-          <LazyPanel align="start" overflow>
+          <LazyPanel overflow>
             <Projects locale={locale} sx={sx} />
           </LazyPanel>
           <LazyPanel overflow>
