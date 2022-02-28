@@ -6,8 +6,9 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import type { SxProps } from "@mui/material";
+import { SxProps } from "@mui/material";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
@@ -113,35 +114,40 @@ function Profile({ locale, sx }: Props) {
                     data={attributes}
                   />
                 ))}
-                <Animated
-                  animation="fadeInUp"
-                  delay={data.length * 0.25 + INIT_DELAY}
-                >
-                  <TimelineItem>
-                    <TimelineOppositeContent
-                      variant="overline"
-                      color="text.secondary"
-                    >
-                      {lastData && lastData.end
-                        ? dayjs(lastData.end)
-                            .add(1, "month")
-                            .locale(locale)
-                            .format("MMMM YYYY")
-                        : "?"}{" "}
-                      - ?
-                    </TimelineOppositeContent>
-                    <TimelineSeparator>
-                      <TimelineDot color="success">
-                        <QuestionMarkIcon />
-                      </TimelineDot>
-                    </TimelineSeparator>
-                    <TimelineContent>
-                      <Typography variant="h5">
-                        {localizedStrings.timelineNext[locale]}
-                      </Typography>
-                    </TimelineContent>
-                  </TimelineItem>
-                </Animated>
+                {lastData && lastData.end ? (
+                  <Animated
+                    animation="fadeInUp"
+                    delay={data.length * 0.25 + INIT_DELAY}
+                  >
+                    <TimelineItem>
+                      <TimelineOppositeContent
+                        variant="overline"
+                        color="text.secondary"
+                      >
+                        {dayjs(lastData.end)
+                          .add(1, "month")
+                          .locale(locale)
+                          .format("MMMM YYYY")}{" "}
+                        - ?
+                      </TimelineOppositeContent>
+                      <TimelineSeparator>
+                        <TimelineDot color="success">
+                          <QuestionMarkIcon />
+                        </TimelineDot>
+                      </TimelineSeparator>
+                      <TimelineContent>
+                        <Typography variant="h5">
+                          {localizedStrings.timelineNext[locale]}
+                        </Typography>
+                        <Button variant="outlined">
+                          {localizedStrings.contact[locale]}
+                        </Button>
+                      </TimelineContent>
+                    </TimelineItem>
+                  </Animated>
+                ) : (
+                  <></>
+                )}
               </>
             )}
           </Timeline>

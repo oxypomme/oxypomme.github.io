@@ -66,5 +66,9 @@
   "testimonials": {
     "fr": "Ils ont travaillés avec moi",
     "en": "They worked with me"
+  },
+  "contact": {
+    "fr": "Contactez moi",
+    "en": "Contact me"
   }
 }

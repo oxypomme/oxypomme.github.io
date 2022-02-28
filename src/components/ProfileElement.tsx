@@ -42,15 +42,15 @@ function ProfileElement({ locale, data, delay }: Props) {
       <TimelineItem>
         {/* Date */}
         <TimelineOppositeContent variant="overline" color="text.secondary">
-          {dayjs(data.start).locale(locale).format(dateTemplate)} -{" "}
-          {dayjs(data.end).locale(locale).format(dateTemplate)}
+          {dayjs(data.start).locale(locale).format(dateTemplate)}-{" "}
+          {data.end ? dayjs(data.end).locale(locale).format(dateTemplate) : "?"}
         </TimelineOppositeContent>
         {/* Separator */}
         <TimelineSeparator>
           <TimelineDot color={isWork ? "primary" : "secondary"}>
             {isWork ? <WorkIcon /> : <SchoolIcon />}
           </TimelineDot>
-          <TimelineConnector />
+          {data.end ? <TimelineConnector /> : <></>}
         </TimelineSeparator>
         {/* Content */}
         <TimelineContent>
