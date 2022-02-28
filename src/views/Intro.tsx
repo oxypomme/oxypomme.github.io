@@ -20,7 +20,7 @@ type Props = React.PropsWithoutRef<{
   sx?: SxProps;
 }>;
 
-function Header({ locale, sx }: Props) {
+function Intro({ locale, sx }: Props) {
   const [data, setData] = React.useState<
     StrapiAttributes<Description> | null | undefined
   >(undefined);
@@ -100,4 +100,4 @@ function Header({ locale, sx }: Props) {
   );
 }
 
-export default Header;
+export default Intro;

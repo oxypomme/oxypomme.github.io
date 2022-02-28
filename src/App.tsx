@@ -7,9 +7,12 @@ import React from "react";
 import LazyPanel from "./components/LazyPanel";
 import LocaleFab from "./components/LocaleFab";
 import { dayjsLocales, Locale } from "./features/languages";
-import Header from "./views/Header";
+import Blog from "./views/Blog";
+import Contact from "./views/Contact";
+import Intro from "./views/Intro";
 import Profile from "./views/Profile";
 import Projects from "./views/Projects";
+import Resume from "./views/Resume";
 import Testimonials from "./views/Testimonials";
 
 const sx: SxProps = {
@@ -87,7 +90,7 @@ function App() {
         className="mandatory-scroll-container"
       >
         <LazyPanel overflow>
-          <Header locale={locale} sx={sx} />
+          <Intro locale={locale} sx={sx} />
         </LazyPanel>
         <LazyPanel overflow>
           <Profile locale={locale} sx={sx} />
@@ -97,6 +100,15 @@ function App() {
         </LazyPanel>
         <LazyPanel overflow>
           <Testimonials locale={locale} sx={sx} />
+        </LazyPanel>
+        <LazyPanel overflow>
+          <Blog locale={locale} sx={sx} />
+        </LazyPanel>
+        <LazyPanel overflow>
+          <Resume locale={locale} sx={sx} />
+        </LazyPanel>
+        <LazyPanel overflow>
+          <Contact locale={locale} sx={sx} />
         </LazyPanel>
       </Stack>
     </ThemeProvider>
