@@ -5,7 +5,7 @@ import ScrollAnimation, { ScrollAnimationProps } from "react-animate-on-scroll";
 type Props = React.PropsWithChildren<
   Omit<ScrollAnimationProps, "animateIn" | "animateOut"> & {
     animation: string;
-    repeat?: number;
+    repeat?: number | false;
   }
 >;
 

@@ -6,9 +6,24 @@ import Animated from "../components/Animated";
 type Props = React.PropsWithChildren<{
   animation?: {
     animation?: string;
-    repeat?: number;
+    repeat?: number | false;
     delay?: number;
   };
+  variant?:
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "subtitle1"
+    | "subtitle2"
+    | "body1"
+    | "body2"
+    | "caption"
+    | "button"
+    | "overline"
+    | "inherit";
   sx?: Omit<SxProps, "color">;
 }>;
 
@@ -18,10 +33,10 @@ type Props = React.PropsWithChildren<{
  * @param animation The animation to loop
  * @param sx The style passed to the container
  */
-function ShyText({ animation, sx, children }: Props) {
+function ShyText({ animation, sx, children, variant }: Props) {
   return (
     <Typography
-      variant="h3"
+      variant={variant ?? "h3"}
       component="div"
       sx={{
         display: {

@@ -7,9 +7,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import Animated from "../components/Animated";
+import { Link, useSearchParams } from "react-router-dom";
 import LoadingError from "../components/LoadingError";
 import Project from "../components/Project";
+import ShyText from "../components/ShyText";
 import type {
   Project as ProjectType,
   StrapiObject,
@@ -24,18 +25,11 @@ type Props = React.PropsWithoutRef<{
 }>;
 
 function Projects({ locale, sx }: Props) {
+  const [searchParams] = useSearchParams();
+
   const [projects, setProjects] = React.useState<
     StrapiObject<ProjectType>[] | null | undefined
   >(undefined);
-
-  const featured = React.useMemo(
-    () => (projects ? projects.filter((p) => p.attributes.featured) : []),
-    [projects]
-  );
-  const other = React.useMemo(
-    () => (projects ? projects.filter((p) => !p.attributes.featured) : []),
-    [projects]
-  );
 
   React.useEffect(() => {
     (async () => {
@@ -46,7 +40,7 @@ function Projects({ locale, sx }: Props) {
 
         if (data.length) {
           data.reverse();
-          setProjects(data);
+          setProjects(data.filter((p) => p.attributes.featured));
         } else {
           throw new Error("No Data");
         }
@@ -72,13 +66,8 @@ function Projects({ locale, sx }: Props) {
           <Typography variant="h3">
             {localizedStrings.projects[locale]}
           </Typography>
-          {/* Featured */}
+
           <Box sx={{ marginTop: 1, marginBottom: 2 }}>
-            <Animated animation="fadeInUp">
-              <Typography variant="h4">
-                {localizedStrings.interestProjects[locale]}
-              </Typography>
-            </Animated>
             <Masonry
               columns={{
                 xs: 1,
@@ -87,7 +76,7 @@ function Projects({ locale, sx }: Props) {
               }}
               spacing={2}
             >
-              {featured.map((p) => (
+              {projects.map((p) => (
                 <Box key={p.id}>
                   <Project data={p.attributes} featured locale={locale} />
                 </Box>
@@ -97,10 +86,12 @@ function Projects({ locale, sx }: Props) {
           {/* TLDR */}
           <Box
             sx={{
+              position: "relative",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               mt: 4,
+              pb: 6,
             }}
           >
             <Typography
@@ -108,12 +99,24 @@ function Projects({ locale, sx }: Props) {
               component="p"
               sx={{ textAlign: "center", mb: 2 }}
             >
-              {localizedStrings.tooMuchProjects[locale]}
+              {localizedStrings.projectsPageLink[locale]}
             </Typography>
-            <Button size="large" variant="outlined">
+            <Button
+              size="large"
+              variant="outlined"
+              component={Link}
+              to={{ pathname: "/projects", search: searchParams.toString() }}
+            >
               {localizedStrings.moreProjects[locale]}
               <ArrowRight />
             </Button>
+            <ShyText
+              animation={{ animation: "fadeInDown", repeat: false }}
+              variant="h5"
+              sx={{ bottom: 0 }}
+            >
+              {localizedStrings.tooMuchProjects[locale]}
+            </ShyText>
           </Box>
         </>
       ) : (

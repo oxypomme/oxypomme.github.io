@@ -27,14 +27,6 @@
     "fr": "Qu'ai-je fait ?",
     "en": "What did I do ?"
   },
-  "interestProjects": {
-    "fr": "Projets notables",
-    "en": "Cool projects"
-  },
-  "otherProjects": {
-    "fr": "Projets autres",
-    "en": "Other projects"
-  },
   "moreProjects": {
     "fr": "Voir plus",
     "en": "See more"
@@ -48,8 +40,12 @@
     "en": "... or GitLab"
   },
   "tooMuchProjects": {
-    "fr": "En bref, j'ai fait beacuoup (peut-être trop) de choses.",
-    "en": "In brief, I've got many (maybe too much) projects."
+    "fr": "Peut être trop ?",
+    "en": "Maybe to much ?"
+  },
+  "projectsPageLink": {
+    "fr": "J'ai fait beacuoup de choses.",
+    "en": "I've got many projects."
   },
   "bot": {
     "fr": "Bot",
@@ -82,5 +78,29 @@
   "contact": {
     "fr": "Contactez moi",
     "en": "Contact me"
+  },
+  "contactTitle": {
+    "fr": "Me contacter",
+    "en": "Contact me"
+  },
+  "contactNameField": {
+    "fr": "Votre nom",
+    "en": "Your name"
+  },
+  "contactMailField": {
+    "fr": "Votre mail",
+    "en": "Your mail"
+  },
+  "contactContentField": {
+    "fr": "Contenu",
+    "en": "Content"
+  },
+  "contactSend": {
+    "fr": "Envoyer",
+    "en": "Send"
+  },
+  "contactAlt": {
+    "fr": "Vous préférez passer par votre propre adresse mail ?",
+    "en": "You want to contact me with your own mail address ?"
   }
 }

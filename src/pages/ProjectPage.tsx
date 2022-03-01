@@ -1,12 +1,12 @@
+import GitHub from "@mui/icons-material/GitHub";
 import Masonry from "@mui/lab/Masonry";
-import type { SxProps } from "@mui/material";
+import { Container, SxProps } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import Stack from "@mui/material/Stack";
+import SvgIcon from "@mui/material/SvgIcon";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import Animated from "../components/Animated";
 import LoadingError from "../components/LoadingError";
 import Project from "../components/Project";
 import type {
@@ -16,6 +16,14 @@ import type {
 import getAPI from "../features/fetchAPI";
 import type { Locale } from "../features/languages";
 import { localizedStrings } from "../features/languages";
+import { ReactComponent as GitLabIcon } from "../icons/gitlab.svg";
+
+const iconSx: SxProps = {
+  ml: 0.5,
+  fontSize: 20,
+};
+
+const GitLab = <SvgIcon component={GitLabIcon} inheritViewBox sx={iconSx} />;
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -26,15 +34,6 @@ function Projects({ locale, sx }: Props) {
   const [projects, setProjects] = React.useState<
     StrapiObject<ProjectType>[] | null | undefined
   >(undefined);
-
-  const featured = React.useMemo(
-    () => (projects ? projects.filter((p) => p.attributes.featured) : []),
-    [projects]
-  );
-  const other = React.useMemo(
-    () => (projects ? projects.filter((p) => !p.attributes.featured) : []),
-    [projects]
-  );
 
   React.useEffect(() => {
     (async () => {
@@ -56,105 +55,79 @@ function Projects({ locale, sx }: Props) {
   }, [locale]);
 
   return (
-    <Stack
+    <Box
       sx={{
         ...sx,
+        overflow: "auto",
         justifyContent: projects ? undefined : "center",
       }}
+      className="mandatory-scroll-container"
     >
-      {projects === undefined ? (
-        // Loading
-        <CircularProgress sx={{ alignSelf: "center" }} />
-      ) : projects ? (
-        // Projects
-        <>
-          <Typography variant="h3">
-            {localizedStrings.projects[locale]}
-          </Typography>
-          {/* Featured */}
-          <Box sx={{ marginTop: 1, marginBottom: 2 }}>
-            <Animated animation="fadeInUp">
-              <Typography variant="h4">
-                {localizedStrings.interestProjects[locale]}
-              </Typography>
-            </Animated>
-            <Masonry
-              columns={{
-                xs: 1,
-                sm: 2,
-                md: 3,
-              }}
-              spacing={2}
-            >
-              {featured.map((p) => (
-                <Box key={p.id}>
-                  <Project data={p.attributes} featured locale={locale} />
-                </Box>
-              ))}
-            </Masonry>
-          </Box>
-          {/* Other */}
-          <Box sx={{ marginTop: 1, marginBottom: 2 }}>
-            <Animated animation="fadeInDown">
-              <Typography variant="h4">
-                {localizedStrings.otherProjects[locale]}
-              </Typography>
-            </Animated>
-            <Masonry
-              columns={{
-                xs: 1,
-                md: 2,
-              }}
-              spacing={2}
-            >
-              {other.map((p, i) => (
-                <Box key={p.id}>
-                  <Project
-                    data={p.attributes}
-                    rtl={false && i % 2 === 1}
-                    locale={locale}
-                  />
-                </Box>
-              ))}
-            </Masonry>
-          </Box>
-          {/* GitHub button */}
-          <Box>
-            <Button
-              size="large"
-              href="https://github.com/oxypomme?tab=repositories"
-              target="_blank"
-              rel="noopener"
-              variant="outlined"
-            >
-              {localizedStrings.githubProjects[locale]}
-            </Button>
-            <Button
-              size="large"
-              href="https://gitlab.com/users/oxypomme/contributed"
-              target="_blank"
-              rel="noopener"
-              variant="outlined"
-            >
-              {localizedStrings.gitlabProjects[locale]}
-            </Button>
-          </Box>
-          {/* TLDR */}
-          <Box>
+      <Container>
+        {projects === undefined ? (
+          // Loading
+          <CircularProgress sx={{ alignSelf: "center" }} />
+        ) : projects ? (
+          // Projects
+          <>
             <Typography
-              variant="h4"
-              component="p"
-              sx={{ textAlign: "center", pb: 8, mt: 4 }}
+              variant="h2"
+              component="h1"
+              sx={{ textAlign: "center", mt: 3 }}
             >
-              {localizedStrings.tooMuchProjects[locale]}
+              {localizedStrings.projects[locale]}
             </Typography>
-          </Box>
-        </>
-      ) : (
-        // Error
-        <LoadingError />
-      )}
-    </Stack>
+            <Box sx={{ marginTop: 1, marginBottom: 2 }}>
+              <Masonry
+                columns={{
+                  xs: 1,
+                  sm: 2,
+                  md: 2,
+                }}
+                spacing={2}
+              >
+                {projects.map((p) => (
+                  <Box key={p.id}>
+                    <Project
+                      data={p.attributes}
+                      locale={locale}
+                      featured={p.attributes.featured}
+                    />
+                  </Box>
+                ))}
+              </Masonry>
+            </Box>
+            {/* GitHub button */}
+            <Box>
+              <Button
+                size="large"
+                href="https://github.com/oxypomme?tab=repositories"
+                target="_blank"
+                rel="noopener"
+                variant="outlined"
+              >
+                {localizedStrings.githubProjects[locale]}
+                <GitHub sx={iconSx} />
+              </Button>
+              <Button
+                size="large"
+                href="https://gitlab.com/users/oxypomme/contributed"
+                target="_blank"
+                rel="noopener"
+                variant="outlined"
+                sx={{ ml: 2 }}
+              >
+                {localizedStrings.gitlabProjects[locale]}
+                {GitLab}
+              </Button>
+            </Box>
+          </>
+        ) : (
+          // Error
+          <LoadingError />
+        )}
+      </Container>
+    </Box>
   );
 }
 

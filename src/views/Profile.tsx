@@ -13,6 +13,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import React from "react";
+import { useSearchParams } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import Animated from "../components/Animated";
 import LoadingError from "../components/LoadingError";
 import ProfileElement from "../components/ProfileElement";
@@ -29,6 +31,16 @@ type Props = React.PropsWithoutRef<{
 const INIT_DELAY = 1;
 
 function Profile({ locale, sx }: Props) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handleContactLink = () => {
+    const search: Record<string, string> = {};
+    searchParams.forEach((value, key) => (search[key] = value));
+
+    setTimeout(() => {
+      setSearchParams(search, { replace: true });
+    }, 0);
+  };
+
   const [data, setData] = React.useState<
     StrapiObject<Diploma | Experience>[] | null | undefined
   >(undefined);
@@ -139,7 +151,13 @@ function Profile({ locale, sx }: Props) {
                         <Typography variant="h5">
                           {localizedStrings.timelineNext[locale]}
                         </Typography>
-                        <Button variant="outlined">
+                        <Button
+                          variant="outlined"
+                          component={HashLink}
+                          smooth
+                          to="#contact"
+                          onClick={handleContactLink}
+                        >
                           {localizedStrings.contact[locale]}
                         </Button>
                       </TimelineContent>

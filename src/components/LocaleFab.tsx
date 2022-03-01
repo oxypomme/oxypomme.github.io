@@ -1,5 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
 import TranslateIcon from "@mui/icons-material/Translate";
+import { Zoom } from "@mui/material";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
@@ -19,7 +20,7 @@ type Props = React.PropsWithoutRef<{
  */
 function LocaleFAB({ locale, onClick }: Props) {
   return (
-    <>
+    <Zoom in={true}>
       <SpeedDial
         sx={{
           position: "fixed",
@@ -47,7 +48,7 @@ function LocaleFAB({ locale, onClick }: Props) {
           />
         ))}
       </SpeedDial>
-    </>
+    </Zoom>
   );
 }
 

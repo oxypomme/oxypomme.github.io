@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import React from "react";
-import type { Locale } from "../features/languages";
+import { Locale, localizedStrings } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -69,15 +69,14 @@ function Contact({ locale, sx }: Props) {
       }}
     >
       <Typography variant="h3" sx={{ textAlign: "center", mb: 2 }}>
-        Me contacter
+        {localizedStrings.contactTitle[locale]}
       </Typography>
 
       <Box sx={{ display: "flex", flexWrap: "wrap", mb: 4 }}>
         <TextField
           required
           error={errors.name}
-          helperText={errors.name && "Incorrect name"}
-          label="Name"
+          label={localizedStrings.contactNameField[locale]}
           value={name}
           onChange={handleNameChange}
           sx={{ flex: 1, mr: 2 }}
@@ -85,8 +84,7 @@ function Contact({ locale, sx }: Props) {
         <TextField
           required
           error={errors.email}
-          helperText={errors.email && "Incorrect email"}
-          label="Email"
+          label={localizedStrings.contactMailField[locale]}
           type="email"
           value={email}
           onChange={handleEmailChange}
@@ -97,8 +95,7 @@ function Contact({ locale, sx }: Props) {
       <TextField
         required
         error={errors.content}
-        helperText={errors.content && "Incorrect content"}
-        label="Content"
+        label={localizedStrings.contactContentField[locale]}
         multiline
         rows={7}
         value={content}
@@ -107,14 +104,14 @@ function Contact({ locale, sx }: Props) {
       <Button
         sx={{ my: 2, mx: "auto", width: { xs: "100%", md: "50%" } }}
         variant="contained"
-        disabled={Object.values(errors).filter((e) => e).length > 0}
+        disabled={true || Object.values(errors).filter((e) => e).length > 0}
       >
         <Send />
-        Send
+        {localizedStrings.contactSend[locale]}
       </Button>
 
       <Link href={"mailto:" + process.env.REACT_APP_MAIL} color="secondary">
-        Vous préférez passer par votre propre adresse mail ?
+        {localizedStrings.contactAlt[locale]}
       </Link>
     </Container>
   );

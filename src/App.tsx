@@ -1,33 +1,37 @@
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import { orange } from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
-import Stack from "@mui/material/Stack";
-import { createTheme, SxProps, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
+import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";
 import Footer from "./components/Footer";
-import LazyPanel from "./components/LazyPanel";
+import HomeFab from "./components/HomeFab";
 import LocaleFab from "./components/LocaleFab";
 import { dayjsLocales, Locale } from "./features/languages";
-import Blog from "./views/Blog";
-import Contact from "./views/Contact";
-import Intro from "./views/Intro";
-import Profile from "./views/Profile";
-import Projects from "./views/Projects";
-import Resume from "./views/Resume";
-import Testimonials from "./views/Testimonials";
+import HomePage from "./pages/HomePage";
 
-const sx: SxProps = {
-  width: "100% !important",
-  minHeight: { sm: "100vh" },
-  py: "5vh",
-  px: {
-    xs: 2,
-    sm: 3,
-  },
-};
+const ProjectPage = React.lazy(() => import("./pages/ProjectPage"));
+
+function PageLoader() {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItms: "center",
+        justifyContent: "center",
+      }}
+    >
+      <CircularProgress />
+    </Box>
+  );
+}
 
 function App() {
+  const { pathname } = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [locale, setLocale] = React.useState(Locale.FRENCH);
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
@@ -37,7 +41,7 @@ function App() {
   }, [locale]);
 
   React.useEffect(() => {
-    const searchLocale = new URLSearchParams(window.location.search).get("l");
+    const searchLocale = searchParams.get("l");
 
     if (searchLocale && Object.values<string>(Locale).includes(searchLocale)) {
       setLocale(searchLocale as Locale);
@@ -64,55 +68,40 @@ function App() {
     e.preventDefault();
 
     // Set locale in URL
-    const search = new URLSearchParams(window.location.search);
-    search.set("l", l);
-    window.history.replaceState(
-      null,
-      "",
-      window.location.pathname + "?" + search.toString()
-    );
+    setSearchParams({ ...searchParams, l }, { replace: true });
 
     setLocale(l);
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <LocaleFab locale={locale} onClick={onLocaleClick} />
       <CssBaseline />
-      <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-        <Stack
-          sx={{
-            scrollSnapType: "y mandatory",
-            overflow: "auto",
-            px: {
-              xs: 2,
-              sm: 3,
-            },
-          }}
-          className="mandatory-scroll-container"
-        >
-          <LazyPanel overflow>
-            <Intro locale={locale} sx={sx} />
-          </LazyPanel>
-          <LazyPanel overflow>
-            <Profile locale={locale} sx={sx} />
-          </LazyPanel>
-          <LazyPanel overflow>
-            <Projects locale={locale} sx={sx} />
-          </LazyPanel>
-          <LazyPanel overflow>
-            <Testimonials locale={locale} sx={sx} />
-          </LazyPanel>
-          <LazyPanel overflow>
-            <Blog locale={locale} sx={sx} />
-          </LazyPanel>
-          <LazyPanel overflow>
-            <Resume locale={locale} sx={sx} />
-          </LazyPanel>
-          <LazyPanel overflow>
-            <Contact locale={locale} sx={sx} />
-          </LazyPanel>
-        </Stack>
+
+      <LocaleFab locale={locale} onClick={onLocaleClick} />
+      <HomeFab show={pathname !== "/"} />
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100vh",
+          "> :first-of-type": {
+            flex: 1,
+            pb: 2,
+          },
+        }}
+      >
+        <Routes>
+          <Route index element={<HomePage locale={locale} />} />
+          <Route
+            path="/projects"
+            element={
+              <React.Suspense fallback={<PageLoader />}>
+                <ProjectPage locale={locale} />
+              </React.Suspense>
+            }
+          />
+        </Routes>
         <Box>
           <Footer />
         </Box>

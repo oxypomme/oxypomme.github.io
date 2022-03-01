@@ -11,7 +11,7 @@ function LazyPanel({ children, align, height, overflow }: Props) {
   return (
     <LazyLoad
       height={height ?? "100vh"}
-      style={{ scrollSnapAlign: align ?? "center" }}
+      style={{ scrollSnapAlign: align ?? "start" }}
       overflow={overflow}
       once
     >
