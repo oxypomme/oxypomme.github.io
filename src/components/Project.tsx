@@ -167,6 +167,8 @@ type Props = React.PropsWithoutRef<{
   featured?: boolean;
   data: ProjectType;
   locale: Locale;
+  animation?: string;
+  delay?: number;
 }>;
 
 type SvgProps = {
@@ -180,8 +182,9 @@ type SvgProps = {
  * @param rtl Image at right
  * @param data The project's data
  * @param featured Is the project featured
+ * @param delay The project animation dlay
  */
-function Project({ rtl, data, featured, locale }: Props) {
+function Project({ rtl, data, featured, locale, animation, delay }: Props) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const type = React.useMemo(() => {
@@ -262,7 +265,7 @@ function Project({ rtl, data, featured, locale }: Props) {
   return (
     <>
       {/* Card */}
-      <Animated animation="fadeIn">
+      <Animated animation={animation ?? "fadeIn"} delay={delay}>
         <CardActionArea
           component="div"
           disableTouchRipple={!data.description}
@@ -300,12 +303,14 @@ function Project({ rtl, data, featured, locale }: Props) {
                 <CardContent>
                   <Typography variant="overline">{type}</Typography>
                   <Typography variant="h5">{data.name}</Typography>
-                  {data.goal && (
+                  {data.goal ? (
                     <Typography variant="subtitle1" gutterBottom>
                       <ReactMarkdown components={MUIMarkdown}>
                         {data.goal}
                       </ReactMarkdown>
                     </Typography>
+                  ) : (
+                    <></>
                   )}
                   <Typography variant="overline" component="div">
                     {domain}

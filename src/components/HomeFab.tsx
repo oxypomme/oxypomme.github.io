@@ -1,5 +1,5 @@
-import { Home } from "@mui/icons-material";
-import { Fab } from "@mui/material";
+import Home from "@mui/icons-material/Home";
+import Fab from "@mui/material/Fab";
 import Zoom from "@mui/material/Zoom";
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";

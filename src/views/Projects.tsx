@@ -8,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import Animated from "../components/Animated";
 import LoadingError from "../components/LoadingError";
 import Project from "../components/Project";
 import ShyText from "../components/ShyText";
@@ -63,7 +64,7 @@ function Projects({ locale, sx }: Props) {
       ) : projects ? (
         // Projects
         <>
-          <Typography variant="h3">
+          <Typography variant="h3" sx={{ textAlign: "center" }}>
             {localizedStrings.projects[locale]}
           </Typography>
 
@@ -76,48 +77,57 @@ function Projects({ locale, sx }: Props) {
               }}
               spacing={2}
             >
-              {projects.map((p) => (
+              {projects.map((p, i) => (
                 <Box key={p.id}>
-                  <Project data={p.attributes} featured locale={locale} />
+                  <Project
+                    data={p.attributes}
+                    featured
+                    locale={locale}
+                    animation="fadeInRight"
+                    delay={(i + 1) / 3}
+                  />
                 </Box>
               ))}
             </Masonry>
           </Box>
           {/* TLDR */}
-          <Box
-            sx={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              mt: 4,
-              pb: 6,
-            }}
-          >
-            <Typography
-              variant="h4"
-              component="p"
-              sx={{ textAlign: "center", mb: 2 }}
+          <Animated animation="fadeInUp" delay={1.25}>
+            <Box
+              sx={{
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                mt: 4,
+                pb: 6,
+              }}
             >
-              {localizedStrings.projectsPageLink[locale]}
-            </Typography>
-            <Button
-              size="large"
-              variant="outlined"
-              component={Link}
-              to={{ pathname: "/projects", search: searchParams.toString() }}
-            >
-              {localizedStrings.moreProjects[locale]}
-              <ArrowRight />
-            </Button>
-            <ShyText
-              animation={{ animation: "fadeInDown", repeat: false }}
-              variant="h5"
-              sx={{ bottom: 0 }}
-            >
-              {localizedStrings.tooMuchProjects[locale]}
-            </ShyText>
-          </Box>
+              <Typography
+                variant="h4"
+                component="p"
+                sx={{ textAlign: "center", mb: 2 }}
+              >
+                {localizedStrings.projectsPageLink[locale]}
+              </Typography>
+              <Button
+                size="large"
+                variant="outlined"
+                component={Link}
+                to={{ pathname: "/projects", search: searchParams.toString() }}
+              >
+                {localizedStrings.moreProjects[locale]}
+                <ArrowRight />
+              </Button>
+
+              <ShyText
+                animation={{ animation: "fadeInDown", repeat: false }}
+                variant="h5"
+                sx={{ bottom: 0 }}
+              >
+                {localizedStrings.tooMuchProjects[locale]}
+              </ShyText>
+            </Box>
+          </Animated>
         </>
       ) : (
         // Error

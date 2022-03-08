@@ -112,6 +112,12 @@ export interface Testimonial {
   content: string;
 }
 
+export interface Blog {
+  title: string;
+  content: string;
+  media: string;
+}
+
 interface API {
   diplomes: Diploma[];
   // [endpoint: `diplomes/${number}`]: Diploma;
@@ -120,6 +126,7 @@ interface API {
   description: Description;
   projects: Project[];
   testimonials: Testimonial[];
+  blogs: Blog[];
 }
 
 export const getAPI = async <Endpoint extends keyof API>(

@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import HomeFab from "./components/HomeFab";
 import LocaleFab from "./components/LocaleFab";
 import { dayjsLocales, Locale } from "./features/languages";
+import BlogPage from "./pages/BlogPage";
 import HomePage from "./pages/HomePage";
 
 const ProjectPage = React.lazy(() => import("./pages/ProjectPage"));
@@ -98,6 +99,14 @@ function App() {
             element={
               <React.Suspense fallback={<PageLoader />}>
                 <ProjectPage locale={locale} />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <React.Suspense fallback={<PageLoader />}>
+                <BlogPage locale={locale} />
               </React.Suspense>
             }
           />
