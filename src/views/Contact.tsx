@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import React from "react";
+import { postAPI } from "../features/fetchAPI";
 import { Locale, localizedStrings } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
@@ -16,15 +17,33 @@ type Props = React.PropsWithoutRef<{
   sx?: SxProps;
 }>;
 
+type AlertType = {
+  severity?: "success" | "error" | "warning" | "info";
+  message: string;
+};
+
 function Contact({ locale, sx }: Props) {
   const [errors, setErrors] = React.useState({
     name: true,
     email: true,
     content: true,
+    send: false,
   });
   const [name, setName] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [content, setContent] = React.useState<string>("");
+  const [alert, setAlert] = React.useState<AlertType | null>(null);
+
+  const showAlert = (
+    severity: AlertType["severity"],
+    message: AlertType["message"],
+    duration = 1
+  ) => {
+    setAlert({ severity, message });
+    setTimeout(() => {
+      setAlert(null);
+    }, duration * 1000);
+  };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let error = false;
@@ -56,6 +75,30 @@ function Contact({ locale, sx }: Props) {
     }
     setContent(e.target.value);
     setErrors({ ...errors, content: error });
+  };
+
+  const onSendClick = async () => {
+    try {
+      setErrors({ ...errors, send: true });
+      const data = await postAPI("contact", {
+        name,
+        email,
+        text: content,
+      });
+
+      if (data) {
+        setName("");
+        setEmail("");
+        setContent("");
+        showAlert("success", localizedStrings.contactOK[locale]);
+      } else {
+        throw new Error("No data");
+      }
+    } catch (error) {
+      showAlert("error", localizedStrings.contactKO[locale]);
+    } finally {
+      setErrors({ ...errors, send: false });
+    }
   };
 
   return (
@@ -104,7 +147,8 @@ function Contact({ locale, sx }: Props) {
       <Button
         sx={{ my: 2, mx: "auto", width: { xs: "100%", md: "50%" } }}
         variant="contained"
-        disabled={true || Object.values(errors).filter((e) => e).length > 0}
+        disabled={Object.values(errors).filter((e) => e).length > 0}
+        onClick={onSendClick}
       >
         <Send />
         {localizedStrings.contactSend[locale]}

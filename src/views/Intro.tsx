@@ -13,7 +13,7 @@ import MUIMarkdown from "../components/MUIMarkdown";
 import ShyText from "../components/ShyText";
 import type { Description, StrapiAttributes } from "../features/fetchAPI";
 import getAPI from "../features/fetchAPI";
-import type { Locale } from "../features/languages";
+import { Locale, localizedStrings } from "../features/languages";
 
 type Props = React.PropsWithoutRef<{
   locale: Locale;
@@ -87,7 +87,7 @@ function Intro({ locale, sx }: Props) {
             <DoubleArrowIcon
               sx={{ mx: 1, color: "#222", transform: "rotateZ(90deg)" }}
             />
-            See more
+            {localizedStrings.knowMe[locale]}
             <DoubleArrowIcon
               sx={{ mx: 1, color: "#222", transform: "rotateZ(90deg)" }}
             />

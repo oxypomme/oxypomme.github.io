@@ -146,4 +146,23 @@ export const getAPI = async <Endpoint extends keyof API>(
   return data;
 };
 
+interface PostAPI {
+  contact: {
+    name: string;
+    text: string;
+    email: string;
+  };
+}
+
+export const postAPI = async <Endpoint extends keyof PostAPI>(
+  endpoint: Endpoint,
+  body: PostAPI[Endpoint]
+) => {
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_API_URL}/${endpoint}`,
+    body
+  );
+  return data;
+};
+
 export default getAPI;

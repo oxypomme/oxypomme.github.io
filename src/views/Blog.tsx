@@ -89,7 +89,7 @@ function Blog({ locale, sx }: Props) {
                 component="p"
                 sx={{ textAlign: "center", mb: 2 }}
               >
-                {localizedStrings.projectsPageLink[locale]}
+                {localizedStrings.blogPageLink[locale]}
               </Typography>
               <Button
                 size="large"
