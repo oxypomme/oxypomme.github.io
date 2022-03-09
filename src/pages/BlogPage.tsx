@@ -22,7 +22,9 @@ function BlogPage({ locale, sx }: Props) {
   React.useEffect(() => {
     (async () => {
       try {
-        const { data } = await getAPI("blogs", locale);
+        const { data } = await getAPI("blogs", locale, {
+          populate: ["media"],
+        });
         setData(data ?? null);
       } catch (error) {
         setData(null);
@@ -46,7 +48,11 @@ function BlogPage({ locale, sx }: Props) {
           />
         ) : posts ? (
           <>
-            <Typography variant="h3" sx={{ textAlign: "center" }}>
+            <Typography
+              variant="h2"
+              component="h1"
+              sx={{ textAlign: "center", mt: 3 }}
+            >
               Blog
             </Typography>
             <Box sx={{ marginTop: 1, marginBottom: 2 }}>

@@ -36,7 +36,9 @@ function Testimonials({ locale, sx }: Props) {
   React.useEffect(() => {
     (async () => {
       try {
-        const { data } = await getAPI("testimonials", locale);
+        const { data } = await getAPI("testimonials", locale, {
+          populate: ["logo"],
+        });
         if (data.length) {
           setTestimonials(data);
         } else {

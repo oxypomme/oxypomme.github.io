@@ -15,6 +15,38 @@ export type StrapiObject<T> = {
   attributes: StrapiAttributes<T>;
 };
 
+export type StrapiImage = {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+};
+
+export type StrapiMedia = {
+  data: null | Omit<
+    StrapiObject<
+      StrapiImage & {
+        alternativeText: string;
+        caption: string;
+        formats: {
+          thumbnail: StrapiImage & {
+            path: null;
+            public_id: string;
+          };
+        };
+        previewUrl: null;
+        provider: string;
+        provider_metadata: null;
+      }
+    >,
+    "publishedAt" | "locale"
+  >;
+};
+
 export interface StrapiResult<T extends API[keyof API]> {
   data: T extends Array<infer E> ? StrapiObject<E>[] : StrapiObject<T>;
   meta: {
@@ -34,7 +66,6 @@ export interface Diploma {
   location: string;
   isApprentice: boolean;
   description?: string;
-  logo?: string;
 }
 
 export interface Experience {
@@ -45,22 +76,22 @@ export interface Experience {
   isApprentice: boolean;
   role: string;
   description?: string;
-  logo?: string;
 }
 
 export interface Description {
   name: string;
   role: string;
   description?: string;
-  profile_intro?: string;
-  avatar?: string;
+  resume?: string;
+  avatar?: StrapiMedia;
   birthdate?: StrapiDate;
 }
 
 export interface ProgConcept {
   name: string;
   color?: string;
-  icon?: string;
+  logo?: StrapiMedia;
+  featured?: boolean;
 }
 
 export enum EProjectType {
@@ -90,7 +121,6 @@ export interface Project {
   goal?: string;
   description?: string;
   featured: boolean;
-  imageURL?: string;
   languages: {
     data: StrapiObject<ProgConcept>[];
   };
@@ -103,30 +133,31 @@ export interface Project {
     url: string;
   };
   url?: string;
+  image?: StrapiMedia;
 }
 
 export interface Testimonial {
   name: string;
   role?: string;
-  logo?: string;
+  logo?: StrapiMedia;
   content: string;
 }
 
 export interface Blog {
   title: string;
   content: string;
-  media: string;
+  media?: StrapiMedia;
 }
 
 interface API {
   diplomes: Diploma[];
-  // [endpoint: `diplomes/${number}`]: Diploma;
   experiences: Experience[];
-  // [endpoint: `experiences/${number}`]: Experience;
   description: Description;
   projects: Project[];
   testimonials: Testimonial[];
   blogs: Blog[];
+  languages: ProgConcept[];
+  technologies: ProgConcept[];
 }
 
 export const getAPI = async <Endpoint extends keyof API>(

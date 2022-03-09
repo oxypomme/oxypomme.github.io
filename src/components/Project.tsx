@@ -29,6 +29,7 @@ import MUIMarkdown from "../components/MUIMarkdown";
 import type {
   ProgConcept,
   Project as ProjectType,
+  StrapiImage,
   StrapiObject,
 } from "../features/fetchAPI";
 import {
@@ -136,7 +137,7 @@ function ProjectActions({ project }: ActionProps) {
 }
 
 type ImageProps = React.PropsWithoutRef<{
-  imageURL: string;
+  image: StrapiImage;
   alt: string;
   featured?: boolean;
 }>;
@@ -144,19 +145,21 @@ type ImageProps = React.PropsWithoutRef<{
 /**
  * Render an image of a project
  *
- * @param imageURL The project's image
+ * @param image The project's image
  * @param alt The project's image alt
  * @param featured Is the project featured
  */
-function ProjectImage({ imageURL, alt, featured }: ImageProps) {
+function ProjectImage({ image, alt, featured }: ImageProps) {
   return (
     <CardMedia
       component="img"
       sx={{
         aspectRatio: "16/9",
-        height: featured ? undefined : "100%",
+        height: featured ? "auto" : "100%",
       }}
-      image={imageURL}
+      width={image.width}
+      height={image.height}
+      image={image.url}
       alt={alt}
     />
   );
@@ -280,7 +283,7 @@ function Project({ rtl, data, featured, locale, animation, delay }: Props) {
                 textAlign: rtl ? "right" : undefined,
               }}
             >
-              {data.imageURL && (
+              {data.image?.data && (
                 <Box
                   sx={{
                     width: featured ? undefined : "35%",
@@ -293,7 +296,11 @@ function Project({ rtl, data, featured, locale, animation, delay }: Props) {
                   }}
                 >
                   <ProjectImage
-                    imageURL={data.imageURL}
+                    image={
+                      featured
+                        ? data.image.data.attributes
+                        : data.image.data.attributes.formats.thumbnail
+                    }
                     alt={`${data.name} screenshot`}
                     featured={featured}
                   />
@@ -351,9 +358,9 @@ function Project({ rtl, data, featured, locale, animation, delay }: Props) {
                 flexDirection: "column",
               }}
             >
-              {data.imageURL ? (
+              {data.image?.data ? (
                 <ProjectImage
-                  imageURL={data.imageURL}
+                  image={data.image.data.attributes}
                   alt={`${data.name} screenshot`}
                   featured
                 />

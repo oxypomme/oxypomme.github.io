@@ -13,7 +13,7 @@ import Testimonials from "../views/Testimonials";
 
 const sx: SxProps = {
   width: "100% !important",
-  minHeight: { sm: "100vh" },
+  minHeight: { xs: "100vh" },
   py: "5vh",
   px: {
     xs: 2,

@@ -34,7 +34,7 @@ function Testimonial({ data: testimonial }: Props) {
         avatar={
           <Avatar
             sx={{ bgcolor: "primary.main" }}
-            src={testimonial.logo}
+            src={testimonial.logo?.data?.attributes.formats.thumbnail.url}
             alt={testimonial.logo && testimonial.name}
           >
             {testimonial.name[0]}

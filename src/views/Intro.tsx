@@ -28,7 +28,9 @@ function Intro({ locale, sx }: Props) {
   React.useEffect(() => {
     (async () => {
       try {
-        const { data } = await getAPI("description", locale);
+        const { data } = await getAPI("description", locale, {
+          populate: ["avatar"],
+        });
         setData(data?.attributes ?? null);
       } catch (error) {
         setData(null);
@@ -62,13 +64,13 @@ function Intro({ locale, sx }: Props) {
           </Animated>
 
           <Grid container spacing={3}>
-            {data.avatar && (
+            {data.avatar?.data && (
               <Grid item xs={12} sm={4} md={2} lg={1.5}>
                 <Animated animation="fadeInUp" delay={0.5}>
                   <Avatar
                     sx={{ width: "100%", height: "auto" }}
                     variant="rounded"
-                    src={data.avatar}
+                    src={data.avatar.data.attributes.url}
                   />
                 </Animated>
               </Grid>

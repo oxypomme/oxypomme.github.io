@@ -39,7 +39,7 @@ function Projects({ locale, sx }: Props) {
     (async () => {
       try {
         const { data } = await getAPI("projects", locale, {
-          populate: ["languages", "technologies", "git"],
+          populate: ["languages", "technologies", "git", "image"],
         });
 
         if (data.length) {

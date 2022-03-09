@@ -118,5 +118,9 @@
   "contactKO": {
     "fr": "Un erreur est survenue lors de l'envoi de votre message",
     "en": "A problem occured when sending your message"
+  },
+  "openCV": {
+    "fr": "Ouvrir mon CV",
+    "en": "See my resume"
   }
 }

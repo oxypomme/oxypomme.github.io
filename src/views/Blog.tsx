@@ -27,7 +27,9 @@ function Blog({ locale, sx }: Props) {
   React.useEffect(() => {
     (async () => {
       try {
-        const { data } = await getAPI("blogs", locale);
+        const { data } = await getAPI("blogs", locale, {
+          populate: ["media"],
+        });
         setData(data.slice(0, 3) ?? null);
       } catch (error) {
         setData(null);

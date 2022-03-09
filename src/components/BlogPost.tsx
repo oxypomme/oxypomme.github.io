@@ -10,12 +10,12 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import MUIMarkdown from "../components/MUIMarkdown";
-import type { Blog, StrapiAttributes } from "../features/fetchAPI";
+import type { Blog, StrapiAttributes, StrapiImage } from "../features/fetchAPI";
 import { Locale } from "../features/languages";
 import Animated from "./Animated";
 
 type ImageProps = React.PropsWithoutRef<{
-  imageURL: string;
+  image: StrapiImage;
   alt: string;
   featured?: boolean;
 }>;
@@ -26,14 +26,18 @@ type ImageProps = React.PropsWithoutRef<{
  * @param imageURL The post's image
  * @param alt The post's image alt
  */
-function PostImage({ imageURL, alt }: ImageProps) {
+function PostImage({ image, alt }: ImageProps) {
+  // TODO: Srcset ?
   return (
     <CardMedia
       component="img"
       sx={{
         aspectRatio: "16/9",
+        height: "auto",
       }}
-      image={imageURL}
+      width={image.width}
+      height={image.height}
+      image={image.url}
       alt={alt}
     />
   );
@@ -70,9 +74,12 @@ function BlogPost({ data, locale, animation, delay }: Props) {
         >
           <Card variant="outlined">
             <Box>
-              {data.media ? (
+              {data.media?.data ? (
                 <Box>
-                  <PostImage imageURL={data.media} alt={data.title} />
+                  <PostImage
+                    image={data.media.data.attributes.formats.thumbnail}
+                    alt={data.title}
+                  />
                 </Box>
               ) : (
                 <></>
@@ -126,9 +133,12 @@ function BlogPost({ data, locale, animation, delay }: Props) {
                 flexDirection: "column",
               }}
             >
-              {data.media ? (
+              {data.media?.data ? (
                 <Box>
-                  <PostImage imageURL={data.media} alt={data.title} />
+                  <PostImage
+                    image={data.media.data.attributes}
+                    alt={data.title}
+                  />
                 </Box>
               ) : (
                 <></>
