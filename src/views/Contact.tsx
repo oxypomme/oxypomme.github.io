@@ -1,8 +1,10 @@
 import { Send } from "@mui/icons-material";
 import {
+  Alert,
   Button,
   Container,
   Link,
+  Snackbar,
   SxProps,
   TextField,
   Typography,
@@ -33,17 +35,6 @@ function Contact({ locale, sx }: Props) {
   const [email, setEmail] = React.useState<string>("");
   const [content, setContent] = React.useState<string>("");
   const [alert, setAlert] = React.useState<AlertType | null>(null);
-
-  const showAlert = (
-    severity: AlertType["severity"],
-    message: AlertType["message"],
-    duration = 1
-  ) => {
-    setAlert({ severity, message });
-    setTimeout(() => {
-      setAlert(null);
-    }, duration * 1000);
-  };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let error = false;
@@ -90,15 +81,30 @@ function Contact({ locale, sx }: Props) {
         setName("");
         setEmail("");
         setContent("");
-        showAlert("success", localizedStrings.contactOK[locale]);
+        setErrors({
+          name: true,
+          email: true,
+          content: true,
+          send: false,
+        });
+        setAlert({
+          severity: "success",
+          message: localizedStrings.contactOK[locale],
+        });
       } else {
         throw new Error("No data");
       }
     } catch (error) {
-      showAlert("error", localizedStrings.contactKO[locale]);
-    } finally {
       setErrors({ ...errors, send: false });
+      setAlert({
+        severity: "error",
+        message: localizedStrings.contactKO[locale],
+      });
     }
+  };
+
+  const onAlertClose = () => {
+    setAlert(null);
   };
 
   return (
@@ -157,6 +163,15 @@ function Contact({ locale, sx }: Props) {
       <Link href={"mailto:" + process.env.REACT_APP_MAIL} color="secondary">
         {localizedStrings.contactAlt[locale]}
       </Link>
+      <Snackbar open={!!alert} autoHideDuration={6000} onClose={onAlertClose}>
+        <Alert
+          onClose={onAlertClose}
+          severity={alert?.severity}
+          sx={{ width: "100%" }}
+        >
+          {alert?.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }
