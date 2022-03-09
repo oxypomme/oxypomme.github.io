@@ -1,0 +1,126 @@
+{
+  "languages": {
+    "fr": "Langues",
+    "en": "Languages"
+  },
+  "fr": {
+    "fr": "🇫🇷 Français",
+    "en": "🇫🇷 French"
+  },
+  "en": {
+    "fr": "🇺🇸 Anglais",
+    "en": "🇺🇸 English"
+  },
+  "knowMe": {
+    "fr": "Apprenez qui je suis",
+    "en": "Know who I am"
+  },
+  "timeline": {
+    "fr": "Comment je suis arrivé ici ?",
+    "en": "How did I get there ?"
+  },
+  "timelineNext": {
+    "fr": "Avec vous ?",
+    "en": "With you ?"
+  },
+  "aprentice": {
+    "fr": "En alternance",
+    "en": "Aprenticeship"
+  },
+  "projects": {
+    "fr": "Qu'ai-je fait ?",
+    "en": "What did I do ?"
+  },
+  "moreProjects": {
+    "fr": "Voir plus",
+    "en": "See more"
+  },
+  "githubProjects": {
+    "fr": "Et plus encore sur GitHub...",
+    "en": "See more on GitHub..."
+  },
+  "gitlabProjects": {
+    "fr": "... ou GitLab",
+    "en": "... or GitLab"
+  },
+  "tooMuchProjects": {
+    "fr": "Peut être trop ?",
+    "en": "Maybe too much ?"
+  },
+  "projectsPageLink": {
+    "fr": "J'ai fait beacuoup de choses.",
+    "en": "I've got many projects."
+  },
+  "bot": {
+    "fr": "Bot",
+    "en": "Bot"
+  },
+  "game": {
+    "fr": "Jeu-vidéo",
+    "en": "Game"
+  },
+  "mobile": {
+    "fr": "Mobile",
+    "en": "Mobile"
+  },
+  "portableSoftware": {
+    "fr": "Logiciel",
+    "en": "Software"
+  },
+  "software": {
+    "fr": "Logiciel",
+    "en": "Software"
+  },
+  "web": {
+    "fr": "Web",
+    "en": "Web"
+  },
+  "testimonials": {
+    "fr": "Ils ont travaillés avec moi",
+    "en": "They worked with me"
+  },
+  "blogPageLink": {
+    "fr": "J'écrit parfois des choses...",
+    "en": "I write things... Sometimes..."
+  },
+  "contact": {
+    "fr": "Contactez moi",
+    "en": "Contact me"
+  },
+  "contactTitle": {
+    "fr": "Me contacter",
+    "en": "Contact me"
+  },
+  "contactNameField": {
+    "fr": "Votre nom",
+    "en": "Your name"
+  },
+  "contactMailField": {
+    "fr": "Votre mail",
+    "en": "Your mail"
+  },
+  "contactContentField": {
+    "fr": "Contenu",
+    "en": "Content"
+  },
+  "contactSend": {
+    "fr": "Envoyer",
+    "en": "Send"
+  },
+  "contactAlt": {
+    "fr": "Vous préférez passer via votre propre adresse mail ?",
+    "en": "You want to contact me through your own mail address ?"
+  },
+  "contactOK": {
+    "fr": "Votre message a bien été envoyé",
+    "en": "Your message has been sent"
+  },
+  "contactKO": {
+    "fr": "Un erreur est survenue lors de l'envoi de votre message",
+    "en": "A problem occured when sending your message"
+  },
+  "openCV": {
+    "fr": "Ouvrir mon CV",
+    "en": "See my resume"
+  }
+}

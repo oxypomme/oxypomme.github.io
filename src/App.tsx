@@ -1,43 +1,121 @@
-import React from 'react';
-import { Route, HashRouter as Router, Switch } from 'react-router-dom';
-import styled from '@emotion/styled';
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import { orange } from "@mui/material/colors";
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import React from "react";
+import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";
+import Footer from "./components/Footer";
+import HomeFab from "./components/HomeFab";
+import LocaleFab from "./components/LocaleFab";
+import { dayjsLocales, Locale } from "./features/languages";
+import BlogPage from "./pages/BlogPage";
+import HomePage from "./pages/HomePage";
 
-import { FirebaseDatabaseProvider } from '@react-firebase/database';
-import firebase from 'firebase/app';
-import firebaseConfig from "./firebase/config.json";
+const ProjectPage = React.lazy(() => import("./pages/ProjectPage"));
 
-import Navbar from "./features/commons/Navbar";
-import Footer from "./features/commons/Footer";
-
-import Home from "./views/home";
-import Portfolio from './views/portfolio';
-
-import NotFound from "./views/errors/NotFound";
-
-const AppContainer = styled.div`
-  margin-top: var(--nav-size);
-  text-align: center;
-  min-height: calc(100vh - var(--nav-size) - var(--footer-size) - 14px);
-`;
-
-const App = () => {
+function PageLoader() {
   return (
-    <Router basename='/'>
-      <Navbar />
-      <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
-        <AppContainer>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/portfolio" component={Portfolio} />
-            <Route exact path="/Pulse" component={() => { window.location.href = 'https://oxypomme.github.io/Pulse/'; return null; }} />
-            <Route exact path="/gdcgraph" component={() => { window.location.href = 'https://oxypomme.github.io/GDCGraph/'; return null; }} />
-            <Route exact path="/Matchable" component={() => { window.location.href = 'https://matchable-80a41.web.app/'; return null; }} />
-            <Route component={NotFound} />
-          </Switch>
-        </AppContainer>
-      </FirebaseDatabaseProvider>
-      <Footer />
-    </Router>
+    <Box
+      sx={{
+        display: "flex",
+        alignItms: "center",
+        justifyContent: "center",
+      }}
+    >
+      <CircularProgress />
+    </Box>
+  );
+}
+
+function App() {
+  const { pathname } = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [locale, setLocale] = React.useState(Locale.FRENCH);
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  React.useEffect(() => {
+    // Import dayjs locale
+    (async () => await dayjsLocales[locale]())();
+  }, [locale]);
+
+  React.useEffect(() => {
+    const searchLocale = searchParams.get("l");
+
+    if (searchLocale && Object.values<string>(Locale).includes(searchLocale)) {
+      setLocale(searchLocale as Locale);
+    }
+  }, []);
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? "dark" : "light",
+          primary: {
+            main: orange[800], // "#ef6c00"
+          },
+          secondary: {
+            main: "#007dff",
+          },
+        },
+      }),
+    [prefersDarkMode]
+  );
+
+  const onLocaleClick = (e: React.MouseEvent, l: Locale) => {
+    e.preventDefault();
+
+    // Set locale in URL
+    setSearchParams({ ...searchParams, l }, { replace: true });
+
+    setLocale(l);
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+
+      <LocaleFab locale={locale} onClick={onLocaleClick} />
+      <HomeFab show={pathname !== "/"} />
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100vh",
+          "> :first-of-type": {
+            flex: 1,
+            pb: 2,
+          },
+        }}
+      >
+        <Routes>
+          <Route index element={<HomePage locale={locale} />} />
+          <Route
+            path="/projects"
+            element={
+              <React.Suspense fallback={<PageLoader />}>
+                <ProjectPage locale={locale} />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <React.Suspense fallback={<PageLoader />}>
+                <BlogPage locale={locale} />
+              </React.Suspense>
+            }
+          />
+        </Routes>
+        <Box>
+          <Footer />
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
 
